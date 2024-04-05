@@ -1,7 +1,10 @@
+import { useThemeColor } from "@/components/Themed";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import React, { useEffect } from "react";
+import { StatusBar } from "expo-status-bar";
+import * as React from "react";
+import { View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function RootLayout() {
@@ -9,11 +12,11 @@ export default function RootLayout() {
     Avenir: require("../assets/fonts/Avenir-Regular.otf"),
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (error) throw error;
   }, [error]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
     }
@@ -27,14 +30,20 @@ export default function RootLayout() {
 }
 
 function RootLayoutScreen() {
+  const backgroundColor = useThemeColor({}, "background");
   return (
     <SafeAreaProvider>
-      <Stack>
-        <Stack.Screen
-          name="index"
-          options={{ headerShown: false }}
-        ></Stack.Screen>
-      </Stack>
+      <View style={{ flex: 1 }}>
+        <StatusBar style="inverted" />
+        <Stack
+          screenOptions={{
+            contentStyle: { backgroundColor },
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="index" />
+        </Stack>
+      </View>
     </SafeAreaProvider>
   );
 }
