@@ -13,7 +13,7 @@ import {
 
 export default function Login() {
   const bgImage = require("../../assets/auth/pattern.png");
-  const [loginMethod, setLoginMethod] = React.useState("phone");
+  const [loginMethod, setLoginMethod] = React.useState("email");
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -47,7 +47,7 @@ export default function Login() {
 function LoginWithEmail() {
   return (
     <View>
-      <TextInput placeholder="Email" style={styles.input} />
+      <TextInput placeholder="Email" inputMode="email" style={styles.input} />
       <TextInput placeholder="Password" secureTextEntry style={styles.input} />
     </View>
   );
@@ -55,7 +55,7 @@ function LoginWithEmail() {
 function LoginWithPhone() {
   return (
     <View>
-      <TextInput placeholder="Phone number" style={styles.input} />
+      <TextInput placeholder="Phone number" inputMode="tel" style={styles.input} />
       <TextInput placeholder="Password" secureTextEntry style={styles.input} />
     </View>
   );
@@ -74,9 +74,8 @@ const styles = StyleSheet.create({
   },
   bg: {
     flex: 1,
-    width: "100%",
     padding: Sizes.lg,
-    resizeMode: "repeat",
+    resizeMode: "cover",
     justifyContent: "center",
   },
   title: {
