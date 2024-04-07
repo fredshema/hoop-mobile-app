@@ -23,14 +23,25 @@ export default function Register() {
       <View style={styles.form}>
         <View style={{ flex: 1 }}>
           <View>
-            <TextInput placeholder="Email" style={styles.input} />
+            <TextInput
+              placeholder="Email"
+              inputMode="email"
+              style={styles.input}
+            />
             <TextInput
               placeholder="Password"
               secureTextEntry
               style={styles.input}
             />
-            <TextInput placeholder="Password Authentication" style={styles.input} />
-            <TextInput placeholder="Phone number" style={styles.input} />
+            <TextInput
+              placeholder="Password Authentication"
+              style={styles.input}
+            />
+            <TextInput
+              placeholder="Phone number"
+              inputMode="tel"
+              style={styles.input}
+            />
           </View>
         </View>
         <View style={styles.footer}>
@@ -65,9 +76,8 @@ const styles = StyleSheet.create({
   },
   bg: {
     flex: 1,
-    width: "100%",
     padding: Sizes.lg,
-    resizeMode: "repeat",
+    resizeMode: "cover",
     justifyContent: "center",
   },
   title: {
@@ -116,6 +126,6 @@ const styles = StyleSheet.create({
     borderRadius: Sizes.md,
     backgroundColor: Colors.white,
     color: Colors.light.text,
-    fontWeight: "400"
+    fontWeight: "400",
   },
 });
