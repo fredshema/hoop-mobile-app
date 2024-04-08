@@ -1,5 +1,6 @@
 export default {
   sm: 8,
+  sm2x: 12,
   md: 16,
   md2x:18,
   md3x:20,
