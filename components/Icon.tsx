@@ -5,6 +5,8 @@ const icons = {
   eye: require("../assets/icons/eye.png"),
   "eye-off": require("../assets/icons/eye-off.png"),
   "arrow-left": require("../assets/icons/arrow-left.png"),
+  "time-circle": require("../assets/icons/time-circle.png"),
+  backspace: require("../assets/icons/backspace.png"),
 };
 
 type IconSet = typeof icons;
@@ -26,7 +28,7 @@ export function Icon(props: IconProps & PressableProps) {
       }}
       {...props}
     >
-      <Image source={icons[props.name]} style={{ width: 24, height: 24 }} />
+      <Image source={icons[props.name]} style={{ width: 24, height: 24, objectFit: "contain" }} />
     </Pressable>
   );
 }

@@ -2,6 +2,7 @@ import { Link, Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
+import { router } from "expo-router";
 import { Image, StyleSheet, View } from "react-native";
 
 export default function ConfirmForgotPassword() {
@@ -19,6 +20,9 @@ export default function ConfirmForgotPassword() {
           <PrimaryButton
             label="Open email app"
             style={{ marginBottom: Sizes.md, width: "60%" }}
+            onPress={() => {
+                router.push("/(auth)/forgot-password/otp");
+            }}
           />
           <Text style={{ fontSize: Sizes.md, color: Colors.light.muted }}>
             Skip I'll confim later
