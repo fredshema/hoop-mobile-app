@@ -6,10 +6,12 @@ import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
 import { StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function RequestOTP() {
+  const insets = useSafeAreaInsets();
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { marginBottom: -insets.bottom }]}>
       <LayoutHeader
         title="OTP Verifivation"
         onBackPress={() => {
