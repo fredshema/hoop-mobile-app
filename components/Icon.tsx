@@ -7,11 +7,21 @@ const icons = {
   "arrow-left": require("../assets/icons/arrow-left.png"),
   "time-circle": require("../assets/icons/time-circle.png"),
   backspace: require("../assets/icons/backspace.png"),
+  fingerprint: require("../assets/icons/fingerprint.png"),
+};
+
+const sizes = {
+  sm: 16,
+  md: 24,
+  lg: 32,
+  xl: 48,
+  "2xl": 64,
 };
 
 type IconSet = typeof icons;
 type IconProps = {
   name: keyof IconSet;
+  size?: keyof typeof sizes;
 };
 
 export function Icon(props: IconProps & PressableProps) {
@@ -28,7 +38,14 @@ export function Icon(props: IconProps & PressableProps) {
       }}
       {...props}
     >
-      <Image source={icons[props.name]} style={{ width: 24, height: 24, objectFit: "contain" }} />
+      <Image
+        source={icons[props.name]}
+        style={{
+          objectFit: "contain",
+          width: sizes[props.size ?? "md"],
+          height: sizes[props.size ?? "md"],
+        }}
+      />
     </Pressable>
   );
 }

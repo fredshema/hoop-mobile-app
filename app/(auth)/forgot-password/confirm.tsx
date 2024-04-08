@@ -10,6 +10,7 @@ export default function ConfirmForgotPassword() {
     <View style={styles.container}>
       <View style={{ flex: 1, alignItems: "center" }}>
         <Image
+          style={styles.img}
           source={require("../../../assets/auth/confirm-forget-password.png")}
         />
         <View style={{ alignItems: "center" }}>
@@ -21,12 +22,15 @@ export default function ConfirmForgotPassword() {
             label="Open email app"
             style={{ marginBottom: Sizes.md, width: "60%" }}
             onPress={() => {
-                router.push("/(auth)/forgot-password/otp");
+              router.push("/(auth)/forgot-password/request_otp");
             }}
           />
-          <Text style={{ fontSize: Sizes.md, color: Colors.light.muted }}>
+          <Link
+            href="/(auth)/forgot-password/request_code"
+            style={{ fontSize: Sizes.md, color: Colors.light.muted }}
+          >
             Skip I'll confim later
-          </Text>
+          </Link>
         </View>
       </View>
       <Text style={styles.footer}>
@@ -45,6 +49,12 @@ const styles = StyleSheet.create({
     marginTop: 50,
     justifyContent: "center",
     alignItems: "center",
+  },
+  img: {
+    width: 300,
+    height: 300,
+    objectFit: "cover",
+    overflow: "hidden",
   },
   title: {
     fontSize: Sizes.xl,
