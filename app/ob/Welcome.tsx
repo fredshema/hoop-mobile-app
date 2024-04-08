@@ -6,6 +6,7 @@ export default function Welcome(){
     return(
         <View style={styles.container}>
            <Skip/>
+           <Image source={require("../../assets/auth/page1.png")} style={styles.images}/>
             <Text style={styles.title}>
                 Welcome
             </Text>
