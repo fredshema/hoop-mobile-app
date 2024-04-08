@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.light.light,
   },
   text: {
-    fontWeight: "500",
+    fontWeight: "600",
     fontSize: Sizes.lg,
   },
 });
