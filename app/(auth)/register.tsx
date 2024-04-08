@@ -1,20 +1,17 @@
+import { Text } from "@/components/Themed";
+import { PasswordInput, PhoneInput, TextInput } from "@/components/ThemedInput";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { Link } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
-import {
-    ImageBackground,
-    Pressable,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
-} from "react-native";
+import { ImageBackground, Pressable, StyleSheet, View } from "react-native";
 
 export default function Register() {
   const bgImage = require("../../assets/auth/pattern.png");
   return (
     <View style={styles.container}>
+      <StatusBar style="inverted" />
       <View style={styles.header}>
         <ImageBackground source={bgImage} style={styles.bg}>
           <Text style={styles.title}>Let's Start!!</Text>
@@ -23,25 +20,10 @@ export default function Register() {
       <View style={styles.form}>
         <View style={{ flex: 1 }}>
           <View>
-            <TextInput
-              placeholder="Email"
-              inputMode="email"
-              style={styles.input}
-            />
-            <TextInput
-              placeholder="Password"
-              secureTextEntry
-              style={styles.input}
-            />
-            <TextInput
-              placeholder="Password Authentication"
-              style={styles.input}
-            />
-            <TextInput
-              placeholder="Phone number"
-              inputMode="tel"
-              style={styles.input}
-            />
+            <TextInput placeholder="Email" inputMode="email" />
+            <PasswordInput placeholder="Password" secureTextEntry />
+            <PasswordInput placeholder="Password Authentication" />
+            <PhoneInput placeholder="Phone number" returnKeyType="done" />
           </View>
         </View>
         <View style={styles.footer}>
@@ -116,16 +98,5 @@ const styles = StyleSheet.create({
   footer: {
     justifyContent: "center",
     alignItems: "center",
-  },
-  input: {
-    width: "100%",
-    paddingHorizontal: Sizes.lg,
-    paddingVertical: Sizes.md3x,
-    fontSize: Sizes.md3x,
-    marginBottom: Sizes.md3x,
-    borderRadius: Sizes.md,
-    backgroundColor: Colors.white,
-    color: Colors.light.text,
-    fontWeight: "400",
   },
 });
