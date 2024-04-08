@@ -1,20 +1,14 @@
 import { Link } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import Welcome from "./ob/Welcome";
+import Ob3 from "./ob/Ob3";
 
 export default function Home() {
   return (
-    <View style={styles.container}>
-      <Text>Open up app/index.tsx to start working on your app!</Text>
-      <Link href="/(auth)/login">Go to Login</Link>
-    </View>
+    <Welcome/>
+   
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+
