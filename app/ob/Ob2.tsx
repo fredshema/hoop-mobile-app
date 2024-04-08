@@ -4,9 +4,9 @@ import Skip from "./Skip";
 import Btn from "./Btn";
 export default function Ob2(){
     return(
-    
         <View style={styles.container}>
             <Skip/>
+            <Image source={require("../../assets/auth/page2.png")} style={styles.images}/>
             <Text style={styles.title}>
             Hollaaa
             </Text>

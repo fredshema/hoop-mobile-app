@@ -6,6 +6,7 @@ export default function Ob3(){
     return(
         <View style={styles.container}>
             <Skip/>
+            <Image source={require("../../assets/auth/page3.png")} style={styles.images}/>
             <Text style={styles.title}>
             Find Parking
             </Text>
