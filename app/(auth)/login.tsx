@@ -1,11 +1,11 @@
-import { Text } from "@/components/Themed";
+import { Link, Text } from "@/components/Themed";
+import { PrimaryButton } from "@/components/ThemedButton";
 import { PasswordInput, PhoneInput, TextInput } from "@/components/ThemedInput";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
-import { Link } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { ImageBackground, Pressable, StyleSheet, View } from "react-native";
+import { ImageBackground, StyleSheet, View } from "react-native";
 
 export default function Login() {
   const bgImage = require("../../assets/auth/pattern.png");
@@ -21,20 +21,20 @@ export default function Login() {
       <View style={styles.form}>
         <View style={{ flex: 1 }}>
           {loginMethod === "email" ? <LoginWithEmail /> : <LoginWithPhone />}
-          <Text style={{ textAlign: "right" }}>
+          <Text style={{ textAlign: "right", color: Colors.light.muted }}>
             Forgot password?{" "}
-            <Link style={styles.primaryText} href="/(auth)/forgot-password/form">
+            <Link
+              href="/(auth)/forgot-password/form"
+            >
               Retrieve
             </Link>
           </Text>
         </View>
         <View style={styles.footer}>
-          <Pressable style={styles.button}>
-            <Text style={styles.btnText}>Login</Text>
-          </Pressable>
-          <Text>
+          <PrimaryButton label="Login" />
+          <Text style={{ color: Colors.light.muted }}>
             Don't have an account?{" "}
-            <Link href="/(auth)/register" style={styles.primaryText}>
+            <Link href="/(auth)/register">
               Sign Up
             </Link>
           </Text>
@@ -81,21 +81,6 @@ const styles = StyleSheet.create({
   title: {
     color: Colors.dark.text,
     fontSize: Sizes.xl,
-  },
-  primaryText: {
-    color: Colors.light.primary,
-  },
-  button: {
-    width: "100%",
-    backgroundColor: Colors.dark.background,
-    paddingVertical: Sizes.md,
-    borderRadius: Sizes.md,
-    marginBottom: Sizes.lg,
-  },
-  btnText: {
-    textAlign: "center",
-    color: Colors.dark.text,
-    fontSize: Sizes.lg,
   },
   form: {
     flex: 5,

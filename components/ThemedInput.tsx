@@ -15,7 +15,7 @@ export function TextInput(props: TextInputProps) {
     <DefaultTextInput
       {...props}
       placeholderTextColor={props.placeholderTextColor ?? Colors.light.muted}
-      style={[props.style, styles.input]}
+      style={[styles.input, props.style]}
     />
   );
 }
@@ -32,7 +32,7 @@ export function PasswordInput(props: TextInputProps) {
         {...props}
         secureTextEntry
         placeholderTextColor={props.placeholderTextColor ?? Colors.light.muted}
-        style={[props.style, styles.input, { marginBottom: 0 }]}
+        style={[styles.input, props.style, { marginBottom: 0 }]}
       />
     </View>
   );
@@ -53,7 +53,7 @@ export function PhoneInput(props: TextInputProps) {
       <DefaultTextInput
         {...props}
         placeholderTextColor={props.placeholderTextColor ?? Colors.light.muted}
-        style={[props.style, styles.input, styles.phoneInput]}
+        style={[styles.input, props.style, styles.phoneInput]}
         keyboardType="phone-pad"
       />
     </View>
@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
   input: {
     width: "100%",
     paddingHorizontal: Sizes.lg,
-    paddingVertical: Sizes.md3x,
-    fontSize: Sizes.md3x,
+    paddingVertical: Sizes.md2x,
+    fontSize: Sizes.md2x,
     borderRadius: Sizes.md,
     marginBottom: Sizes.md3x,
     backgroundColor: Colors.white,
