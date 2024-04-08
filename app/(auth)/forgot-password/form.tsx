@@ -1,5 +1,6 @@
 import LayoutHeader from "@/components/LayoutHeader";
 import { Text } from "@/components/Themed";
+import { PrimaryButton } from "@/components/ThemedButton";
 import { TextInput } from "@/components/ThemedInput";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
@@ -23,9 +24,18 @@ export default function ForgotPassword() {
           with instructions to reset your password.
         </Text>
       </View>
-      <View>
+      <View style={{ flex: 1 }}>
         <Text style={styles.label}>Email address</Text>
         <TextInput style={styles.input} placeholder="Email" />
+        <View style={{ marginTop: Sizes.lg, flex: 1 }} />
+        <View>
+          <PrimaryButton
+            label="Send"
+            onPress={() => {
+              router.navigate("/(auth)/forgot-password/confirm");
+            }}
+          />
+        </View>
       </View>
     </View>
   );

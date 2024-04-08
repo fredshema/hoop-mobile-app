@@ -6,4 +6,5 @@ export default {
   md3x:20,
   lg: 24,
   xl: 28,
+  xl2x: 32,
 };

@@ -1,11 +1,11 @@
-import { Text } from "@/components/Themed";
+import { Link, Text } from "@/components/Themed";
+import { PrimaryButton } from "@/components/ThemedButton";
 import { PasswordInput, PhoneInput, TextInput } from "@/components/ThemedInput";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
-import { Link } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { ImageBackground, Pressable, StyleSheet, View } from "react-native";
+import { ImageBackground, StyleSheet, View } from "react-native";
 
 export default function Register() {
   const bgImage = require("../../assets/auth/pattern.png");
@@ -27,17 +27,9 @@ export default function Register() {
           </View>
         </View>
         <View style={styles.footer}>
-          <Pressable style={styles.button}>
-            <Text style={styles.btnText}>Register</Text>
-          </Pressable>
-          <Text style={styles.text}>
-            Have an account?{" "}
-            <Link
-              href="/(auth)/login"
-              style={{ ...styles.text, ...styles.primaryText }}
-            >
-              Sign In
-            </Link>
+          <PrimaryButton label="Register" />
+          <Text style={{ color: Colors.light.muted }}>
+            Have an account? <Link href="/(auth)/login">Sign In</Link>
           </Text>
         </View>
       </View>
@@ -65,25 +57,6 @@ const styles = StyleSheet.create({
   title: {
     color: Colors.dark.text,
     fontSize: Sizes.xl,
-  },
-  text: {
-    fontSize: Sizes.md2x,
-    color: Colors.light.text,
-  },
-  primaryText: {
-    color: Colors.light.primary,
-  },
-  button: {
-    width: "100%",
-    backgroundColor: Colors.dark.background,
-    paddingVertical: Sizes.md,
-    borderRadius: Sizes.md,
-    marginBottom: Sizes.lg,
-  },
-  btnText: {
-    textAlign: "center",
-    color: Colors.dark.text,
-    fontSize: Sizes.lg,
   },
   form: {
     flex: 5,
