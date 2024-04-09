@@ -21,7 +21,7 @@ export default function Home() {
   //   <Stack.Screen name="ob3" component={Ob3} options={{headerShown:false}}/>
   //   </Stack.Navigator>
   // </NavigationContainer>
-  <Profile/>
+  <Category/>
  
   );
 }

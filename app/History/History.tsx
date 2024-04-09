@@ -1,15 +1,17 @@
 import React from "react";
 import {Text, View, StyleSheet, Image, TextInput} from "react-native";
-import Spaces2 from "../Home/Spaces2";
-import Spaces from "../Home/Spaces";
+import Spaces from "./Spaces";
+import Spaces2 from "./Spaces2";
 export default function History(){
     return(
         <View style={styles.container}>
             <View style={styles.content}>
         <Text style={styles.title}>History</Text>
         <View style={styles.search}>
-        <TextInput style={styles.inputField} placeholder="search"></TextInput>
-        <Text style={styles.icon}>icon</Text>
+        <TextInput style={styles.inputField}>
+       <Text style={styles.placeholder}> <Image source={require("../../assets/auth/search.png")}/> Search</Text> 
+        </TextInput>
+        <Text style={styles.icon}><Image source={require("../../assets/auth/filter.png")} style={styles.filterIcon}/></Text>
         </View>
         <Text style={styles.titles}>Recently</Text>
 <Spaces/>
@@ -57,8 +59,15 @@ marginRight:20,
             backgroundColor:"#EAEAF3",
             width:54,
             height:55,
-            padding:5,
-            textAlign:"center",
+            padding:15,
             borderRadius:15,
-          }       
+          }   ,
+          placeholder:{
+            color:"#2D2D2D",
+            opacity:0.4,
+          },
+          filterIcon:{
+            width:20,
+            height:20,
+          }    
 })

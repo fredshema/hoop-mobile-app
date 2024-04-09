@@ -26,12 +26,63 @@ export default function Profile() {
           <Text style={styles.subtitles}>Welcome</Text>
           <Text style={styles.name}>Diane</Text>
           </View>
-          <Image source={require("../../assets/auth/P_icon.png")} style={styles.icon}/>
+          <View style={styles.bx}>
+        <Image source={require("../../assets/auth/out.png")} style={styles.notify}/>
+          </View>
           </View>
         </ImageBackground>
       </View>
       <View style={styles.form}>
         <View style={{ flex: 1 }}>
+          <View style={styles.titleElements}>
+        <View style={styles.titleElement}>
+        <Image source={require("../../assets/auth/profil.png")} />
+        <View style={styles.titles}>
+        <Text style={styles.words}>Profile</Text>
+        </View>
+        </View>
+        <Image source={require("../../assets/auth/arrow.png")} />
+        
+        </View>
+          <View style={styles.titleElements}>
+          <View style={styles.titleElement}>
+        <Image source={require("../../assets/auth/pro.png")} />
+        <View style={styles.titles}>
+        <Text style={styles.words}>Go Pro</Text>
+        </View>
+        </View>
+       
+        <Image source={require("../../assets/auth/arrow.png")} />
+          </View>
+         
+          <View style={styles.titleElements}>
+          <View style={styles.titleElement}>
+        <Image source={require("../../assets/auth/terms.png")} />
+        <View style={styles.titles}>
+        <Text style={styles.words}>Terms & Conditions</Text>
+        </View>
+        </View>
+        <Image source={require("../../assets/auth/arrow.png")} />
+          </View>
+
+          <View style={styles.titleElements}>
+          <View style={styles.titleElement}>
+        <Image source={require("../../assets/auth/faq.png")} />
+        <View style={styles.titles}>
+        <Text style={styles.words}>FAQ</Text>
+        </View>
+        </View>
+        <Image source={require("../../assets/auth/arrow.png")} />
+          </View>
+          <View style={styles.titleElements}>
+          <View style={styles.titleElement}>
+        <Image source={require("../../assets/auth/settings.png")} />
+        <View style={styles.titles}>
+        <Text style={styles.words}>Settings</Text>
+        </View>
+        </View>
+        <Image source={require("../../assets/auth/arrow.png")} />
+          </View>
         </View>
         <View style={styles.footer}>
           <Pressable style={styles.button}>
@@ -146,12 +197,34 @@ const styles = StyleSheet.create({
     justifyContent:"space-between",
     marginTop:20,
   },
+  titleElement:{
+flexDirection:"row",
+  },
   greetings:{
    marginRight:120,
    marginTop:15,
     
   },
+  titles:{
+    marginRight:130,
+    marginTop:15, 
+  },
   icon:{
     marginTop:15,
-  }
+  },
+  words:{
+    marginLeft:5,
+  },
+  bx:{
+    backgroundColor: "#2A344E",
+width:44,
+height:44,
+    borderRadius:10,
+    marginTop:20,
+  },
+    notify:{
+      width:20,
+      height:20,
+      margin:11,
+    }
 });

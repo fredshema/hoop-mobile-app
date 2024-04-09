@@ -1,5 +1,5 @@
 import React from "react";
-import {Text, View, StyleSheet} from "react-native";
+import {Text, View, StyleSheet, Image} from "react-native";
 import Spaces2 from "../Home/Spaces2";
 import Spaces from "../Home/Spaces";
 export default function Category(){
@@ -7,9 +7,9 @@ export default function Category(){
         <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.search}>
-            <Text style={styles.icon}>icon</Text>
+                <Text style={styles.icon}><Image source={require("../../assets/auth/filter.png")}/></Text>
         <Text style={styles.title}>Detail Category</Text>
-        <Text style={styles.icon}>icon</Text>
+        <Text style={styles.icon}><Image source={require("../../assets/auth/filter.png")}/></Text>
         </View>
         <View style={styles.titleElements}>
         <View style={styles.location}>
