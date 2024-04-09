@@ -7,6 +7,8 @@ import Welcome from "./ob/Welcome";
 import Ob2 from "./ob/Ob2";
 import Ob3 from "./ob/Ob3";
 import Profile from "./profile/Profile";
+import Hom from "./Home/Hom";
+import Explore from "./Explore/Explore";
 const Stack = createNativeStackNavigator();
 export default function Home() {
   return (
@@ -17,7 +19,7 @@ export default function Home() {
   //   <Stack.Screen name="ob3" component={Ob3} options={{headerShown:false}}/>
   //   </Stack.Navigator>
   // </NavigationContainer>
-  <Welcome/>
+  <Explore/>
  
   );
 }

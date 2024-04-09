@@ -32,11 +32,6 @@ export default function Profile() {
       </View>
       <View style={styles.form}>
         <View style={{ flex: 1 }}>
-        <Image source={require("../../assets/auth/prof.png")}/>
-        <Image source={require("../../assets/auth/pro.png")} style={styles.images}/>
-        <Image source={require("../../assets/auth/terms.png")} style={styles.images}/>
-        <Image source={require("../../assets/auth/faq.png")} style={styles.images}/>
-        <Image source={require("../../assets/auth/settings.png")}style={styles.images}/>
         </View>
         <View style={styles.footer}>
           <Pressable style={styles.button}>
