@@ -26,12 +26,14 @@ export default function Hom() {
           <Text style={styles.name}>Hola Diane 👋🏻</Text>
           <Text style={styles.subtitles}>Find an easy parking spot</Text>
           </View>
-          <Text>
-          <Image source={require("../../assets/auth/Notification.png")}/>
-          </Text>
-          
+          <View style={styles.bx}>
+        <Image source={require("../../assets/auth/Notification.png")} style={styles.notify}/>
           </View>
-          <TextInput style={styles.inputField} placeholder="search"></TextInput>
+          </View>
+          <TextInput style={styles.inputField}>
+          <Image source={require("../../assets/auth/search.png")} style={styles.icons}/> 
+          <Text style={styles.place}>Search</Text> 
+          </TextInput>
         </ImageBackground>
       </View>
       <View style={styles.form}>
@@ -117,6 +119,13 @@ const styles = StyleSheet.create({
     paddingVertical: Sizes.sm + 40,
     paddingHorizontal: Sizes.lg,
   },
+  bx:{
+    backgroundColor: "#2A344E",
+    width:44,
+    height:44,
+    borderRadius:10,
+    marginTop:20,
+  },
   footer: {
     justifyContent: "center",
     alignItems: "center",
@@ -145,11 +154,14 @@ marginTop:20,
   subtitles:{
     color:"#FFFFFF",
     opacity:0.5,
-    fontSize:14,
+    fontSize:16,
+  },
+  notify:{
+margin:11,
   },
   name:{
     color:"#FFFFFF",
-    fontSize:20,
+    fontSize:28,
   },
   titleElements:{
     flexDirection:"row",
@@ -224,5 +236,14 @@ marginTop:20,
   },
   span:{
 fontSize:12,
+  },
+  place:{
+    color:"#FFFFFF",
+   opacity:0.4,
+    fontSize:16,
+    marginLeft:60,
+  },
+  icons:{
+    marginRight:20,
   }
 });
