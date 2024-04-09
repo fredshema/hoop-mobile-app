@@ -22,6 +22,7 @@ const styles=StyleSheet.create({
         backgroundColor:"#FFFFFF",
         borderRadius:15,
     padding:15,
+    marginBottom:20,
       },
       timeButton:{
         backgroundColor: "#FFF3F3",

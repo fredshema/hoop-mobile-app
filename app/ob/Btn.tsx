@@ -6,15 +6,17 @@ export default function buttons(){
     return(
         <View style={styles.buttons}>
         <TouchableOpacity style={styles.btnEmail}>
-        <Text style={styles.textEmail}>
-
-        Login with Email
+     <View style={styles.btns}>
+        <Image source={require("../../assets/auth/Message.png")} style={styles.emailIcon}/> 
+        <Text style={styles.textEmail}>  Login with Email
         </Text>
+        </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.btnPhone}>
-        <Text style={styles.textPhone }>
-        Login with Phone
-        </Text>
+        <View style={styles.btns}>
+       <Image source={require("../../assets/auth/call.png")} style={styles.emailIcon}/> 
+       <Text style={styles.textPhone}>Login with Phone</Text>
+        </View>
         </TouchableOpacity>
         <View style={styles.messageLink}>
         <Text style={styles.message}>Don't have an account?</Text>
@@ -35,19 +37,16 @@ btnEmail:{
     borderRadius:15,
     backgroundColor:"#2D2D2D",
 },
-phoneIcon:{
-    marginRight:8,
-},
 emailIcon:{
-    marginRight:8,    
+    marginRight:8,   
+    width:24,
+    height:24, 
 },
 textPhone:{
     color:"#2D2D2D",
     opacity:0.7,
      textAlign:"center",
-    marginTop:15,
-    fontSize:18,
-   
+    fontSize:18,  
 },
 message:{
 color:"#2D2D2D",
@@ -55,7 +54,6 @@ color:"#2D2D2D",
 textEmail:{
     color:"#FFFFFF",
     textAlign:"center",
-    marginTop:15,
     fontSize:18,
    
 },
@@ -67,6 +65,11 @@ btnPhone:{
     marginTop:20,
 },
 messageLink:{
+    flexDirection:"row",
+    justifyContent:"center",
+    marginTop:20,
+},
+btns:{
     flexDirection:"row",
     justifyContent:"center",
     marginTop:20,

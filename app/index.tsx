@@ -9,6 +9,8 @@ import Ob3 from "./ob/Ob3";
 import Profile from "./profile/Profile";
 import Hom from "./Home/Hom";
 import Explore from "./Explore/Explore";
+import History from "./History/History";
+import Category from "./Category/Category";
 const Stack = createNativeStackNavigator();
 export default function Home() {
   return (
@@ -19,7 +21,7 @@ export default function Home() {
   //   <Stack.Screen name="ob3" component={Ob3} options={{headerShown:false}}/>
   //   </Stack.Navigator>
   // </NavigationContainer>
-  <Explore/>
+  <Profile/>
  
   );
 }
