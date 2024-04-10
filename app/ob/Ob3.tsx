@@ -3,7 +3,6 @@ import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { Text } from "@/components/Themed";
 
-
 export default function Ob3() {
   return (
     <View style={styles.container}>
