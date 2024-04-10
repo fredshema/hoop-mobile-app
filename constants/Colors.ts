@@ -11,6 +11,7 @@ export default {
     light: "#EAEAF3",
     dark: "#130F26",
     danger: "#F43939",
+    lightDanger: "#FFF3F3",
   },
   dark: {
     text: "#fff",

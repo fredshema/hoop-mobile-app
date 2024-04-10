@@ -1,4 +1,3 @@
-import Sizes from "@/constants/Sizes";
 import { Image, Pressable, PressableProps } from "react-native";
 
 const icons = {
@@ -11,6 +10,8 @@ const icons = {
   filter: require("../assets/icons/fingerprint.png"),
   call: require("../assets/icons/call.png"),
   message: require("../assets/icons/Message.png"),
+  "info-circle": require("@/assets/icons/info-circle.png"),
+  location: require("@/assets/icons/location.png"),
 };
 
 const sizes = {
@@ -31,11 +32,7 @@ export function Icon(props: IconProps & PressableProps) {
   return (
     <Pressable
       style={{
-        position: "absolute",
-        top: 0,
-        bottom: 0,
-        zIndex: 1,
-        right: Sizes.md,
+        position: "relative",
         justifyContent: "center",
         alignItems: "center",
       }}

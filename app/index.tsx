@@ -1,10 +1,10 @@
+import { Icon } from "@/components/Icon";
+import { Link, Text } from "@/components/Themed";
+import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ob1 from "./ob/Ob1";
-import { Link, Text } from "@/components/Themed";
-import { Icon } from "@/components/Icon";
-import Colors from "@/constants/Colors";
 
 export default function Home() {
   const insets = useSafeAreaInsets();
@@ -15,7 +15,7 @@ export default function Home() {
         { paddingTop: insets.top, paddingBottom: insets.bottom },
       ]}
     >
-      <Link href="/home/" style={styles.skipText}>Skip</Link>
+      <Link href="/parking/tracking" style={styles.skipText}>Skip</Link>
       <View style={styles.ob}>
         <Ob1 />
         <View style={styles.circles}>
