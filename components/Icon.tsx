@@ -8,6 +8,9 @@ const icons = {
   "time-circle": require("../assets/icons/time-circle.png"),
   backspace: require("../assets/icons/backspace.png"),
   fingerprint: require("../assets/icons/fingerprint.png"),
+  filter: require("../assets/icons/fingerprint.png"),
+  call: require("../assets/icons/call.png"),
+  message: require("../assets/icons/Message.png"),
 };
 
 const sizes = {

@@ -1,7 +1,6 @@
 import React from "react";
 import {Text, View, StyleSheet, Image, TextInput} from "react-native";
-import Spaces2 from "../Home/Spaces2";
-import Spaces from "../Home/Spaces";
+
 export default function Explore(){
     return(
         <View style={styles.container}>
@@ -17,9 +16,6 @@ export default function Explore(){
             </View>
         <Text style={styles.message}>Most Popular  Most Wanted</Text> 
         </View>
-<Spaces/>
-<Spaces/>
-<Spaces2/>
     </View>
     </View>
     )
