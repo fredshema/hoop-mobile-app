@@ -32,6 +32,7 @@ function RootLayoutScreen() {
   return (
     <SafeAreaProvider>
       <Stack
+        initialRouteName="(auth)/login"
         screenOptions={{
           contentStyle: { backgroundColor },
           headerShown: false,

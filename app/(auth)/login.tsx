@@ -6,6 +6,7 @@ import Sizes from "@/constants/Sizes";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
+import {router} from "expo-router";
 
 export default function Login() {
   const bgImage = require("../../assets/auth/pattern.png");
@@ -31,7 +32,11 @@ export default function Login() {
           </Text>
         </View>
         <View style={styles.footer}>
-          <PrimaryButton label="Login" />
+          <PrimaryButton label="Login" onPress={
+            () => {
+              router.navigate("/home/");
+            }
+          } />
           <Text style={{ color: Colors.light.muted }}>
             Don't have an account?{" "}
             <Link href="/(auth)/register">

@@ -1,7 +1,11 @@
 import Sizes from "@/constants/Sizes";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ob1 from "./ob/Ob1";
+import { Link, Text } from "@/components/Themed";
+import { Icon } from "@/components/Icon";
+import Colors from "@/constants/Colors";
+
 export default function Home() {
   const insets = useSafeAreaInsets();
   return (
@@ -11,7 +15,7 @@ export default function Home() {
         { paddingTop: insets.top, paddingBottom: insets.bottom },
       ]}
     >
-      <Text style={styles.skipText}>Skip</Text>
+      <Link href="/home/" style={styles.skipText}>Skip</Link>
       <View style={styles.ob}>
         <Ob1 />
         <View style={styles.circles}>
@@ -22,14 +26,21 @@ export default function Home() {
       </View>
       <View style={styles.buttons}>
         <TouchableOpacity style={styles.btnEmail}>
-          <Text style={styles.textEmail}>Login with Email</Text>
+          <Text style={styles.textEmail}>
+            <Icon name="message" />
+            Login with Email
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.btnPhone}>
-          <Text style={styles.textPhone}>Login with Phone</Text>
+          <Text style={styles.textPhone}>
+            <Icon name="call" />
+            Login with Phone
+          </Text>
         </TouchableOpacity>
         <View style={styles.messageLink}>
-          <Text style={styles.message}>Don't have an account?</Text>
-          <Text style={styles.link}>Sign Up</Text>
+          <Text style={styles.message}>Don't have an account?{" "}
+          </Text>
+          <Link href="/home/">Sign Up</Link>
         </View>
       </View>
     </View>
@@ -40,12 +51,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: Sizes.lg,
+    marginBottom: Sizes.xl2x,
   },
   skipText: {
     textAlign: "right",
     fontSize: Sizes.md3x,
-    fontFamily: "Avenir",
     marginTop: Sizes.xl,
+    color: Colors.light.muted,
   },
   ob: {
     flex: 1,
@@ -55,7 +67,7 @@ const styles = StyleSheet.create({
   circles: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 20,
+    marginTop: Sizes.xl,
   },
   circle: {
     width: 6,
@@ -73,11 +85,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   btnEmail: {
-    marginTop: 40,
     width: 311,
     height: 60,
     borderRadius: 15,
     backgroundColor: "#2D2D2D",
+    justifyContent: "center",
+    alignItems: "center",
   },
   phoneIcon: {
     marginRight: 8,
@@ -91,6 +104,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 15,
     fontSize: 18,
+    justifyContent: "center",
+    alignItems: "center",
   },
   message: {
     color: "#2D2D2D",

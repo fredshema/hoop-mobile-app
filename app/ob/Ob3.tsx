@@ -1,6 +1,8 @@
 import Sizes from "@/constants/Sizes";
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
+import { Text } from "@/components/Themed";
+
 export default function Ob3() {
   return (
     <View style={styles.container}>
@@ -18,9 +20,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   bodyMessage: {
-    color: "#2D2D2D",
     opacity: 0.5,
-    fontSize: Sizes.md2x,
     textAlign: "center",
     maxWidth: 300,
   },
