@@ -1,16 +1,14 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-export default function Ob2() {
+export default function Ob1() {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../../assets/auth/page2.png")}
+        source={require("../../assets/auth/page1.png")}
         style={styles.images}
       />
-      <Text style={styles.title}>Hollaaa</Text>
-      <Text style={styles.bodyMessage}>
-        Find the best possible parking space nearby your desired destination
-      </Text>
+      <Text style={styles.title}>Welcome</Text>
+      <Text style={styles.bodyMessage}>Find a best possible way to park</Text>
     </View>
   );
 }
@@ -19,9 +17,6 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     backgroundColor: "#EAEAF3",
-  },
-  images: {
-    marginLeft: 50,
   },
   bodyMessage: {
     color: "#2D2D2D",
@@ -34,5 +29,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: "center",
     marginTop: 20,
+  },
+  images: {
+    marginLeft: 50,
   },
 });
