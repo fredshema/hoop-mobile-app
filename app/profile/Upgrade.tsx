@@ -31,9 +31,7 @@ export default function Upgrade() {
        </View>
        <View style={styles.icons}>
        <Icon name="tick"/>
-       <View style={styles.discount}>
        <Text> Discounts every reservation</Text> 
-       </View>
        </View>
        <View style={styles.icons}>
        <Icon name="tick"/> 
