@@ -22,16 +22,16 @@ export default function Payment() {
       </View>
       <View style={styles.rectangle}>
 <Text style={styles.txt}>Input voucher code</Text>
-<Text style={styles.hour}>Use</Text>
+<Text style={styles.use}>Use</Text>
     </View>
     <View style={styles.card}>
         <View style={styles.prices}>
-        <Text>Sub total</Text>
-        <Text>$30,00</Text>
+        <Text style={styles.texts}>Sub total</Text>
+        <Text style={styles.cost}>$30,00</Text>
         </View>
         <View style={styles.prices}>
-        <Text>Insurance</Text>
-        <Text>$5,00</Text>
+        <Text style={styles.texts}>Insurance</Text>
+        <Text style={styles.cost}>$5,00</Text>
         </View>
         <Text style={styles.line}></Text>
         <View style={styles.prices}>
@@ -62,21 +62,19 @@ const styles = StyleSheet.create({
     textAlign:"center",
     marginBottom:30,
   },
+  use:{
+    color:"#F43939",
+  },
   txt:{
     fontSize:Sizes.md2x,
     marginRight:30,
-    marginTop:5,
-      },
-      hour:{
-        fontSize:Sizes.md,
-        marginTop:5,
+    color:"#2D2D2D",
+    opacity:0.2,
       },
   title: {
     color: "#2D2D2D",
     fontSize: Sizes.lg,
     textAlign: "center",
-    marginTop: Sizes.lg,
-    marginBottom: Sizes.sm,
   },
   card:{
 backgroundColor:Colors.dark.text,
@@ -87,13 +85,19 @@ borderRadius:Sizes.sm1x,
   },
 line:{
 width:271,
+height:0,
 borderWidth:1,
 borderColor:"#2D2D2D",
 opacity:0.05,
-},
+marginBottom:Sizes.sm1x,},
 prices:{
 flexDirection:"row",
-justifyContent:"space-around",
+justifyContent:"space-between",
+marginBottom:Sizes.sm1x,
+},
+cost:{
+  color:"#2D2D2D",
+  fontSize:Sizes.md,
 },
   rectangle:{
     backgroundColor:Colors.dark.text,
@@ -101,14 +105,14 @@ justifyContent:"space-around",
     justifyContent:"space-around",
     width:311,
     height:61,
-    padding:10,
-    margin:35,
+    padding:15,
+    marginLeft:30,
     borderRadius:15,
   },
   texts:{
-marginLeft:20,
 color:"#2D2D2D",
-fontSize:Sizes.md3x,
+opacity:0.6,
+fontSize:Sizes.md,
   },
   paragraph:{
     marginLeft:20,
