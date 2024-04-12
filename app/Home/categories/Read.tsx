@@ -5,7 +5,7 @@ import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
 import { Icon } from "@/components/Icon";
-export default function Notification() {
+export default function  Read() {
     return(
         <View>
             <View style={styles.layout}>
@@ -36,13 +36,14 @@ marginLeft:15,
 line:{
 width:3,
 height:47,
-backgroundColor:"#F43939",
+backgroundColor:"#FFF3F3",
 borderTopRightRadius:15,
 borderBottomRightRadius:15,
 },
 title:{
     color:"#2D2D2D",
     fontSize:Sizes.md2x,
+    opacity:0.6,
 },
 time:{
     color:"#2D2D2D",

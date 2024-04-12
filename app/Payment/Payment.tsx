@@ -35,8 +35,8 @@ export default function Payment() {
         </View>
         <Text style={styles.line}></Text>
         <View style={styles.prices}>
-        <Text>Total</Text>
-        <Text>$35,00</Text>
+        <Text style={styles.total}>Total</Text>
+        <Text style={styles.totalPrice}>$35,00</Text>
         </View>
         </View>
       <View style={styles.button}>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
     fontSize: Sizes.sm3x,
     textAlign:"center",
-    marginBottom:30,
+    marginBottom:10,
   },
   use:{
     color:"#F43939",
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     color: "#2D2D2D",
     fontSize: Sizes.lg,
     textAlign: "center",
+    marginTop:10,
   },
   card:{
 backgroundColor:Colors.dark.text,
@@ -98,6 +99,14 @@ marginBottom:Sizes.sm1x,
 cost:{
   color:"#2D2D2D",
   fontSize:Sizes.md,
+},
+total:{
+  color:"#2D2D2D",
+  fontSize:16,
+},
+totalPrice:{
+  color:"#2D2D2D",
+  fontSize:18,
 },
   rectangle:{
     backgroundColor:Colors.dark.text,
@@ -127,12 +136,13 @@ fontSize:Sizes.md,
     height:35,
     textAlign:"center",
     marginLeft:20,
+    padding:5,
     fontSize:Sizes.sm3x,
     borderRadius:Sizes.sm1x,
   },
   icons:{
     flexDirection:"row",
-    justifyContent:"center"
+    justifyContent:"center",
   },
   images:{
     flexDirection:"row",

@@ -19,7 +19,7 @@ import Notifications from "./Home/categories/Notifications";
 
 export default function Home() {
   return(
-    <Notifications/>
+    < Parking/>
   )
 }
 //   const insets = useSafeAreaInsets();

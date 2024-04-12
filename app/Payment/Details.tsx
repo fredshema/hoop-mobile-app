@@ -11,20 +11,21 @@ export default function Details() {
         <Text style={styles.title}>Payment Details</Text>
         <View style={styles.rectangle}>
 <Text style={styles.txt}>Mobile Banking</Text>
-<Image source={require("../../assets/auth/arrow.png")}/>
+<Image source={require("../../assets/auth/arrow.png")}  style={styles.img}/>
     </View>
         <View style={styles.card}>
             <View style={styles.message}>
       <Text>Credit Card</Text>
-      <Image source={require("../../assets/auth/arrow.png")}/>
+      <Image source={require("../../assets/auth/Arrowup.png")}  style={styles.img}/>
       </View>
       <View style={styles.cardNames}>
-      <Image source={require("../../assets/auth/mastercard.png")}/>
+      <Image source={require("../../assets/auth/mastercard.png")} style={styles.mastercard}/>
       <Text style={styles.accountNumber}>ABC Bank   **** 6189</Text>
+      <Text style={styles.circleActive}>  
+        </Text>
       </View>
-      
       <View style={styles.cardNames}>
-    <Image source={require("../../assets/auth/visa.png")}/>
+    <Image source={require("../../assets/auth/visa.png")} style={styles.visaIcon}/>
       <Text style={styles.accountNumber}>ABC Bank   **** 6189</Text>
       </View>
       <View style={styles.add}>
@@ -34,15 +35,15 @@ export default function Details() {
       </View>
       <View style={styles.rectangle}>
 <Text style={styles.txt}>Google Play</Text>
-<Image source={require("../../assets/auth/arrow.png")}/>
+<Image source={require("../../assets/auth/arrow.png")}  style={styles.img}/>
     </View>
     <View style={styles.rectangle}>
 <Text style={styles.txt}>Debit Card</Text>
-<Image source={require("../../assets/auth/arrow.png")}/>
+<Image source={require("../../assets/auth/arrow.png")} style={styles.img}/>
     </View>
     <View style={styles.messages}>
-    <Text>Send receipt to your email</Text>
-    <Image source={require("../../assets/auth/on.png")}/>
+    <Text style={styles.sendEmail}>Send receipt to your email</Text>
+    <Image source={require("../../assets/auth/on.png")} style={styles.icon}/>
     </View>
       <View style={styles.button}>
       <TouchableOpacity style={styles.btn}>
@@ -69,6 +70,14 @@ const styles = StyleSheet.create({
   height:47,
   borderRadius:Sizes.sm1x,
 },
+sendEmail:{
+  color:"#2D2D2D",
+  fontSize:14,
+},
+img:{
+width:16,
+height:16,
+},
   message:{
 flexDirection:"row",
 justifyContent:"space-between",
@@ -94,6 +103,16 @@ marginBottom:10,
     fontSize: Sizes.lg,
     textAlign: "center",
   },
+  mastercard:{
+    width:25,
+    height:15,
+    marginTop:5,
+  },
+  visaIcon:{
+width:28,
+height:9,
+marginTop:7,
+  },
   circles:{
 backgroundColor:"#F43939",
 width:20,
@@ -102,8 +121,20 @@ color:Colors.dark.text,
 textAlign:"center",
 borderRadius:50,
   },
+  circleActive:{
+    backgroundColor:"#F43939",
+    width:13.5,
+    height:13.5,
+    borderRadius:50,
+  marginTop:5,
+  marginLeft:40,
+  },
   add:{
 flexDirection:"row",
+  },
+  icon:{
+width:35,
+height:21,
   },
   card:{
 backgroundColor:Colors.dark.text,
