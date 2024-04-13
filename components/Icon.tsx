@@ -1,17 +1,21 @@
 import { Image, Pressable, PressableProps } from "react-native";
 
 const icons = {
-  eye: require("../assets/icons/eye.png"),
   "eye-off": require("../assets/icons/eye-off.png"),
   "arrow-left": require("../assets/icons/arrow-left.png"),
+  "arrow-up-left": require("../assets/icons/arrow-up-left.png"),
   "time-circle": require("../assets/icons/time-circle.png"),
+  "info-circle": require("@/assets/icons/info-circle.png"),
+  "screw-driver": require("@/assets/icons/screw-driver.png"),
+  eye: require("../assets/icons/eye.png"),
   backspace: require("../assets/icons/backspace.png"),
   fingerprint: require("../assets/icons/fingerprint.png"),
   filter: require("../assets/icons/fingerprint.png"),
   call: require("../assets/icons/call.png"),
   message: require("../assets/icons/Message.png"),
-  "info-circle": require("@/assets/icons/info-circle.png"),
   location: require("@/assets/icons/location.png"),
+  fuel: require("@/assets/icons/fuel.png"),
+  car: require("@/assets/icons/car.png"),
 };
 
 const sizes = {

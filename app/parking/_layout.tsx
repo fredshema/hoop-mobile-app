@@ -16,6 +16,12 @@ export default function ParkingLayout() {
           contentStyle: { paddingTop: 0, paddingBottom: 0 },
         }}
       />
+      <Stack.Screen
+        name="route"
+        options={{
+          contentStyle: { paddingTop: 0, paddingBottom: 0 },
+        }}
+      />
     </Stack>
   );
 }

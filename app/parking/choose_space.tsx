@@ -1,6 +1,7 @@
 import LayoutHeader from "@/components/LayoutHeader";
 import { PrimaryButton } from "@/components/ThemedButton";
 import Sizes from "@/constants/Sizes";
+import { router } from "expo-router";
 import { ImageBackground, StyleSheet, View } from "react-native";
 
 export default function ChooseSpace() {
@@ -14,7 +15,10 @@ export default function ChooseSpace() {
         source={require("@/assets/parking/room.png")}
       ></ImageBackground>
       <View style={styles.container}>
-        <PrimaryButton label="Book Space" />
+        <PrimaryButton
+          label="Book Space"
+          onPress={() => router.push("/parking/booking")}
+        />
       </View>
     </>
   );
