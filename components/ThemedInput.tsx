@@ -62,12 +62,12 @@ export function PhoneInput(props: TextInputProps) {
 
 export function SearchInput(props: TextInputProps) {
   return (
-    <View style={styles.phoneInputContainer}>
-      <Icon name="search" style={{ marginHorizontal: Sizes.sm }} />
+    <View style={[styles.searchInputContainer, props.style]}>
+      <Icon name="search" />
       <DefaultTextInput
         {...props}
         placeholderTextColor={props.placeholderTextColor ?? Colors.light.muted}
-        style={[styles.input, props.style, styles.phoneInput]}
+        style={[styles.input, styles.searchInput]}
       />
     </View>
   );
@@ -96,6 +96,12 @@ const styles = StyleSheet.create({
     borderRadius: Sizes.md,
     overflow: "hidden",
   },
+  searchInputContainer: {
+    flexDirection: "row",
+    backgroundColor: Colors.white,
+    borderRadius: Sizes.md,
+    overflow: "hidden",
+  },
   phoneCode: {
     marginBottom: 0,
     borderRadius: 0,
@@ -108,5 +114,10 @@ const styles = StyleSheet.create({
   phoneInput: {
     marginBottom: 0,
     borderRadius: 0,
+  },
+  searchInput: {
+    marginBottom: 0,
+    borderRadius: 0,
+    backgroundColor: "transparent",
   },
 });
