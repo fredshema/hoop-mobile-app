@@ -3,6 +3,7 @@ import Sizes from "@/constants/Sizes";
 import { Link } from "expo-router";
 import { AntDesign } from '@expo/vector-icons';
 import React from "react";
+import { router } from "expo-router";
 import {
   ImageBackground,
   Pressable,
@@ -36,52 +37,56 @@ export default function Profile() {
         <View style={{ flex: 1 }}>
           <View style={styles.titleElements}>
         <View style={styles.titleElement}>
-        <Image source={require("../../assets/auth/profil.png")} />
+        <Image source={require("../../assets/auth/profil.png")} style={styles.firstIcon}/>
         <View style={styles.titles}>
-        <Text style={styles.words}>Profile</Text>
+        <Text style={styles.words} onPress={() => {
+          router.push("/profile/Edit");
+        }}>Profile</Text>
         </View>
         </View>
-        <Image source={require("../../assets/auth/arrow.png")} />
+        <Image source={require("../../assets/auth/arrow.png")} style={styles.icons}/>
         
         </View>
           <View style={styles.titleElements}>
           <View style={styles.titleElement}>
-        <Image source={require("../../assets/auth/pro.png")} />
+        <Image source={require("../../assets/auth/pro.png")}  style={styles.firstIcon}/>
         <View style={styles.titles}>
-        <Text style={styles.words}>Go Pro</Text>
+        <Text style={styles.words}    onPress={() => {
+          router.push("/Payment/Payment");
+        }}>Go Pro</Text>
         </View>
         </View>
        
-        <Image source={require("../../assets/auth/arrow.png")} />
+        <Image source={require("../../assets/auth/arrow.png")} style={styles.icons}/>
           </View>
          
           <View style={styles.titleElements}>
           <View style={styles.titleElement}>
-        <Image source={require("../../assets/auth/terms.png")} />
+        <Image source={require("../../assets/auth/terms.png")}style={styles.firstIcon}/>
         <View style={styles.titles}>
         <Text style={styles.words}>Terms & Conditions</Text>
         </View>
         </View>
-        <Image source={require("../../assets/auth/arrow.png")} />
+        <Image source={require("../../assets/auth/arrow.png")} style={styles.icons}/>
           </View>
 
           <View style={styles.titleElements}>
           <View style={styles.titleElement}>
-        <Image source={require("../../assets/auth/faq.png")} />
+        <Image source={require("../../assets/auth/faq.png")} style={styles.firstIcon}/>
         <View style={styles.titles}>
         <Text style={styles.words}>FAQ</Text>
         </View>
         </View>
-        <Image source={require("../../assets/auth/arrow.png")} />
+        <Image source={require("../../assets/auth/arrow.png")} style={styles.icons}/>
           </View>
           <View style={styles.titleElements}>
           <View style={styles.titleElement}>
-        <Image source={require("../../assets/auth/settings.png")} />
+        <Image source={require("../../assets/auth/settings.png")} style={styles.firstIcon}/>
         <View style={styles.titles}>
         <Text style={styles.words}>Settings</Text>
         </View>
         </View>
-        <Image source={require("../../assets/auth/arrow.png")} />
+        <Image source={require("../../assets/auth/arrow.png")} style={styles.icons} />
           </View>
         </View>
         <View style={styles.footer}>
@@ -205,15 +210,23 @@ flexDirection:"row",
    marginTop:15,
     
   },
+  firstIcon:{
+width:22,
+height:22,
+  },
+
+  icons:{
+width:18,
+height:18,
+  },
   titles:{
-    marginRight:130,
-    marginTop:15, 
+    marginRight:100,
   },
   icon:{
     marginTop:15,
   },
   words:{
-    marginLeft:5,
+    marginLeft:15,
   },
   bx:{
     backgroundColor: "#2A344E",

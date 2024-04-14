@@ -6,7 +6,7 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ob1 from "./ob/Ob1";
 
-export default function Home() {
+export default function RootHome() {
   const insets = useSafeAreaInsets();
   return (
     <View
@@ -15,7 +15,9 @@ export default function Home() {
         { paddingTop: insets.top, paddingBottom: insets.bottom },
       ]}
     >
-      <Link href="/parking/tracking" style={styles.skipText}>Skip</Link>
+      <Link href="/parking/tracking" style={styles.skipText}>
+        Skip
+      </Link>
       <View style={styles.ob}>
         <Ob1 />
         <View style={styles.circles}>
@@ -38,8 +40,7 @@ export default function Home() {
           </Text>
         </TouchableOpacity>
         <View style={styles.messageLink}>
-          <Text style={styles.message}>Don't have an account?{" "}
-          </Text>
+          <Text style={styles.message}>Don't have an account? </Text>
           <Link href="/home/">Sign Up</Link>
         </View>
       </View>
@@ -81,6 +82,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#F43939",
     opacity: 1,
   },
+  icon: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
   buttons: {
     alignItems: "center",
   },
@@ -102,10 +107,9 @@ const styles = StyleSheet.create({
     color: "#2D2D2D",
     opacity: 0.7,
     textAlign: "center",
-    marginTop: 15,
+    marginLeft: 15,
+    marginTop: 10,
     fontSize: 18,
-    justifyContent: "center",
-    alignItems: "center",
   },
   message: {
     color: "#2D2D2D",
@@ -113,8 +117,9 @@ const styles = StyleSheet.create({
   textEmail: {
     color: "#FFFFFF",
     textAlign: "center",
-    marginTop: 15,
     fontSize: 18,
+    marginLeft: 15,
+    marginTop: 10,
   },
   btnPhone: {
     width: 311,
@@ -131,5 +136,10 @@ const styles = StyleSheet.create({
   link: {
     color: "#F43939",
     marginLeft: 10,
+  },
+  MessageIcon: {
+    width: 24,
+    height: 24,
+    marginTop: 10,
   },
 });
