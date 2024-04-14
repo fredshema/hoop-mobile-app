@@ -5,10 +5,17 @@ import { Image, StyleSheet, TouchableOpacity, View,TextInput } from "react-nativ
 import { Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
 import { Icon } from "@/components/Icon";
+import LayoutHeader from "@/components/LayoutHeader";
+import { router } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 export default function Edit(){
+    const insets = useSafeAreaInsets();
     return(
-        <View style={styles.container}>
-            <Text style={styles.title}>Edit Profile</Text>
+        <View style={[styles.container, {paddingTop: insets.top}]}>
+      <LayoutHeader title="Edit Profile"  onBackPress={() => {
+        router.back();
+      }}/>
+            
             <View style={styles.images}>
             <Image source={require("../../assets/auth/edit-profile.png")}/> 
         </View>
@@ -29,7 +36,7 @@ export default function Edit(){
         <TextInput style={styles.inputText}><Text>Address</Text></TextInput>
         <View style={styles.btns}>
         <TouchableOpacity style={styles.cancel}><Text style={styles.txtCancel}>Cancel</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.save}><Text  style={styles.txtSave}>Save</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.save} ><Text  style={styles.txtSave}>Save</Text></TouchableOpacity>
         </View>
         </View>
         </View>
@@ -40,7 +47,7 @@ const styles = StyleSheet.create({
       flex:1,
       alignContent: "center",
       justifyContent: "center",
-      backgroundColor:"#F4F4FA"
+      backgroundColor:"#F4F4FA",
     },
     label:{
         color:"#2D2D2D",

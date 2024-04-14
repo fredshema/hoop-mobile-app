@@ -14,12 +14,10 @@ export function Button(props: ButtonProps) {
     <Pressable
       style={[
         {
-          width: 311,
-          height:60,
+          width: "100%",
           backgroundColor: Colors.dark.background,
           paddingVertical: Sizes.md,
           paddingHorizontal: Sizes.lg,
-          marginLeft:35,
           borderRadius: Sizes.md,
           marginBottom: Sizes.lg,
         },

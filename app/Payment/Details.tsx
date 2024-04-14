@@ -5,10 +5,16 @@ import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
 import { Icon } from "@/components/Icon";
+import LayoutHeader from "@/components/LayoutHeader";
+import { router } from "expo-router";
 export default function Details() {
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>Payment Details</Text>
+<View  style={styles.header}>
+      <LayoutHeader title="Payment Details" onBackPress={() => {
+        router.back();
+      }}/>
+      </View>
         <View style={styles.rectangle}>
 <Text style={styles.txt}>Mobile Banking</Text>
 <Image source={require("../../assets/auth/arrow.png")}  style={styles.img}/>
@@ -29,7 +35,7 @@ export default function Details() {
       <Text style={styles.accountNumber}>ABC Bank   **** 6189</Text>
       </View>
       <View style={styles.add}>
-      <Text style={styles.circles}>+</Text>
+      <Image source={require("../../assets/auth/add.png")}/>
       <Text style={styles.text}>Add new card</Text>
       </View>
       </View>
@@ -46,7 +52,9 @@ export default function Details() {
     <Image source={require("../../assets/auth/on.png")} style={styles.icon}/>
     </View>
       <View style={styles.button}>
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity style={styles.btn} onPress={() => {
+          router.push("/Payment/Success");
+        }}>
             <Text style={styles.btnText}>Pay Now</Text>
           </TouchableOpacity>
           </View>
@@ -70,6 +78,10 @@ const styles = StyleSheet.create({
   height:47,
   borderRadius:Sizes.sm1x,
 },
+header:{
+paddingLeft:30,
+marginBottom:30,
+},
 sendEmail:{
   color:"#2D2D2D",
   fontSize:14,
@@ -81,13 +93,14 @@ height:16,
   message:{
 flexDirection:"row",
 justifyContent:"space-between",
-marginBottom:10,
+marginBottom:20,
 
   },
   messages:{
     flexDirection:"row",
     justifyContent:"space-around",
-    marginBottom:20,
+    marginBottom:30,
+    marginTop:20,
       },
   txt:{
     fontSize:Sizes.md,
@@ -115,11 +128,11 @@ marginTop:7,
   },
   circles:{
 backgroundColor:"#F43939",
+color:Colors.dark.text,
+borderRadius:50,
 width:20,
 height:20,
-color:Colors.dark.text,
-textAlign:"center",
-borderRadius:50,
+padding:1,
   },
   circleActive:{
     backgroundColor:"#F43939",

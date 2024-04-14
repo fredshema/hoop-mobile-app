@@ -5,10 +5,16 @@ import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
 import { Icon } from "@/components/Icon";
+import LayoutHeader from "@/components/LayoutHeader";
+import { router } from "expo-router";
 export default function Detail() {
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>Detail History</Text>
+       <View  style={styles.header}>
+      <LayoutHeader title="Detail History" onBackPress={() => {
+        router.back();
+      }}/>
+      </View>
         <View style={styles.images}>
       <Image source={require("../../assets/auth/mall.png")}/>
       </View>
@@ -43,6 +49,10 @@ const styles = StyleSheet.create({
     textAlign:"center",
     marginBottom:30,
   },
+  header:{
+    paddingLeft:30,
+    marginBottom:20,
+    },
   title: {
     color: "#2D2D2D",
     fontSize: Sizes.lg,

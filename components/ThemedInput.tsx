@@ -60,6 +60,19 @@ export function PhoneInput(props: TextInputProps) {
   );
 }
 
+export function SearchInput(props: TextInputProps) {
+  return (
+    <View style={styles.phoneInputContainer}>
+      <Icon name="search" style={{ marginHorizontal: Sizes.sm }} />
+      <DefaultTextInput
+        {...props}
+        placeholderTextColor={props.placeholderTextColor ?? Colors.light.muted}
+        style={[styles.input, props.style, styles.phoneInput]}
+      />
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   input: {
     width: "100%",

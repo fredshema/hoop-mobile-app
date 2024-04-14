@@ -1,6 +1,7 @@
 import SimpleParkingSpotCard from "@/components/cards/SimpleParkingSpotCard";
 import React from "react";
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import { SearchInput } from "@/components/ThemedInput";
 
 export default function History() {
   const recentParkingSpots = [
@@ -35,12 +36,7 @@ export default function History() {
       <View style={styles.content}>
         <Text style={styles.title}>History</Text>
         <View style={styles.search}>
-          <TextInput style={styles.inputField}>
-            <Text style={styles.placeholder}>
-              {" "}
-              <Image source={require("../../assets/auth/search.png")} /> Search
-            </Text>
-          </TextInput>
+          <SearchInput />
           <Text style={styles.icon}>
             <Image
               source={require("../../assets/auth/filter.png")}

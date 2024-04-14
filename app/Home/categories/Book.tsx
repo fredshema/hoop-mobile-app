@@ -5,10 +5,16 @@ import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
 import { Icon } from "@/components/Icon";
+import LayoutHeader from "@/components/LayoutHeader";
+import { router } from "expo-router";
 export default function Book() {
   return (
     <View style={styles.container}>
-        <Text style={styles.Btitle}> Book Details</Text>
+      <View  style={styles.header}>
+      <LayoutHeader title="Book Details" onBackPress={() => {
+        router.back();
+      }}/>
+      </View>
         <View style={styles.images}>
       <Image source={require("../../../assets/auth/mall.png")} />
       </View>
@@ -38,7 +44,9 @@ export default function Book() {
     </View>
       <View style={styles.button}>
         <Text style={styles.price}>$35,00</Text>
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity style={styles.btn} onPress={() => {
+          router.push("/Payment/Payment");
+        }}>
             <Text style={styles.btnText}>Pay</Text>
           </TouchableOpacity>
           </View>
@@ -80,7 +88,11 @@ color:"#2D2D2D",
     fontSize:Sizes.md2x,
     color:"#2D2D2D",
   },
-
+  header:{
+    paddingLeft:30,
+    marginTop:25,
+    marginBottom:10,
+    },
   rectangle:{
     backgroundColor:Colors.dark.text,
     flexDirection:"row",

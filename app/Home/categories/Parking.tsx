@@ -1,16 +1,26 @@
 import Sizes from "@/constants/Sizes";
 import Colors from "@/constants/Colors";
 import React from "react";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, ImageBackground, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
 import { Icon } from "@/components/Icon";
+import LayoutHeader from "@/components/LayoutHeader";
+import { router } from "expo-router";
+import Compass from "@/components/cards/Compass";
 export default function Parking() {
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>Details</Text>
+       <View  style={styles.header}>
+      <LayoutHeader title="Details" onBackPress={() => {
+        router.back();
+      }}/>
+      </View>
         <View style={styles.images}>
       <Image source={require("../../../assets/auth/mall.png")}/>
+      </View>
+      <View style={styles.images}>
+      <Compass/> 
       </View>
       <Text style={styles.title}>Graha Mall</Text>
       <Text style={styles.bodyMessage}>123 Dhaka Street</Text>
@@ -36,6 +46,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor:"#F4F4FA"
   },
+
   bodyMessage: {
     color: "#2D2D2D",
     opacity: 0.5,
@@ -43,6 +54,10 @@ const styles = StyleSheet.create({
     textAlign:"center",
     marginBottom:30,
   },
+  header:{
+    paddingLeft:30,
+    marginBottom:10,
+    },
   title: {
     color: "#2D2D2D",
     fontSize: Sizes.lg,
@@ -51,12 +66,12 @@ const styles = StyleSheet.create({
     marginBottom: Sizes.sm,
   },
   texts:{
-marginLeft:20,
+marginLeft:30,
 color:"#2D2D2D",
 fontSize:Sizes.md3x,
   },
   paragraph:{
-    marginLeft:20,
+    marginLeft:30,
     color:"#2D2D2D",
     opacity:0.2,
     fontSize:Sizes.md2x,
@@ -80,6 +95,7 @@ fontSize:Sizes.md3x,
     flexDirection:"row",
     justifyContent:"center",
   },
+ 
   button:{
 flexDirection:"row",
 justifyContent:"center",

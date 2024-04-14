@@ -1,14 +1,16 @@
 import Sizes from "@/constants/Sizes";
 import React from "react";
+import Colors from "@/constants/Colors";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
 import { Icon } from "@/components/Icon";
+import { router } from "expo-router";
 export default function Success() {
   return (
     <View style={styles.container}>
         <View style={styles.images}>
-      <Image source={require("../../assets/auth/success.png")}/>
+      <Image source={require("../../assets/auth/psucess.png")}/>
       </View>
       <Text style={styles.title}>Payment Success</Text>
       <Text style={styles.bodyMessage}>Congrats on your reserved parking space</Text>
@@ -17,9 +19,13 @@ export default function Success() {
       <Text style={styles.background}><Icon name="message-pink"/></Text>
       <Text style={styles.background}><Icon name="comment"/></Text>
       </View>
-      <PrimaryButton
-            label="Back to Home"
-          />
+      <View style={styles.button}>
+      <TouchableOpacity style={styles.btn} onPress={() => {
+          router.push("/Payment/Success");
+        }}>
+            <Text style={styles.btnText}>Back to Home</Text>
+          </TouchableOpacity>
+          </View>
     </View>
   );
 }
@@ -44,6 +50,24 @@ const styles = StyleSheet.create({
     marginTop: Sizes.lg,
     marginBottom: Sizes.sm,
   },
+  button:{
+    flexDirection:"row",
+    justifyContent:"center",
+    marginTop:2,
+    
+      },
+      btnText:{
+    color:Colors.dark.text,
+    textAlign:"center",
+    marginTop:15,
+    fontSize:Sizes.md3x,
+      },
+      btn:{
+        backgroundColor:"#130F26",
+        borderRadius:15,
+        width:311,
+        height:60,
+      },
   titles:{
     color: "#2D2D2D",
     fontSize: Sizes.md,
@@ -67,6 +91,7 @@ const styles = StyleSheet.create({
   images:{
     flexDirection:"row",
     justifyContent:"center",
+    marginTop:40,
   },
 });
 

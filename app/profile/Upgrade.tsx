@@ -5,10 +5,16 @@ import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
 import { Icon } from "@/components/Icon";
+import LayoutHeader from "@/components/LayoutHeader";
+import { router } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 export default function Upgrade() {
+  const insets = useSafeAreaInsets();
   return (
-    <View style={styles.container}>
-        <Text style={styles.title}>Upgrade</Text>
+    <View style={[styles.container, {paddingTop: insets.top}]}>
+      <LayoutHeader title="Upgrade" onBackPress={() => {
+        router.back();
+      }} />
         <View style={styles.card}>
         <Text style={styles.titles}>Get all the facilities by upgrading your account</Text>
         </View>
@@ -47,9 +53,13 @@ export default function Upgrade() {
       </View>
       </View>
       </View>
-      <PrimaryButton
-            label="Choose a Plan"
-          />
+      <View style={styles.button}>
+      <TouchableOpacity style={styles.btn}  onPress={() => {
+          router.push("/Payment/Payment");
+        }}>
+            <Text style={styles.btnText}>Choose a Plan</Text>
+          </TouchableOpacity>
+          </View>
     </View>
   );
 }
@@ -96,6 +106,24 @@ icons:{
   word:{
     marginRight:68,
   },
+  button:{
+    flexDirection:"row",
+    justifyContent:"center",
+    marginTop:2,
+    
+      },
+      btnText:{
+    color:Colors.dark.text,
+    textAlign:"center",
+    marginTop:15,
+    fontSize:Sizes.md3x,
+      },
+      btn:{
+        backgroundColor:"#130F26",
+        borderRadius:15,
+        width:311,
+        height:60,
+      },
  
 });
 

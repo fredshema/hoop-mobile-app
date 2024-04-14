@@ -14,6 +14,7 @@ const icons = {
   comment:require("../assets/icons/comment.png"),
   "message-pink":require("../assets/icons/messagepink.png"),
   tick:require("../assets/icons/tick.png"),
+  search:require("../assets/icons/search.png"),
 };
 
 const sizes = {

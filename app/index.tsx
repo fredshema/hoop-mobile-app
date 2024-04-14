@@ -1,5 +1,5 @@
 import Sizes from "@/constants/Sizes";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View ,Image} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ob1 from "./ob/Ob1";
 import { Link, Text } from "@/components/Themed";
@@ -16,10 +16,14 @@ import Edit from "./profile/Edit";
 import Details from "./Payment/Details";
 import Notification from "./Home/categories/Notification";
 import Notifications from "./Home/categories/Notifications";
+import Home from "./Home/index";
+import Profile from "./profile/Profile";
+import Explore from "./Explore/index";
+import { router } from "expo-router";
 
-export default function Home() {
-  return(
-    < Parking/>
+export default function RootHome() {
+  return (
+    <Success/>
   )
 }
 //   const insets = useSafeAreaInsets();
@@ -41,16 +45,22 @@ export default function Home() {
 //       </View>
 //       <View style={styles.buttons}>
 //         <TouchableOpacity style={styles.btnEmail}>
-//           <Text style={styles.textEmail}>
-//             <Icon name="message" />
-//             Login with Email
+//         <View style={styles.icon}>
+//         <Image source={require("../assets/auth/Message.png")} style={styles.MessageIcon}/>
+//           <Text style={styles.textEmail}  onPress={() => {
+//           router.push("/Payment/Payment");
+//         }}>
+//           Login with Email
 //           </Text>
+//           </View>
 //         </TouchableOpacity>
 //         <TouchableOpacity style={styles.btnPhone}>
+// <View style={styles.icon}>
+//         <Image source={require("../assets/auth/call.png")} style={styles.MessageIcon}/>
 //           <Text style={styles.textPhone}>
-//             <Icon name="call" />
 //             Login with Phone
 //           </Text>
+//           </View>
 //         </TouchableOpacity>
 //         <View style={styles.messageLink}>
 //           <Text style={styles.message}>Don't have an account?{" "}
@@ -96,6 +106,10 @@ export default function Home() {
 //     backgroundColor: "#F43939",
 //     opacity: 1,
 //   },
+//   icon:{
+// flexDirection:"row",
+// justifyContent:"center",
+//   },
 //   buttons: {
 //     alignItems: "center",
 //   },
@@ -117,10 +131,9 @@ export default function Home() {
 //     color: "#2D2D2D",
 //     opacity: 0.7,
 //     textAlign: "center",
-//     marginTop: 15,
+//     marginLeft:15,
+//     marginTop:10,
 //     fontSize: 18,
-//     justifyContent: "center",
-//     alignItems: "center",
 //   },
 //   message: {
 //     color: "#2D2D2D",
@@ -128,8 +141,10 @@ export default function Home() {
 //   textEmail: {
 //     color: "#FFFFFF",
 //     textAlign: "center",
-//     marginTop: 15,
 //     fontSize: 18,
+//     marginLeft:15,
+//     marginTop:10,
+
 //   },
 //   btnPhone: {
 //     width: 311,
@@ -147,4 +162,9 @@ export default function Home() {
 //     color: "#F43939",
 //     marginLeft: 10,
 //   },
+//   MessageIcon:{
+//     width:24,
+//     height:24,
+//     marginTop:10,
+//   }
 // });

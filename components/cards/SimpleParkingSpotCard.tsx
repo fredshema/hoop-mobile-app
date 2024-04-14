@@ -1,6 +1,6 @@
 import React from "react";
-import { Text, View, StyleSheet, Image, ImageSourcePropType } from "react-native";
-
+import {View, StyleSheet, Image, ImageSourcePropType } from "react-native";
+import { Text } from "@/components/Themed";
 type SimpleParkingSpotCardProps = {
     title: string,
     address: string,
@@ -61,5 +61,6 @@ const styles = StyleSheet.create({
     },
     span: {
         fontSize: 12,
+        color:"#F43939",
     }
 });

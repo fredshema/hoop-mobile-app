@@ -2,16 +2,18 @@ import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { AntDesign } from '@expo/vector-icons';
 import React from "react";
+import { router } from "expo-router";
 import {
   ImageBackground,
   Pressable,
   StyleSheet,
-  Text,
   TextInput,
-  View, Image
+  View, Image, TouchableOpacity
 } from "react-native";
+import { Text } from "@/components/Themed";
 import SimpleParkingSpotCard from "@/components/cards/SimpleParkingSpotCard";
 import { Link } from "@/components/Themed";
+import { SearchInput } from "@/components/ThemedInput";
 
 export default function Home() {
   const bgImage = require("../../assets/auth/pattern.png");
@@ -42,14 +44,13 @@ export default function Home() {
               <Text style={styles.name}>Hola Diane 👋🏻</Text>
               <Text style={styles.subtitles}>Find an easy parking spot</Text>
             </View>
-            <View style={styles.bx}>
-              <Image source={require("../../assets/auth/Notification.png")} style={styles.notify} />
-            </View>
+            <View style={styles.bx} 
+        >
+             <TouchableOpacity onPress={() => {
+          router.push("/Home/categories/Notifications");}}><Image source={require("../../assets/auth/Notification.png")} style={styles.notify} />
+          </TouchableOpacity> 
           </View>
-          <TextInput style={styles.inputField}>
-            <Image source={require("../../assets/auth/search.png")} style={styles.icons} />
-            <Text style={styles.place}>Search</Text>
-          </TextInput>
+          </View>
         </ImageBackground>
       </View>
       <View style={styles.form}>
@@ -73,13 +74,13 @@ export default function Home() {
               <Text style={styles.vehicleNames}>Van</Text>
             </View>
           </View>
-          <Link href="/explore/" style={styles.titles}>Nearst Parking Spaces</Link>
+          <Link href="/Explore/" style={styles.titles}>Nearst Parking Spaces</Link>
           {parkingSpots.map((spot, index) => (
             <SimpleParkingSpotCard key={index} {...spot} />
           ))}
         </View>
       </View>
-    </View>
+    </View >
   );
 }
 
@@ -212,7 +213,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   titles: {
-    marginBottom: Sizes.md,
+    marginBottom: Sizes.md3x,
     color: "#0A1124",
   },
   card1: {

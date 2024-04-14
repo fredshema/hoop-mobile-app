@@ -5,10 +5,16 @@ import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
 import { Icon } from "@/components/Icon";
+import LayoutHeader from "@/components/LayoutHeader";
+import { router } from "expo-router";
 export default function Payment() {
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>Payment</Text>
+ <View  style={styles.header}>
+      <LayoutHeader title="Payment" onBackPress={() => {
+        router.back();
+      }}/>
+      </View>
         <View style={styles.card}>
         <View style={styles.images}>
       <Image source={require("../../assets/auth/mall3.png")}/>
@@ -40,7 +46,9 @@ export default function Payment() {
         </View>
         </View>
       <View style={styles.button}>
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity style={styles.btn} onPress={() => {
+          router.push("/Payment/Details");
+        }}>
             <Text style={styles.btnText}>Pay Now</Text>
           </TouchableOpacity>
           </View>
@@ -62,6 +70,11 @@ const styles = StyleSheet.create({
     textAlign:"center",
     marginBottom:10,
   },
+  header:{
+    paddingLeft:30,
+    marginTop:25,
+    marginBottom:10,
+    },
   use:{
     color:"#F43939",
   },
@@ -79,7 +92,10 @@ const styles = StyleSheet.create({
   },
   card:{
 backgroundColor:Colors.dark.text,
-margin:30,
+marginLeft:30,
+marginRight:30,
+
+marginBottom:15,
 padding:30,
 borderRadius:Sizes.sm1x,
 
@@ -112,22 +128,17 @@ totalPrice:{
     backgroundColor:Colors.dark.text,
     flexDirection:"row",
     justifyContent:"space-around",
-    width:311,
-    height:61,
-    padding:15,
+    width:318,
+    height:54,
+    padding:10,
     marginLeft:30,
+    marginBottom:15,
     borderRadius:15,
   },
   texts:{
 color:"#2D2D2D",
 opacity:0.6,
 fontSize:Sizes.md,
-  },
-  paragraph:{
-    marginLeft:20,
-    color:"#2D2D2D",
-    opacity:0.2,
-    fontSize:Sizes.md2x,
   },
   background:{
     backgroundColor:"#FFF3F3",
