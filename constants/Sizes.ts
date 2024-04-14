@@ -7,4 +7,7 @@ export default {
   lg: 24,
   xl: 28,
   xl2x: 32,
+  xl3x: 36,
+  xl4x: 40,
+  xl5x: 44,
 };
