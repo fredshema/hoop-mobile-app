@@ -7,6 +7,8 @@ const icons = {
   "time-circle": require("../assets/icons/time-circle.png"),
   "info-circle": require("@/assets/icons/info-circle.png"),
   "screw-driver": require("@/assets/icons/screw-driver.png"),
+  "current-location": require("@/assets/icons/current-location.png"),
+  "dark-arrow-left": require("@/assets/icons/dark-arrow-left.png"),
   eye: require("../assets/icons/eye.png"),
   backspace: require("../assets/icons/backspace.png"),
   fingerprint: require("../assets/icons/fingerprint.png"),
@@ -16,6 +18,7 @@ const icons = {
   location: require("@/assets/icons/location.png"),
   fuel: require("@/assets/icons/fuel.png"),
   car: require("@/assets/icons/car.png"),
+  search: require("@/assets/icons/search.png"),
 };
 
 const sizes = {

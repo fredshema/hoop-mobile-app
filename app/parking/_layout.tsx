@@ -1,3 +1,4 @@
+import Colors from "@/constants/Colors";
 import { Stack } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -20,6 +21,16 @@ export default function ParkingLayout() {
         name="route"
         options={{
           contentStyle: { paddingTop: 0, paddingBottom: 0 },
+        }}
+      />
+      <Stack.Screen
+        name="map"
+        options={{
+          contentStyle: {
+            paddingTop: 0,
+            paddingBottom: 0,
+            backgroundColor: Colors.light.background,
+          },
         }}
       />
     </Stack>

@@ -4,7 +4,13 @@ import { PrimaryButton } from "@/components/ThemedButton";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
-import { ImageBackground, Pressable, StyleSheet, View } from "react-native";
+import {
+  Image,
+  ImageBackground,
+  Pressable,
+  StyleSheet,
+  View,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function ParkTracking() {
@@ -29,6 +35,7 @@ export default function ParkTracking() {
         <Icon name="arrow-left" style={{ justifyContent: "center" }} />
       </Pressable>
       <View style={{ flex: 1 }}></View>
+      <Image style={styles.image} source={require("@/assets/parking/direction.png")} />
       <View style={styles.mapCard}>
         <View style={{ paddingHorizontal: Sizes.xl, paddingTop: Sizes.xl }}>
           <View style={styles.card}>
@@ -108,6 +115,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+  },
+  image:{
+    width: "100%",
+    resizeMode: "contain",
   },
   divider: {
     height: 50,
