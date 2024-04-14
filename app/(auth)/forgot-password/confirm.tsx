@@ -20,7 +20,7 @@ export default function ConfirmForgotPassword() {
           </Text>
           <PrimaryButton
             label="Open email app"
-            style={{ marginBottom: Sizes.md, width: "60%" }}
+            style={{ marginBottom: Sizes.md, paddingHorizontal: Sizes.xl4x }}
             onPress={() => {
               router.push("/(auth)/forgot-password/request_otp");
             }}

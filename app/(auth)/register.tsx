@@ -3,6 +3,7 @@ import { PrimaryButton } from "@/components/ThemedButton";
 import { PasswordInput, PhoneInput, TextInput } from "@/components/ThemedInput";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
+import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
@@ -27,7 +28,9 @@ export default function Register() {
           </View>
         </View>
         <View style={styles.footer}>
-          <PrimaryButton label="Register" />
+          <PrimaryButton label="Register" onPress={()=>{
+            router.push("/home/")
+          }} />
           <Text style={{ color: Colors.light.muted }}>
             Have an account? <Link href="/(auth)/login">Sign In</Link>
           </Text>

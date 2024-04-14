@@ -26,6 +26,7 @@ export function PasswordInput(props: TextInputProps) {
     <View style={styles.passwordContainer}>
       <Icon
         name={showPassword ? "eye" : "eye-off"}
+        style={styles.passwordIcon}
         onPress={() => setShowPassword((prev) => !prev)}
       />
       <DefaultTextInput
@@ -60,10 +61,15 @@ export function PhoneInput(props: TextInputProps) {
   );
 }
 
-export function SearchInput(props: TextInputProps) {
+export function SearchInput(props: TextInputProps & { dark?: boolean }) {
   return (
     <View style={[styles.searchInputContainer, props.style]}>
-      <Icon name="search" />
+      {props.dark ? (
+        <Icon name="dark-search" style={styles.searchIcon} />
+      ) : (
+        <Icon name="search" style={styles.searchIcon} />
+      )}
+
       <DefaultTextInput
         {...props}
         placeholderTextColor={props.placeholderTextColor ?? Colors.light.muted}
@@ -89,6 +95,13 @@ const styles = StyleSheet.create({
     position: "relative",
     marginBottom: Sizes.md3x,
   },
+  passwordIcon: {
+    position: "absolute",
+    right: Sizes.md,
+    top: Sizes.md,
+    zIndex: 1,
+    color: Colors.light.muted,
+  },
   phoneInputContainer: {
     flexDirection: "row",
     backgroundColor: Colors.white,
@@ -101,6 +114,10 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     borderRadius: Sizes.md,
     overflow: "hidden",
+    alignItems: "center",
+  },
+  searchIcon: {
+    paddingLeft: Sizes.md,
   },
   phoneCode: {
     marginBottom: 0,

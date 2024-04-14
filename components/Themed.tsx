@@ -58,7 +58,10 @@ export function Link(props: LinkProps) {
   return (
     <DefaultLink
       href={href}
-      style={[{ color, fontFamily: "Avenir", fontSize: Sizes.md, }, style]}
+      style={[
+        { color, fontFamily: "Avenir", fontSize: Sizes.md, fontWeight: "500" },
+        style,
+      ]}
       {...otherProps}
     />
   );

@@ -14,7 +14,7 @@ export function Button(props: ButtonProps) {
     <Pressable
       style={[
         {
-          width: "100%",
+          flex: 1,
           backgroundColor: Colors.dark.background,
           paddingVertical: Sizes.md,
           paddingHorizontal: Sizes.lg,
@@ -43,4 +43,18 @@ export function Button(props: ButtonProps) {
 
 export function PrimaryButton(props: ButtonProps) {
   return <Button {...props} />;
+}
+
+export function LightButton(props: ButtonProps) {
+  return (
+    <Button
+      {...props}
+      style={{
+        backgroundColor: Colors.light.light,
+      }}
+      textStyle={{
+        color: Colors.light.dark,
+      }}
+    />
+  );
 }
