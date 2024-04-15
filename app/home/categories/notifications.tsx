@@ -11,17 +11,20 @@ import Read from "./read";
 export default function Notifications() {
   const insets = useSafeAreaInsets();
   return (
-    <View style={[styles.content, { paddingTop: insets.top }]}>
-      <StatusBar style="dark" />
+    <>
+      <View style={{ paddingTop: insets.top }} />
       <LayoutHeader title="Notification" />
-      <Text style={styles.title}>Today</Text>
-      <Notification />
-      <Notification />
-      <Read />
-      <Text style={styles.title}>June 12, 2021</Text>
-      <Read />
-      <Notification />
-    </View>
+      <StatusBar style="dark" />
+      <View style={[styles.content]}>
+        <Text style={styles.title}>Today</Text>
+        <Notification />
+        <Notification />
+        <Read />
+        <Text style={styles.title}>June 12, 2021</Text>
+        <Read />
+        <Notification />
+      </View>
+    </>
   );
 }
 const styles = StyleSheet.create({
