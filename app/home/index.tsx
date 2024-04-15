@@ -1,22 +1,22 @@
+import { Icon } from "@/components/Icon";
+import { Link, Text } from "@/components/Themed";
+import SimpleParkingSpotCard from "@/components/cards/SimpleParkingSpotCard";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
-import { AntDesign } from '@expo/vector-icons';
-import React from "react";
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
 import {
+  Image,
   ImageBackground,
   Pressable,
   StyleSheet,
-  TextInput,
-  View, Image, TouchableOpacity
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { Text } from "@/components/Themed";
-import SimpleParkingSpotCard from "@/components/cards/SimpleParkingSpotCard";
-import { Link } from "@/components/Themed";
-import { SearchInput } from "@/components/ThemedInput";
 
 export default function Home() {
-  const bgImage = require("../../assets/auth/pattern.png");
+  const bgImage = require("@/assets/auth/pattern.png");
 
   const parkingSpots = [
     {
@@ -24,32 +24,41 @@ export default function Home() {
       address: "123 Dhaka Street",
       time: "7 min",
       price: "$7",
-      image: require("../../assets/auth/mall1.png"),
+      image: require("@/assets/auth/mall1.png"),
     },
     {
       title: "Graha Mall",
       address: "123 Dhaka Street",
       time: "7 min",
       price: "$7",
-      image: require("../../assets/auth/mall2.png"),
+      image: require("@/assets/auth/mall2.png"),
     },
   ];
 
   return (
     <View style={styles.container}>
+      <StatusBar style="light" />
       <View style={styles.header}>
         <ImageBackground source={bgImage} style={styles.bg}>
           <View style={styles.titleElements}>
             <View style={styles.greetings}>
-              <Text style={styles.name}>Hola Diane 👋🏻</Text>
+              <Link href="/profile/" style={styles.name}>
+                Hola Diane 👋🏻
+              </Link>
               <Text style={styles.subtitles}>Find an easy parking spot</Text>
             </View>
-            <View style={styles.bx} 
-        >
-             <TouchableOpacity onPress={() => {
-          router.push("/Home/categories/Notifications");}}><Image source={require("../../assets/auth/Notification.png")} style={styles.notify} />
-          </TouchableOpacity> 
-          </View>
+            <View style={styles.bx}>
+              <TouchableOpacity
+                onPress={() => {
+                  router.push("/home/categories/notifications");
+                }}
+              >
+                <Image
+                  source={require("@/assets/auth/Notification.png")}
+                  style={styles.notify}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
         </ImageBackground>
       </View>
@@ -57,33 +66,60 @@ export default function Home() {
         <View style={{ flex: 1 }}>
           <Text style={styles.titles}>Categories</Text>
           <View style={styles.imagesElement}>
-            <View style={styles.box}>
-              <Image source={require("../../assets/auth/car.png")} />
+            <Pressable
+              style={styles.box}
+              onPress={() => {
+                router.push("/home/categories/details");
+              }}
+            >
+              <Icon name="car" />
               <Text style={styles.vehicleNames}>Car</Text>
-            </View>
-            <View style={styles.box}>
-              <Image source={require("../../assets/auth/bike.png")} />
+            </Pressable>
+            <Pressable
+              style={styles.box}
+              onPress={() => {
+                router.push("/home/categories/details");
+              }}
+            >
+              <Icon name="bike" />
               <Text style={styles.vehicleNames}>Bike</Text>
-            </View>
-            <View style={styles.box}>
-              <Image source={require("../../assets/auth/bus.png")} />
+            </Pressable>
+            <Pressable
+              style={styles.box}
+              onPress={() => {
+                router.push("/home/categories/details");
+              }}
+            >
+              <Icon name="bus" />
               <Text style={styles.vehicleNames}>Bus</Text>
-            </View>
-            < View style={styles.box}>
-              <Image source={require("../../assets/auth/van.png")} />
+            </Pressable>
+            <Pressable
+              style={styles.box}
+              onPress={() => {
+                router.push("/home/categories/details");
+              }}
+            >
+              <Icon name="van" />
               <Text style={styles.vehicleNames}>Van</Text>
-            </View>
+            </Pressable>
           </View>
-          <Link href="/Explore/" style={styles.titles}>Nearst Parking Spaces</Link>
+          <Link href="/home/explore" style={styles.titles}>
+            Nearst Parking Spaces
+          </Link>
           {parkingSpots.map((spot, index) => (
-            <SimpleParkingSpotCard key={index} {...spot} />
+            <SimpleParkingSpotCard
+              key={index}
+              {...spot}
+              onPress={() => {
+                router.push("/parking/tracking");
+              }}
+            />
           ))}
         </View>
       </View>
-    </View >
+    </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -185,82 +221,33 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 20,
-
   },
   greetings: {
     marginRight: 120,
-    marginTop: 15,
-
-  },
-  icon: {
     marginTop: 15,
   },
   imagesElement: {
     flexDirection: "row",
     justifyContent: "space-between",
+    gap: Sizes.md,
   },
   box: {
+    flex: 1,
+    height: 73,
     flexDirection: "column",
     justifyContent: "center",
-    width: 67,
-    height: 73,
-    padding: 18,
-    backgroundColor: "#FFFFFF",
-    borderRadius: 10,
-    marginBottom: 40,
+    alignItems: "center",
+    backgroundColor: Colors.white,
+    borderRadius: Sizes.sm,
+    marginBottom: Sizes.xl2x,
   },
   vehicleNames: {
-    marginTop: 10,
+    marginTop: Sizes.sm,
   },
   titles: {
-    marginBottom: Sizes.md3x,
-    color: "#0A1124",
+    fontSize: Sizes.md3x,
+    fontWeight: "bold",
+    color: Colors.light.text,
+    marginBottom: Sizes.sm,
   },
-  card1: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    backgroundColor: "#FFFFFF",
-    borderRadius: 15,
-    padding: 15,
-  },
-  timeButton: {
-    backgroundColor: "#FFF3F3",
-    color: "#F43939",
-    opacity: 0.8,
-    fontSize: 12,
-    borderRadius: 15,
-    textAlign: "center",
-    padding: 4,
-    width: 59,
-    height: 26,
-  },
-  details: {
-    marginTop: 15,
-  },
-  title1: {
-    color: "#2D2D2D",
-    fontSize: 18,
-  },
-  title2: {
-    color: "#2D2D2D",
-    fontSize: 14,
-    marginBottom: 15,
-    opacity: 0.5,
-  },
-  title3: {
-    color: "#F43939",
-    fontSize: 20,
-  },
-  span: {
-    fontSize: 12,
-  },
-  place: {
-    color: "#FFFFFF",
-    opacity: 0.4,
-    fontSize: 16,
-    marginLeft: 60,
-  },
-  icons: {
-    marginRight: 20,
-  }
 });

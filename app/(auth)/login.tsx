@@ -3,14 +3,16 @@ import { PrimaryButton } from "@/components/ThemedButton";
 import { PasswordInput, PhoneInput, TextInput } from "@/components/ThemedInput";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
+import { router, useGlobalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
-import {router} from "expo-router";
 
 export default function Login() {
   const bgImage = require("../../assets/auth/pattern.png");
-  const [loginMethod, setLoginMethod] = React.useState("email");
+  const { type } = useGlobalSearchParams<{ type: string }>();
+  const [loginMethod, setLoginMethod] = React.useState(type);
+
   return (
     <View style={styles.container}>
       <StatusBar style="inverted" />
@@ -24,24 +26,18 @@ export default function Login() {
           {loginMethod === "email" ? <LoginWithEmail /> : <LoginWithPhone />}
           <Text style={{ textAlign: "right", color: Colors.light.muted }}>
             Forgot password?{" "}
-            <Link
-              href="/(auth)/forgot-password/form"
-            >
-              Retrieve
-            </Link>
+            <Link href="/(auth)/forgot-password/form">Retrieve</Link>
           </Text>
         </View>
         <View style={styles.footer}>
-          <PrimaryButton label="Login" onPress={
-            () => {
+          <PrimaryButton
+            label="Login"
+            onPress={() => {
               router.navigate("/home/");
-            }
-          } />
+            }}
+          />
           <Text style={{ color: Colors.light.muted }}>
-            Don't have an account?{" "}
-            <Link href="/(auth)/register">
-              Sign Up
-            </Link>
+            Don't have an account? <Link href="/(auth)/register">Sign Up</Link>
           </Text>
         </View>
       </View>
@@ -100,5 +96,6 @@ const styles = StyleSheet.create({
   footer: {
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: "column",
   },
 });

@@ -1,49 +1,35 @@
-import { Icon } from "@/components/Icon";
+import LayoutHeader from "@/components/LayoutHeader";
 import { Link, Text } from "@/components/Themed";
+import { SearchInput } from "@/components/ThemedInput";
 import SimpleParkingSpotCard from "@/components/cards/SimpleParkingSpotCard";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
-import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-export default function CategoryDetails() {
+export default function Explore() {
   const parkingSpots = [
     {
       title: "Graha Mall",
       address: "123 Dhaka Street",
       time: "7 min",
       price: "$7",
-      image: require("../../../assets/auth/mall1.png"),
+      image: require("@/assets/auth/mall1.png"),
     },
     {
       title: "Graha Mall",
       address: "123 Dhaka Street",
       time: "7 min",
       price: "$7",
-      image: require("../../../assets/auth/mall1.png"),
+      image: require("@/assets/auth/mall1.png"),
     },
     {
       title: "Graha Mall",
       address: "123 Dhaka Street",
       time: "7 min",
       price: "$7",
-      image: require("../../../assets/auth/mall1.png"),
-    },
-    {
-      title: "Graha Mall",
-      address: "123 Dhaka Street",
-      time: "7 min",
-      price: "$7",
-      image: require("../../../assets/auth/gmall.png"),
-    },
-    {
-      title: "Graha Mall",
-      address: "123 Dhaka Street",
-      time: "7 min",
-      price: "$7",
-      image: require("../../../assets/auth/gmall.png"),
+      image: require("@/assets/auth/mall2.png"),
     },
   ];
 
@@ -51,20 +37,8 @@ export default function CategoryDetails() {
     <View style={styles.container}>
       <StatusBar style="dark" />
       <View style={styles.content}>
-        <View style={styles.search}>
-          <View style={styles.icon}>
-            <Icon
-              name="arrow-left"
-              onPress={() => {
-                router.back();
-              }}
-            />
-          </View>
-          <Text style={styles.title}>Detail Category</Text>
-          <View style={styles.icon}>
-            <Icon name="filter" />
-          </View>
-        </View>
+        <LayoutHeader title="Explore" backHidden />
+        <SearchInput dark placeholder="Search" style={styles.searchInput} />
         <View style={styles.titleElements}>
           <View style={styles.location}>
             <Text style={styles.log}>Nearst</Text>
@@ -73,11 +47,13 @@ export default function CategoryDetails() {
           <Link href="/home/history/" style={styles.message}>
             Most Popular
           </Link>
-          <Text style={styles.message}>Most Wanted</Text>
+          <Link href="/parking/map" style={styles.message}>Most Wanted</Link>
         </View>
-        {parkingSpots.map((spot, index) => (
-          <SimpleParkingSpotCard key={index} {...spot} />
-        ))}
+        <View>
+          {parkingSpots.map((spot, index) => (
+            <SimpleParkingSpotCard key={index} {...spot} />
+          ))}
+        </View>
       </View>
     </View>
   );
@@ -92,9 +68,16 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
   },
+  searchInput: {
+    marginBottom: Sizes.xl,
+    marginTop: Sizes.md,
+    backgroundColor: Colors.light.background,
+  },
   title: {
     textAlign: "center",
-    fontSize: Sizes.lg,
+    color: "#2D2D2D",
+    fontSize: 20,
+    marginBottom: 30,
   },
   location: {
     backgroundColor: "#081024",
@@ -107,24 +90,18 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
   },
-  search: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 30,
-  },
   log: {
     color: Colors.white,
     textAlign: "center",
     fontSize: Sizes.md2x,
   },
   circle: {
-    backgroundColor: "#F43939",
-    width: 6,
-    height: 6,
-    borderRadius: 50,
-    marginTop: 6,
-    marginLeft: 33,
+    backgroundColor: Colors.light.danger,
+    width: Sizes.sm,
+    height: Sizes.sm,
+    borderRadius: Sizes.sm,
+    marginTop: Sizes.sm,
+    alignSelf: "center",
   },
   titleElements: {
     flexDirection: "row",
@@ -133,20 +110,7 @@ const styles = StyleSheet.create({
     marginBottom: Sizes.xl,
   },
   message: {
-    marginTop: 20,
-    fontSize: 16,
-    color: "#2D2D2D",
-    opacity: 0.4,
-    lineHeight: 21.28,
-  },
-  icon: {
-    backgroundColor: "#EAEAF3",
-    width: 54,
-    height: 55,
-    padding: 5,
-    textAlign: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 15,
+    color: Colors.light.muted,
+    fontSize: Sizes.md2x,
   },
 });

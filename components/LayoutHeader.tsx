@@ -6,15 +6,18 @@ import { Text } from "./Themed";
 
 type LayoutHeaderProps = {
   title: string;
+  backHidden?: boolean;
   onBackPress?: () => void;
 };
 
 export default function LayoutHeader(props: LayoutHeaderProps) {
   return (
     <View style={styles.header}>
-      <Pressable style={styles.icon} onTouchEnd={props.onBackPress}>
-        <Icon name="arrow-left" style={{ justifyContent: "center" }} />
-      </Pressable>
+      {props.backHidden ? null : (
+        <Pressable style={styles.icon} onTouchEnd={props.onBackPress}>
+          <Icon name="arrow-left" style={{ justifyContent: "center" }} />
+        </Pressable>
+      )}
       <Text style={styles.text}>{props.title}</Text>
     </View>
   );
