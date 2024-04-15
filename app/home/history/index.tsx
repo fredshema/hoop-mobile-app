@@ -5,6 +5,8 @@ import { SearchInput } from "@/components/ThemedInput";
 import SimpleParkingSpotCard from "@/components/cards/SimpleParkingSpotCard";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
+import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
@@ -15,14 +17,14 @@ export default function History() {
       address: "123 Dhaka Street",
       time: "7 min",
       price: "$7",
-      image: require("../../assets/auth/mall1.png"),
+      image: require("@/assets/auth/mall1.png"),
     },
     {
       title: "Graha Mall",
       address: "123 Dhaka Street",
       time: "7 min",
       price: "$7",
-      image: require("../../assets/auth/mall2.png"),
+      image: require("@/assets/auth/mall2.png"),
     },
   ];
 
@@ -32,12 +34,13 @@ export default function History() {
       address: "123 Dhaka Street",
       time: "7 min",
       price: "$7",
-      image: require("../../assets/auth/mall1.png"),
+      image: require("@/assets/auth/mall1.png"),
     },
   ];
 
   return (
     <View style={styles.container}>
+      <StatusBar style="dark" />
       <View style={styles.content}>
         <LayoutHeader title="History" backHidden />
         <View style={styles.header}>
@@ -48,11 +51,23 @@ export default function History() {
         </View>
         <Text style={styles.titles}>Recently</Text>
         {recentParkingSpots.map((spot, index) => (
-          <SimpleParkingSpotCard key={index} {...spot} />
+          <SimpleParkingSpotCard
+            key={index}
+            {...spot}
+            onPress={() => {
+              router.push("/home/history/details");
+            }}
+          />
         ))}
         <Text style={styles.titles}>This week</Text>
         {thisWeekParkingSpots.map((spot, index) => (
-          <SimpleParkingSpotCard key={index} {...spot} />
+          <SimpleParkingSpotCard
+            key={index}
+            {...spot}
+            onPress={() => {
+              router.push("/home/history/details");
+            }}
+          />
         ))}
       </View>
     </View>

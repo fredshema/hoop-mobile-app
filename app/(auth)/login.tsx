@@ -96,5 +96,6 @@ const styles = StyleSheet.create({
   footer: {
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: "column",
   },
 });

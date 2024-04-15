@@ -1,30 +1,39 @@
 import { Text } from "@/components/Themed";
 import React from "react";
-import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
+import {
+  Image,
+  ImageSourcePropType,
+  Pressable,
+  StyleSheet,
+  View,
+} from "react-native";
 type SimpleParkingSpotCardProps = {
   title: string;
   address: string;
   price: string;
   time: string;
   image: ImageSourcePropType;
+  onPress?: () => void;
 };
 
 export default function SimpleParkingSpotCard(
   props: SimpleParkingSpotCardProps
 ) {
   return (
-    <View style={styles.card1}>
-      <Image source={props.image} />
-      <View style={styles.details}>
-        <Text style={styles.title1}>{props.title}</Text>
-        <Text style={styles.title2}>{props.address}</Text>
-        <Text style={styles.title3}>
-          {props.price}
-          <Text style={styles.span}>/hour</Text>
-        </Text>
+    <Pressable onPress={props.onPress}>
+      <View style={styles.card1}>
+        <Image source={props.image} />
+        <View style={styles.details}>
+          <Text style={styles.title1}>{props.title}</Text>
+          <Text style={styles.title2}>{props.address}</Text>
+          <Text style={styles.title3}>
+            {props.price}
+            <Text style={styles.span}>/hour</Text>
+          </Text>
+        </View>
+        <Text style={styles.timeButton}>{props.time}</Text>
       </View>
-      <Text style={styles.timeButton}>{props.time}</Text>
-    </View>
+    </Pressable>
   );
 }
 const styles = StyleSheet.create({

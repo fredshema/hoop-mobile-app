@@ -4,6 +4,7 @@ import { SearchInput } from "@/components/ThemedInput";
 import SimpleParkingSpotCard from "@/components/cards/SimpleParkingSpotCard";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
@@ -34,6 +35,7 @@ export default function Explore() {
 
   return (
     <View style={styles.container}>
+      <StatusBar style="dark" />
       <View style={styles.content}>
         <LayoutHeader title="Explore" backHidden />
         <SearchInput dark placeholder="Search" style={styles.searchInput} />
@@ -42,10 +44,10 @@ export default function Explore() {
             <Text style={styles.log}>Nearst</Text>
             <View style={styles.circle}></View>
           </View>
-          <Link href="/home/history" style={styles.message}>
+          <Link href="/home/history/" style={styles.message}>
             Most Popular
           </Link>
-          <Text style={styles.message}>Most Wanted</Text>
+          <Link href="/parking/map" style={styles.message}>Most Wanted</Link>
         </View>
         <View>
           {parkingSpots.map((spot, index) => (

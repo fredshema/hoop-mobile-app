@@ -14,7 +14,10 @@ export function Button(props: ButtonProps) {
     <Pressable
       style={[
         {
-          flex: 1,
+          width: "100%",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
           backgroundColor: Colors.dark.background,
           paddingVertical: Sizes.md,
           paddingHorizontal: Sizes.lg,

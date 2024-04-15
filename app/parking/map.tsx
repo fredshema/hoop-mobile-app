@@ -5,11 +5,11 @@ import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
 import {
-    Image,
-    ImageBackground,
-    Pressable,
-    StyleSheet,
-    View,
+  Image,
+  ImageBackground,
+  Pressable,
+  StyleSheet,
+  View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -27,7 +27,12 @@ export default function ParkingMap() {
           },
         ]}
       >
-        <View style={{ flex: 1 }}></View>
+        <View style={{ flex: 1, marginTop: Sizes.md3x }}>
+          <Image
+            source={require("@/assets/parking/map-popup.png")}
+            style={styles.image}
+          />
+        </View>
         <View style={styles.controls}>
           <Pressable
             style={styles.backIcon}
@@ -72,7 +77,11 @@ export default function ParkingMap() {
           </View>
         </View>
       </ImageBackground>
-      <SearchInput placeholder="Parking address..." style={styles.search} />
+      <SearchInput
+        dark
+        placeholder="Parking address..."
+        style={styles.search}
+      />
     </>
   );
 }
@@ -84,6 +93,12 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: Sizes.xl2x,
     borderBottomRightRadius: Sizes.xl2x,
     overflow: "hidden",
+  },
+  image: {
+    width: "auto",
+    height: 300,
+    resizeMode: "contain",
+    marginBottom: Sizes.lg,
   },
   title: {
     fontSize: Sizes.xl,

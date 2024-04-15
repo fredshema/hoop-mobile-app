@@ -51,7 +51,7 @@ export default function Profile() {
           </View>
           <View style={styles.titleElement}>
             <Icon name="discount" />
-            <Text style={styles.subtitleElement}>Go Pro</Text>
+            <Link href="/profile/upgrade" style={styles.subtitleElement}>Go Pro</Link>
             <Icon name="dark-arrow-right" />
           </View>
           <View style={styles.titleElement}>

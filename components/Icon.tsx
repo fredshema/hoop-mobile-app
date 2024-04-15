@@ -33,6 +33,7 @@ const icons = {
   document: require("@/assets/icons/document.png"),
   profile: require("@/assets/icons/profile.png"),
   headset: require("@/assets/icons/headset.png"),
+  tick: require("@/assets/icons/tick.png"),
 };
 
 const sizes = {

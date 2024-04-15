@@ -4,10 +4,12 @@ import SimpleParkingSpotCard from "@/components/cards/SimpleParkingSpotCard";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   Image,
   ImageBackground,
+  Pressable,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -35,11 +37,14 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
+      <StatusBar style="light" />
       <View style={styles.header}>
         <ImageBackground source={bgImage} style={styles.bg}>
           <View style={styles.titleElements}>
             <View style={styles.greetings}>
-              <Link href="/profile/" style={styles.name}>Hola Diane 👋🏻</Link>
+              <Link href="/profile/" style={styles.name}>
+                Hola Diane 👋🏻
+              </Link>
               <Text style={styles.subtitles}>Find an easy parking spot</Text>
             </View>
             <View style={styles.bx}>
@@ -61,28 +66,54 @@ export default function Home() {
         <View style={{ flex: 1 }}>
           <Text style={styles.titles}>Categories</Text>
           <View style={styles.imagesElement}>
-            <View style={styles.box}>
+            <Pressable
+              style={styles.box}
+              onPress={() => {
+                router.push("/home/categories/details");
+              }}
+            >
               <Icon name="car" />
               <Text style={styles.vehicleNames}>Car</Text>
-            </View>
-            <View style={styles.box}>
+            </Pressable>
+            <Pressable
+              style={styles.box}
+              onPress={() => {
+                router.push("/home/categories/details");
+              }}
+            >
               <Icon name="bike" />
               <Text style={styles.vehicleNames}>Bike</Text>
-            </View>
-            <View style={styles.box}>
+            </Pressable>
+            <Pressable
+              style={styles.box}
+              onPress={() => {
+                router.push("/home/categories/details");
+              }}
+            >
               <Icon name="bus" />
               <Text style={styles.vehicleNames}>Bus</Text>
-            </View>
-            <View style={styles.box}>
+            </Pressable>
+            <Pressable
+              style={styles.box}
+              onPress={() => {
+                router.push("/home/categories/details");
+              }}
+            >
               <Icon name="van" />
               <Text style={styles.vehicleNames}>Van</Text>
-            </View>
+            </Pressable>
           </View>
           <Link href="/home/explore" style={styles.titles}>
             Nearst Parking Spaces
           </Link>
           {parkingSpots.map((spot, index) => (
-            <SimpleParkingSpotCard key={index} {...spot} />
+            <SimpleParkingSpotCard
+              key={index}
+              {...spot}
+              onPress={() => {
+                router.push("/parking/tracking");
+              }}
+            />
           ))}
         </View>
       </View>
