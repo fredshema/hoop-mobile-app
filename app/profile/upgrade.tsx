@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   titles: {
-    fontSize: Sizes.xl2x,
+    fontSize: Sizes.xl,
     textAlign: "center",
     maxWidth: 270,
     marginVertical: Sizes.xl3x,
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   card1: {
     backgroundColor: Colors.white,
     padding: Sizes.md3x,
-    width: 270,
+    width: 290,
     borderRadius: Sizes.md3x,
     marginBottom: Sizes.xl2x,
   },

@@ -26,7 +26,9 @@ export default function Plan() {
         <Image source={require("@/assets/auth/upgrade.png")} />
       </View>
       <View style={styles.card1}>
-        <View style={styles.circleActive}></View>
+        <View style={styles.circleActive}>
+          <View style={styles.innerCircleActive}></View>
+        </View>
         <View style={styles.yearly}>
           <Text style={styles.titles}>Yearly</Text>
           <Text style={styles.bodyMessage}>Pay for a full year</Text>
@@ -144,7 +146,7 @@ const styles = StyleSheet.create({
     borderColor: "#F43939",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginVertical: 30,
+    marginVertical: Sizes.md,
     padding: 15,
     borderRadius: Sizes.md3x,
     borderWidth: 1,
@@ -157,25 +159,31 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 15,
-    marginBottom: 40,
     borderRadius: Sizes.md3x,
     borderWidth: 1,
     gap: Sizes.md3x,
     alignItems: "center",
   },
   circleActive: {
+    width: 20,
+    height: 20,
+    borderRadius: 50,
+    borderColor: "#F43939",
+    borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  innerCircleActive: {
     backgroundColor: "#F43939",
-    width: 13.5,
-    height: 13.5,
+    width: 15,
+    height: 15,
     borderRadius: 50,
   },
   circle: {
     borderWidth: 1,
     borderColor: "#2D2D2D",
-    opacity: 0.4,
-    width: 18,
-    height: 18,
+    width: 20,
+    height: 20,
     borderRadius: 50,
-    marginTop: Sizes.md2x,
   },
 });
