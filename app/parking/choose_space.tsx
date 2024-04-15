@@ -17,7 +17,7 @@ export default function ChooseSpace() {
       <View style={styles.container}>
         <PrimaryButton
           label="Book Space"
-          onPress={() => router.push("/parking/booking")}
+          onPress={() => router.push("/parking/booking/")}
         />
       </View>
     </>

@@ -1,12 +1,14 @@
+import { Icon } from "@/components/Icon";
 import LayoutHeader from "@/components/LayoutHeader";
 import { Text } from "@/components/Themed";
+import { PrimaryButton } from "@/components/ThemedButton";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
 import React from "react";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
-export default function Book() {
+export default function BookingDetails() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -25,41 +27,40 @@ export default function Book() {
           <Text style={styles.title}>Graha Mall</Text>
           <Text style={styles.bodyMessage}>123 Dhaka Street</Text>
         </View>
-        <Text style={styles.background}> $10/h</Text>
+        <Text style={styles.background}>$10/h</Text>
       </View>
       <View style={styles.icons}>
         <View style={styles.card1}>
-          <Text style={styles.grd}>
-            <Image source={require("@/assets/auth/location.png")} />
-          </Text>
+          <View style={styles.grd}>
+            <Icon name="location" />
+          </View>
           <Text style={styles.numbers}>A-6</Text>
           <Text style={styles.text}>Parking Place</Text>
         </View>
         <View style={styles.card2}>
-          <Text style={styles.grd}>
-            <Image source={require("@/assets/auth/clock.png")} />
-          </Text>
+          <View style={styles.grd}>
+            <Icon name="time-circle" />
+          </View>
           <Text style={styles.numbers}>4 h</Text>
           <Text style={styles.text}>Time</Text>
         </View>
       </View>
       <View style={styles.rectangle}>
-        <Text style={styles.ground}>
+        <View style={styles.ground}>
           <Image source={require("@/assets/auth/insurance.png")} />
-        </Text>
+        </View>
         <Text style={styles.txt}>Include Insurance</Text>
         <Text style={styles.hour}>$5/h</Text>
       </View>
       <View style={styles.button}>
         <Text style={styles.price}>$35,00</Text>
-        <TouchableOpacity
+        <PrimaryButton
+          label="Pay"
           style={styles.btn}
           onPress={() => {
             router.push("/payment/payment");
           }}
-        >
-          <Text style={styles.btnText}>Pay</Text>
-        </TouchableOpacity>
+        />
       </View>
     </View>
   );
@@ -70,7 +71,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignContent: "center",
     justifyContent: "center",
-    backgroundColor: "#F4F4FA",
   },
   text: {
     fontSize: Sizes.sm3x,
@@ -89,11 +89,13 @@ const styles = StyleSheet.create({
   body: {
     flexDirection: "row",
     justifyContent: "space-around",
+    alignItems: "center",
   },
   price: {
-    fontSize: Sizes.lg,
+    fontSize: Sizes.xl,
     marginTop: 10,
     color: "#2D2D2D",
+    fontWeight: "bold",
   },
   numbers: {
     fontSize: Sizes.md2x,
@@ -101,7 +103,6 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingLeft: 30,
-    marginTop: 25,
     marginBottom: 10,
   },
   rectangle: {
@@ -117,7 +118,6 @@ const styles = StyleSheet.create({
   bodyMessage: {
     color: "#2D2D2D",
     opacity: 0.4,
-    fontSize: Sizes.sm3x,
     marginBottom: 30,
   },
   Btitle: {
@@ -127,7 +127,9 @@ const styles = StyleSheet.create({
     marginBottom: Sizes.sm,
   },
   ground: {
-    backgroundColor: "#FFF3F3",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: Colors.light.lightDanger,
     width: 41,
     height: 41,
     paddingLeft: 10,
@@ -135,12 +137,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   grd: {
-    backgroundColor: "#FFF3F3",
-    paddingLeft: 11,
-    paddingTop: 4,
-    width: 38,
-    height: 26,
+    backgroundColor: Colors.light.lightDanger,
     borderRadius: 8,
+    padding: Sizes.sm,
+    marginBottom: Sizes.sm,
   },
   title: {
     color: "#2D2D2D",
@@ -153,23 +153,17 @@ const styles = StyleSheet.create({
     color: "#2D2D2D",
     fontSize: Sizes.md3x,
   },
-  paragraph: {
-    marginLeft: 20,
-    color: "#2D2D2D",
-    opacity: 0.2,
-    fontSize: Sizes.md2x,
-  },
   background: {
-    backgroundColor: "#FFF3F3",
     width: 72,
-    color: "#F43939",
+    backgroundColor: Colors.light.lightDanger,
+    color: Colors.light.danger,
     height: 38,
+    padding: Sizes.sm,
     textAlign: "center",
+    justifyContent: "center",
+    alignItems: "center",
     marginLeft: 20,
-    fontSize: Sizes.sm3x,
     borderRadius: Sizes.vsm,
-    marginBottom: 60,
-    marginTop: 30,
   },
   icons: {
     flexDirection: "row",
@@ -181,8 +175,9 @@ const styles = StyleSheet.create({
   },
   button: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "center",
     marginTop: 20,
+    gap: Sizes.lg,
   },
   btnText: {
     color: Colors.dark.text,
@@ -191,10 +186,7 @@ const styles = StyleSheet.create({
     fontSize: Sizes.md,
   },
   btn: {
-    backgroundColor: "#130F26",
-    borderRadius: 15,
-    width: 197,
-    height: 54,
+    width: "50%",
   },
   card1: {
     width: 145,

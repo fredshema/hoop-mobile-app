@@ -5,6 +5,7 @@ import { Text } from "./Themed";
 
 type ButtonProps = PressableProps & {
   label: string;
+  style?: StyleProp<ViewStyle>;
   textStyle?: any;
 };
 
@@ -24,7 +25,7 @@ export function Button(props: ButtonProps) {
           borderRadius: Sizes.md,
           marginBottom: Sizes.lg,
         },
-        style as StyleProp<ViewStyle>,
+        style,
       ]}
       {...rest}
     >
@@ -49,12 +50,16 @@ export function PrimaryButton(props: ButtonProps) {
 }
 
 export function LightButton(props: ButtonProps) {
+  const { style, ...otherProps } = props;
   return (
     <Button
-      {...props}
-      style={{
-        backgroundColor: Colors.light.light,
-      }}
+      {...otherProps}
+      style={[
+        style,
+        {
+          backgroundColor: Colors.light.light,
+        },
+      ]}
       textStyle={{
         color: Colors.light.dark,
       }}

@@ -1,10 +1,12 @@
+import { Icon } from "@/components/Icon";
 import LayoutHeader from "@/components/LayoutHeader";
 import { Text } from "@/components/Themed";
+import { PrimaryButton } from "@/components/ThemedButton";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
 import React from "react";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
 export default function Details() {
   return (
@@ -18,70 +20,56 @@ export default function Details() {
         />
       </View>
       <View style={styles.rectangle}>
-        <Text style={styles.txt}>Mobile Banking</Text>
-        <Image
-          source={require("../../assets/auth/arrow.png")}
-          style={styles.img}
-        />
+        <Text>Mobile Banking</Text>
+        <Icon name="dark-arrow-right" />
       </View>
       <View style={styles.card}>
         <View style={styles.message}>
           <Text>Credit Card</Text>
           <Image
-            source={require("../../assets/auth/Arrowup.png")}
+            source={require("@/assets/auth/Arrowup.png")}
             style={styles.img}
           />
         </View>
         <View style={styles.cardNames}>
           <Image
-            source={require("../../assets/auth/mastercard.png")}
+            source={require("@/assets/auth/mastercard.png")}
             style={styles.mastercard}
           />
           <Text style={styles.accountNumber}>ABC Bank **** 6189</Text>
-          <Text style={styles.circleActive}></Text>
+          <View style={styles.circleActive}></View>
         </View>
         <View style={styles.cardNames}>
           <Image
-            source={require("../../assets/auth/visa.png")}
+            source={require("@/assets/auth/visa.png")}
             style={styles.visaIcon}
           />
           <Text style={styles.accountNumber}>ABC Bank **** 6189</Text>
         </View>
         <View style={styles.add}>
-          <Image source={require("../../assets/auth/add.png")} />
+          <Image source={require("@/assets/auth/add.png")} />
           <Text style={styles.text}>Add new card</Text>
         </View>
       </View>
       <View style={styles.rectangle}>
-        <Text style={styles.txt}>Google Play</Text>
-        <Image
-          source={require("../../assets/auth/arrow.png")}
-          style={styles.img}
-        />
+        <Text>Google Play</Text>
+        <Icon name="dark-arrow-right" />
       </View>
       <View style={styles.rectangle}>
-        <Text style={styles.txt}>Debit Card</Text>
-        <Image
-          source={require("../../assets/auth/arrow.png")}
-          style={styles.img}
-        />
+        <Text>Debit Card</Text>
+        <Icon name="dark-arrow-right" />
       </View>
       <View style={styles.messages}>
         <Text style={styles.sendEmail}>Send receipt to your email</Text>
-        <Image
-          source={require("../../assets/auth/on.png")}
-          style={styles.icon}
-        />
+        <Image source={require("@/assets/auth/on.png")} style={styles.icon} />
       </View>
       <View style={styles.button}>
-        <TouchableOpacity
-          style={styles.btn}
+        <PrimaryButton
+          label="Pay Now"
           onPress={() => {
             router.push("/payment/success");
           }}
-        >
-          <Text style={styles.btnText}>Pay Now</Text>
-        </TouchableOpacity>
+        />
       </View>
     </View>
   );
@@ -90,21 +78,22 @@ export default function Details() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: Sizes.lg,
     alignContent: "center",
     justifyContent: "center",
     backgroundColor: "#F4F4FA",
   },
   cardNames: {
     flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 20,
     backgroundColor: "#F4F4FA",
-    padding: 10,
-    width: 279,
-    height: 47,
+    padding: Sizes.md,
     borderRadius: Sizes.sm1x,
+    columnGap: Sizes.md,
   },
   header: {
-    paddingLeft: 30,
     marginBottom: 30,
   },
   sendEmail: {
@@ -122,18 +111,13 @@ const styles = StyleSheet.create({
   },
   messages: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     marginBottom: 30,
     marginTop: 20,
   },
-  txt: {
-    fontSize: Sizes.md,
-    marginRight: 30,
-    color: "#2D2D2D",
-  },
   accountNumber: {
-    marginLeft: 20,
-    fontSize: Sizes.sm3x,
+    flex: 1,
+    marginTop: 5,
   },
   title: {
     color: "#2D2D2D",
@@ -175,10 +159,8 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: Colors.dark.text,
-    width: 311,
-    height: 238,
-    padding: 15,
-    marginLeft: 35,
+    paddingVertical: Sizes.lg,
+    paddingHorizontal: Sizes.md,
     marginBottom: 20,
     borderRadius: Sizes.sm1x,
   },
@@ -191,10 +173,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.dark.text,
     flexDirection: "row",
     justifyContent: "space-between",
-    width: 311,
-    height: 61,
-    padding: 15,
-    marginLeft: 30,
+    alignItems: "center",
+    padding: Sizes.md,
     borderRadius: 10,
     marginBottom: 20,
   },
@@ -202,22 +182,6 @@ const styles = StyleSheet.create({
     color: "#2D2D2D",
     opacity: 0.6,
     fontSize: Sizes.md,
-  },
-  paragraph: {
-    marginLeft: 20,
-    color: "#2D2D2D",
-    opacity: 0.2,
-    fontSize: Sizes.md2x,
-  },
-  background: {
-    backgroundColor: "#FFF3F3",
-    width: 91,
-    color: "#F43939",
-    height: 35,
-    textAlign: "center",
-    marginLeft: 20,
-    fontSize: Sizes.sm3x,
-    borderRadius: Sizes.sm1x,
   },
   icons: {
     flexDirection: "row",
@@ -231,17 +195,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     marginTop: 2,
-  },
-  btnText: {
-    color: Colors.dark.text,
-    textAlign: "center",
-    marginTop: 15,
-    fontSize: Sizes.md3x,
-  },
-  btn: {
-    backgroundColor: "#130F26",
-    borderRadius: 15,
-    width: 311,
-    height: 60,
   },
 });

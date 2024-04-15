@@ -111,7 +111,7 @@ export default function Home() {
               key={index}
               {...spot}
               onPress={() => {
-                router.push("/parking/tracking");
+                router.push("/parking/details");
               }}
             />
           ))}

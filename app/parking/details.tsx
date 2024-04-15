@@ -1,15 +1,16 @@
+import { Icon } from "@/components/Icon";
 import LayoutHeader from "@/components/LayoutHeader";
 import { Text } from "@/components/Themed";
-import Compass from "@/components/cards/Compass";
+import { PrimaryButton } from "@/components/ThemedButton";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
 import React from "react";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
-export default function Parking() {
+export default function ParkingDetails() {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container]}>
       <View style={styles.header}>
         <LayoutHeader
           title="Details"
@@ -19,33 +20,33 @@ export default function Parking() {
         />
       </View>
       <View style={styles.images}>
-        <Image source={require("../../../assets/auth/mall.png")} />
-      </View>
-      <View style={styles.images}>
-        <Compass />
+        <Image source={require("@/assets/auth/mall.png")} />
       </View>
       <Text style={styles.title}>Graha Mall</Text>
       <Text style={styles.bodyMessage}>123 Dhaka Street</Text>
       <View style={styles.icons}>
-        <Text style={styles.background}>
-          {" "}
-          <Image source={require("../../../assets/auth/location.png")} /> 500 m
-          away
-        </Text>
-        <Text style={styles.background}>
-          {" "}
-          <Image source={require("../../../assets/auth/clock.png")} /> 7 mins
-        </Text>
+        <View style={styles.background}>
+          <Icon name="location" />
+          <Text style={styles.danger}>500 m away</Text>
+        </View>
+        <View style={styles.background}>
+          <Icon name="time-circle" />
+          <Text style={styles.danger}>7 mins</Text>
+        </View>
       </View>
       <Text style={styles.texts}>Information</Text>
       <Text style={styles.paragraph}>
         24/7 parking facility with cctv camera, professional security guard,
-        chair disble, floor parking list facilities. You{" "}
+        chair disble, floor parking list facilities. You
       </Text>
       <View style={styles.button}>
-        <TouchableOpacity style={styles.btn}>
-          <Text style={styles.btnText}>Book Now</Text>
-        </TouchableOpacity>
+        <PrimaryButton
+          label="Book Now"
+          style={styles.btn}
+          onPress={() => {
+            router.push("/parking/tracking");
+          }}
+        />
       </View>
     </View>
   );
@@ -54,21 +55,21 @@ export default function Parking() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignContent: "center",
-    justifyContent: "center",
-    backgroundColor: "#F4F4FA",
+    paddingHorizontal: Sizes.md,
+    marginTop: Sizes.md,
+    backgroundColor: Colors.light["secondary-background"],
   },
-
   bodyMessage: {
     color: "#2D2D2D",
     opacity: 0.5,
-    fontSize: Sizes.md2x,
+    fontSize: Sizes.sm3x,
     textAlign: "center",
-    marginBottom: 30,
   },
-  header: {
-    paddingLeft: 30,
-    marginBottom: 10,
+  header: {},
+  danger: {
+    color: Colors.light.danger,
+    margin: 0,
+    alignSelf: "center",
   },
   title: {
     color: "#2D2D2D",
@@ -78,36 +79,38 @@ const styles = StyleSheet.create({
     marginBottom: Sizes.sm,
   },
   texts: {
-    marginLeft: 30,
+    marginLeft: 20,
     color: "#2D2D2D",
     fontSize: Sizes.md3x,
   },
   paragraph: {
-    marginLeft: 30,
+    marginLeft: 20,
     color: "#2D2D2D",
     opacity: 0.2,
     fontSize: Sizes.md2x,
   },
   background: {
-    backgroundColor: "#FFF3F3",
-    width: 109,
-    color: "#F43939",
-    height: 32,
-    textAlign: "center",
-    marginLeft: 20,
-    fontSize: Sizes.sm3x,
-    borderRadius: Sizes.vsm,
-    marginBottom: 60,
+    backgroundColor: Colors.light.lightDanger,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: Sizes.sm,
+    paddingVertical: Sizes.sm,
+    paddingHorizontal: Sizes.md,
+    borderRadius: Sizes.sm,
   },
   icons: {
     flexDirection: "row",
     justifyContent: "center",
+    alignItems: "center",
+    gap: Sizes.lg,
+    marginVertical: Sizes.xl4x,
   },
   images: {
     flexDirection: "row",
     justifyContent: "center",
+    marginTop: 20
   },
-
   button: {
     flexDirection: "row",
     justifyContent: "center",
@@ -116,13 +119,9 @@ const styles = StyleSheet.create({
   btnText: {
     color: Colors.dark.text,
     textAlign: "center",
-    marginTop: 15,
     fontSize: Sizes.md,
   },
   btn: {
-    backgroundColor: "#130F26",
-    borderRadius: 15,
-    width: 197,
-    height: 54,
+    width: "70%",
   },
 });
