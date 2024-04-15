@@ -21,6 +21,9 @@ export default function ParkingDetails() {
       </View>
       <View style={styles.images}>
         <Image source={require("@/assets/auth/mall.png")} />
+        <View style={styles.locIcon}>
+          <Icon name="light-current-location" />
+        </View>
       </View>
       <Text style={styles.title}>Graha Mall</Text>
       <Text style={styles.bodyMessage}>123 Dhaka Street</Text>
@@ -107,9 +110,20 @@ const styles = StyleSheet.create({
     marginVertical: Sizes.xl4x,
   },
   images: {
-    flexDirection: "row",
     justifyContent: "center",
-    marginTop: 20
+    alignItems: "center",
+    marginTop: 20,
+    position: "relative",
+  },
+  locIcon: {
+    position: "relative",
+    top: -10,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: Colors.light.danger,
+    alignItems: "center",
+    justifyContent: "center",
   },
   button: {
     flexDirection: "row",

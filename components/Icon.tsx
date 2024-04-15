@@ -14,6 +14,7 @@ const icons = {
   "dark-search": require("@/assets/icons/dark-search.png"),
   "question-circle": require("@/assets/icons/question-circle.png"),
   "dark-arrow-right": require("@/assets/icons/dark-arrow-right.png"),
+  "light-current-location": require("@/assets/icons/light-current-location.png"),
   eye: require("@/assets/icons/eye.png"),
   backspace: require("@/assets/icons/backspace.png"),
   fingerprint: require("@/assets/icons/fingerprint.png"),
