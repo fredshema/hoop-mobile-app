@@ -22,7 +22,7 @@ export default function RootHome() {
         { paddingTop: insets.top, paddingBottom: insets.bottom },
       ]}
     >
-      <Link href="/parking/tracking" style={styles.skipText}>
+      <Link href="/home/" style={styles.skipText}>
         Skip
       </Link>
       <View style={styles.ob}>
@@ -54,7 +54,7 @@ export default function RootHome() {
         </TouchableOpacity>
         <View style={styles.messageLink}>
           <Text style={styles.message}>Don't have an account? </Text>
-          <Link href="/home/">Sign Up</Link>
+          <Link href="/(auth)/register">Sign Up</Link>
         </View>
       </View>
     </View>

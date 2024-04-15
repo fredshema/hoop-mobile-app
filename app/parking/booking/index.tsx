@@ -39,7 +39,7 @@ export default function Booking() {
           label="Pay"
           style={{ width: "60%", marginBottom: 0 }}
           onPress={() => {
-            router.push("/parking/route");
+            router.push("/parking/booking/details");
           }}
         />
       </View>

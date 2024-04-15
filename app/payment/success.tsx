@@ -1,10 +1,11 @@
 import { Icon } from "@/components/Icon";
 import { Text } from "@/components/Themed";
+import { PrimaryButton } from "@/components/ThemedButton";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
 import React from "react";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
 export default function Success() {
   return (
@@ -18,22 +19,21 @@ export default function Success() {
       </Text>
       <Text style={styles.titles}>Receipt</Text>
       <View style={styles.icons}>
-        <Text style={styles.background}>
+        <View style={styles.background}>
           <Icon name="message-pink" />
-        </Text>
-        <Text style={styles.background}>
+        </View>
+        <View style={styles.background}>
           <Icon name="comment" />
-        </Text>
+        </View>
       </View>
       <View style={styles.button}>
-        <TouchableOpacity
-          style={styles.btn}
+        <PrimaryButton
+          label="Back to Home"
           onPress={() => {
-            router.push("/payment/success");
+            router.replace("/home/");
+            router.push("/parking/route");
           }}
-        >
-          <Text style={styles.btnText}>Back to Home</Text>
-        </TouchableOpacity>
+        />
       </View>
     </View>
   );
@@ -42,6 +42,7 @@ export default function Success() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: Sizes.lg,
     alignContent: "center",
     justifyContent: "center",
   },

@@ -46,8 +46,8 @@ export default function Edit() {
         </View>
         <View style={{ flex: 1 }} />
         <View style={styles.btns}>
-          <LightButton label="Cancel" />
-          <PrimaryButton label="Save" />
+          <LightButton label="Cancel" style={{ width: "50%" }} />
+          <PrimaryButton label="Save" style={{ width: "50%" }} />
         </View>
       </View>
     </View>
@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
   btns: {
     flexDirection: "row",
     gap: Sizes.sm,
+    width: "100%",
   },
   txtCancel: {
     textAlign: "center",
