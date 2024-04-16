@@ -2,7 +2,10 @@
 
 ## Description
 Hello welcome to our app .
-This is a simple parking booking system mobile app. It allows users to book parking slots for their vehicles using their mobiles.
+This is a simple parking booking system mobile app. It allows users to book parking slots for their vehicles using their mobile phones.
+
+## The figma file containing the designs of this app.
+https://www.figma.com/file/0mVgjoFZzMvSgu6y1mkREg/Hoop---Parking-Booking-UI-KIT-(Community)-(Copy)?type=design&node-id=3-3084&mode=design&t=yfvLsTc5z9i2p7XJ-0
 
 ## Tools used
 
@@ -11,7 +14,7 @@ This is a simple parking booking system mobile app. It allows users to book park
 ![Expo](https://img.shields.io/badge/expo-1C1E24?style=for-the-badge&logo=expo&logoColor=#D04A37)
 
 
-## Instructions
+## Permission
 
 
 Feel free to fork and clone this repository
