@@ -10,6 +10,12 @@ Hoop is a mobile app that allows users to find the best parking space nearby for
 - Users can explore parking slots in a map view
 - Users can view parking slot details
 
+## Screenshots
+
+<img src="./assets/screenshots/onboarding.jpeg" width="320" />
+<img src="./assets/screenshots/home.jpeg" width="320" />
+<img src="./assets/screenshots/details.jpeg" width="320" />
+
 ## Technologies
 
 - [React Native](https://reactnative.dev/)
@@ -42,14 +48,16 @@ npm start
 ```bash
 npm run android
 ```
+
 or
+
 ```bash
 npm run ios
 ```
 
 ## Design
 
-The design of the app was inspired by [Hoop - Parking Booking UI KIT (Community)](https://www.figma.com/file/0mVgjoFZzMvSgu6y1mkREg/Hoop---Parking-Booking-UI-KIT-(Community)-(Copy)?type=design&node-id=3-3084&mode=design&t=yfvLsTc5z9i2p7XJ-0) on Figma.
+The design of the app was inspired by [Hoop - Parking Booking UI KIT (Community)](<https://www.figma.com/file/0mVgjoFZzMvSgu6y1mkREg/Hoop---Parking-Booking-UI-KIT-(Community)-(Copy)?type=design&node-id=3-3084&mode=design&t=yfvLsTc5z9i2p7XJ-0>) on Figma.
 
 ## Contributors
 
