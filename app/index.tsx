@@ -7,7 +7,10 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ob1 from "./ob/Ob1";
 
+
 export default function RootHome() {
+
+
   const insets = useSafeAreaInsets();
 
   const handleLogin = (type: string) => {
