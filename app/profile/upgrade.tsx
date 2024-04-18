@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   titles: {
-    fontSize: 24,
+    fontSize: Sizes.xl,
     textAlign: "center",
     maxWidth: 270,
     marginVertical: Sizes.xl3x,
