@@ -1,29 +1,65 @@
 # Hoop - Parking Booking
 
-## Description
-Hello welcome to our app .
-This is a simple parking booking system mobile app. It allows users to book parking slots for their vehicles using their mobile phones.
+Hoop is a mobile app that allows users to find the best parking space nearby for their vehicles using their mobile phones wherever and whenever they want.
 
-## The figma file containing the designs of this app.
-https://www.figma.com/file/0mVgjoFZzMvSgu6y1mkREg/Hoop---Parking-Booking-UI-KIT-(Community)-(Copy)?type=design&node-id=3-3084&mode=design&t=yfvLsTc5z9i2p7XJ-0
+## Features
 
-## Tools used
+- Users can view available parking slots
+- Users can book parking slots
+- Users can view their booking history
+- Users can explore parking slots in a map view
+- Users can view parking slot details
 
-![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+## Screenshots
 
-![Expo](https://img.shields.io/badge/expo-1C1E24?style=for-the-badge&logo=expo&logoColor=#D04A37)
+<img src="./assets/screenshots/onboarding.jpeg" width="320" />
+<img src="./assets/screenshots/home.jpeg" width="320" />
+<img src="./assets/screenshots/details.jpeg" width="320" />
 
+## Technologies
 
-## Permission
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
 
+## Installation
 
-Feel free to fork and clone this repository
+1. Clone the repository
 
+```bash
+git clone github.com/fredshema/hoop-mobile-app.git
+```
 
-## How to run the app
+2. Install dependencies
 
+```bash
+npm install
+```
 
-npm run start
+3. Start the app
 
+```bash
+npm start
+```
 
-You can  download the expo Go app in your mobile phone to view your app from or use any other emulators to run this  app.
+4. Install the Expo Go app on your mobile phone and scan the QR code to view the app
+
+5. Run the app on an emulator
+
+```bash
+npm run android
+```
+
+or
+
+```bash
+npm run ios
+```
+
+## Design
+
+The design of the app was inspired by [Hoop - Parking Booking UI KIT (Community)](<https://www.figma.com/file/0mVgjoFZzMvSgu6y1mkREg/Hoop---Parking-Booking-UI-KIT-(Community)-(Copy)?type=design&node-id=3-3084&mode=design&t=yfvLsTc5z9i2p7XJ-0>) on Figma.
+
+## Contributors
+
+- [Fred Shema](https://github.com/fredshema)
+- [Akimana Latifah](https://github.com/Latiah)
