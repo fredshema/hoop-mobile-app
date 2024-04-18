@@ -1,3 +1,4 @@
+import CircularWheel from "@/components/CircularWheel";
 import { Icon } from "@/components/Icon";
 import LayoutHeader from "@/components/LayoutHeader";
 import { Text } from "@/components/Themed";
@@ -5,9 +6,21 @@ import { PrimaryButton } from "@/components/ThemedButton";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
-import { ImageBackground, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export default function Booking() {
+  const hours = [
+    { title: "1", label: "Hour" },
+    { title: "2", label: "Hours" },
+    { title: "3", label: "Hours" },
+    { title: "4", label: "Hours" },
+    { title: "5", label: "Hours" },
+    { title: "6", label: "Hours" },
+    { title: "7", label: "Hours" },
+    { title: "8", label: "Hours" },
+    { title: "9", label: "Hours" },
+    { title: "10", label: "Hours" },
+  ];
   return (
     <>
       <View style={styles.container}>
@@ -28,10 +41,9 @@ export default function Booking() {
             </View>
           </View>
         </View>
-        <ImageBackground
-          style={[styles.column]}
-          source={require("@/assets/parking/booking-ring.png")}
-        />
+        <View style={styles.column}>
+          <CircularWheel data={hours} />
+        </View>
       </View>
       <View style={styles.buttonContainer}>
         <Text style={styles.price}>$35,00</Text>
