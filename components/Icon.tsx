@@ -14,6 +14,8 @@ const icons = {
   "dark-search": require("@/assets/icons/dark-search.png"),
   "question-circle": require("@/assets/icons/question-circle.png"),
   "dark-arrow-right": require("@/assets/icons/dark-arrow-right.png"),
+  "light-current-location": require("@/assets/icons/light-current-location.png"),
+  "red-arrow": require("@/assets/icons/red-arrow.png"),
   eye: require("@/assets/icons/eye.png"),
   backspace: require("@/assets/icons/backspace.png"),
   fingerprint: require("@/assets/icons/fingerprint.png"),
@@ -41,7 +43,7 @@ const sizes = {
   md: 24,
   lg: 32,
   xl: 48,
-  "2xl": 64,
+  xl2x: 64,
 };
 
 type IconSet = typeof icons;

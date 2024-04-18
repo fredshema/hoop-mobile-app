@@ -1,11 +1,14 @@
+import { Text } from "@/components/Themed";
 import Sizes from "@/constants/Sizes";
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { Text } from "@/components/Themed";
 export default function Ob1() {
   return (
     <View style={styles.container}>
-      <Image source={require("../../assets/auth/page1.png")} />
+      <Image
+        style={styles.image}
+        source={require("../../assets/auth/page1.png")}
+      />
       <Text style={styles.title}>Welcome</Text>
       <Text style={styles.bodyMessage}>Find a best possible way to park</Text>
     </View>
@@ -16,6 +19,10 @@ const styles = StyleSheet.create({
   container: {
     alignContent: "center",
     justifyContent: "center",
+  },
+  image: {
+    height: 300,
+    objectFit: "contain",
   },
   bodyMessage: {
     color: "#2D2D2D",
@@ -32,4 +39,3 @@ const styles = StyleSheet.create({
     marginBottom: Sizes.sm,
   },
 });
-

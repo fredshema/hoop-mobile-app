@@ -1,5 +1,6 @@
 import { Icon } from "@/components/Icon";
 import { Link, Text } from "@/components/Themed";
+import { SearchInput } from "@/components/ThemedInput";
 import SimpleParkingSpotCard from "@/components/cards/SimpleParkingSpotCard";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
@@ -59,6 +60,9 @@ export default function Home() {
                 />
               </TouchableOpacity>
             </View>
+          </View>
+          <View>
+            <SearchInput placeholder="Search" style={styles.search} />
           </View>
         </ImageBackground>
       </View>
@@ -128,13 +132,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: Colors.dark.background,
   },
+  search: {
+    backgroundColor: Colors.light.lightGray,
+    marginTop: Sizes.xl5x,
+  },
   header: {
-    flex: 2,
+    flex: 4,
     width: "100%",
   },
   bg: {
     flex: 1,
-    padding: Sizes.lg,
+    paddingVertical: Sizes.sm,
+    paddingHorizontal: Sizes.lg,
     resizeMode: "cover",
     justifyContent: "center",
   },
@@ -164,7 +173,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   form: {
-    flex: 5,
+    flex: 7,
     width: "100%",
     position: "relative",
     backgroundColor: Colors.light.background,

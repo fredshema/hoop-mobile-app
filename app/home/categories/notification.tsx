@@ -9,7 +9,7 @@ export default function Notification() {
     <View>
       <View style={styles.layout}>
         <Text style={styles.line}></Text>
-        <View style={styles.messages}>
+        <View>
           <Text style={styles.title}>Order Successful</Text>
           <Text style={styles.subtitle}>
             Congrats on your reserved parking space...
@@ -25,14 +25,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     backgroundColor: Colors.dark.text,
-    padding: 15,
+    padding: Sizes.md,
     borderRadius: Sizes.sm1x,
-    marginLeft: 25,
-    marginRight: 20,
-    marginBottom: 18,
-  },
-  messages: {
-    marginLeft: 15,
+    marginBottom: Sizes.md,
   },
   line: {
     width: 3,
@@ -44,6 +39,7 @@ const styles = StyleSheet.create({
   title: {
     color: "#2D2D2D",
     fontSize: Sizes.md2x,
+    marginBottom: Sizes.vsm,
   },
   time: {
     color: "#2D2D2D",
