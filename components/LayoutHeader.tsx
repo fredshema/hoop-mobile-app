@@ -1,5 +1,6 @@
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
+import { router } from "expo-router";
 import { Pressable, StyleSheet, View } from "react-native";
 import { Icon } from "./Icon";
 import { Text } from "./Themed";
@@ -14,7 +15,16 @@ export default function LayoutHeader(props: LayoutHeaderProps) {
   return (
     <View style={styles.header}>
       {props.backHidden ? null : (
-        <Pressable style={styles.icon} onTouchEnd={props.onBackPress}>
+        <Pressable
+          style={styles.icon}
+          onTouchEnd={
+            props.onBackPress
+              ? props.onBackPress
+              : () => {
+                  router.back();
+                }
+          }
+        >
           <Icon name="arrow-left" style={{ justifyContent: "center" }} />
         </Pressable>
       )}
