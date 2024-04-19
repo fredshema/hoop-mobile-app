@@ -5,8 +5,9 @@ import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import Card from "./card";
 import React from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View , ScrollView} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 export default function Upgrade() {
   const insets = useSafeAreaInsets();
@@ -24,36 +25,13 @@ export default function Upgrade() {
           Get all the facilities by upgrading your account
         </Text>
       </View>
-      <View style={styles.card}>
-        <View style={styles.card1}>
-          <Text style={styles.title}>Pro</Text>
-          <View style={styles.icons}>
-            <Icon name="tick" />
-            <Text style={styles.subtitle}>All Include</Text>
-          </View>
-          <View style={styles.icons}>
-            <Icon name="tick" />
-            <Text style={styles.subtitle}>Unlimited Feature</Text>
-          </View>
-          <View style={styles.icons}>
-            <Icon name="tick" />
-            <Text style={styles.subtitle}>Discounts every reservation</Text>
-          </View>
-          <View style={styles.icons}>
-            <Icon name="tick" />
-            <Text style={styles.subtitle}>All Include</Text>
-          </View>
-          <View style={styles.icons}>
-            <Icon name="tick" />
-            <Text style={styles.subtitle}>All Include</Text>
-          </View>
-          <View style={styles.icons}>
-            <Icon name="tick" />
-            <Text style={styles.subtitle}>All Include</Text>
-          </View>
-        </View>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <View style={styles.sections}>
+      <Card title="Basic"/>
+      <Card title="Premium"/>
+      <Card title="Pro"/>
       </View>
-      <View style={{ flex: 1 }} />
+      </ScrollView>
       <View style={styles.button}>
         <TouchableOpacity
           style={styles.btn}
@@ -79,6 +57,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     columnGap: Sizes.sm,
     marginTop: Sizes.md3x,
+  },
+  sections:{
+    flexDirection:"row",
   },
   title: {
     color: "#2D2D2D",
@@ -116,7 +97,7 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 2,
+   
   },
   btnText: {
     color: Colors.dark.text,

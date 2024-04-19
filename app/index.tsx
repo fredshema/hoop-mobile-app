@@ -14,7 +14,10 @@ import Ob1 from "./ob/Ob1";
 import Ob2 from "./ob/Ob2";
 import Ob3 from "./ob/Ob3";
 
+
 export default function RootHome() {
+
+
   const insets = useSafeAreaInsets();
 
   const handleLogin = (type: string) => {
