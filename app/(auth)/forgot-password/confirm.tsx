@@ -20,14 +20,22 @@ export default function ConfirmForgotPassword() {
           </Text>
           <PrimaryButton
             label="Open email app"
-            style={{ marginBottom: Sizes.md, paddingHorizontal: Sizes.xl4x }}
+            style={{
+              marginBottom: Sizes.md,
+              paddingHorizontal: Sizes.xl4x,
+              alignItems: "center",
+              justifyContent: "flex-start",
+            }}
             onPress={() => {
               router.push("/(auth)/forgot-password/request_otp");
             }}
           />
           <Link
             href="/(auth)/forgot-password/request_code"
-            style={{ fontSize: Sizes.md, color: Colors.light.muted }}
+            style={{
+              fontSize: Sizes.md,
+              color: Colors.light.muted,
+            }}
           >
             Skip I'll confim later
           </Link>
