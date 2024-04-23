@@ -29,7 +29,7 @@ export default function Explore() {
       address: "123 Dhaka Street",
       time: "7 min",
       price: "$7",
-      image: require("@/assets/auth/mall2.png"),
+      image: require("@/assets/auth/gmall.png"),
     },
   ];
 

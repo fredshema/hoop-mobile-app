@@ -2,7 +2,7 @@ import { Icon } from "@/components/Icon";
 import LayoutHeader from "@/components/LayoutHeader";
 import { Text } from "@/components/Themed";
 import { SearchInput } from "@/components/ThemedInput";
-import SimpleParkingSpotCard from "@/components/cards/SimpleParkingSpotCard";
+import HistoryScreen from "@/components/HistoryScreen";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
@@ -15,16 +15,18 @@ export default function History() {
     {
       title: "Graha Mall",
       address: "123 Dhaka Street",
-      time: "7 min",
-      price: "$7",
+      time: "12 Aug",
+      price: "A-6",
+      location:"4 hour",
       image: require("@/assets/auth/mall1.png"),
     },
     {
       title: "Graha Mall",
       address: "123 Dhaka Street",
-      time: "7 min",
-      price: "$7",
-      image: require("@/assets/auth/mall2.png"),
+      time: "12 Aug",
+      location:"4 hour",
+      price: "A-6",
+      image: require("@/assets/auth/mall1.png"),
     },
   ];
 
@@ -32,9 +34,10 @@ export default function History() {
     {
       title: "Graha Mall",
       address: "123 Dhaka Street",
-      time: "7 min",
-      price: "$7",
-      image: require("@/assets/auth/mall1.png"),
+      time: "12 Aug",
+      price: "A-6",
+      location:"4 hour",
+      image: require("@/assets/auth/gmall.png"),
     },
   ];
 
@@ -51,7 +54,7 @@ export default function History() {
         </View>
         <Text style={styles.titles}>Recently</Text>
         {recentParkingSpots.map((spot, index) => (
-          <SimpleParkingSpotCard
+          <HistoryScreen
             key={index}
             {...spot}
             onPress={() => {
@@ -61,7 +64,7 @@ export default function History() {
         ))}
         <Text style={styles.titles}>This week</Text>
         {thisWeekParkingSpots.map((spot, index) => (
-          <SimpleParkingSpotCard
+          <HistoryScreen
             key={index}
             {...spot}
             onPress={() => {
@@ -92,8 +95,8 @@ const styles = StyleSheet.create({
   },
   titles: {
     fontSize: Sizes.md3x,
-    marginBottom: Sizes.sm,
-    marginTop: Sizes.md,
+    marginBottom: Sizes.vsm,
+    marginTop: Sizes.sm1x,
   },
   search: {
     flex: 1,

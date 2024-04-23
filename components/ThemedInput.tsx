@@ -40,7 +40,7 @@ export function PasswordInput(props: TextInputProps) {
 }
 
 export function PhoneInput(props: TextInputProps) {
-  const phoneCode = "+62";
+  const phoneCode = "+250";
   return (
     <View style={styles.phoneInputContainer}>
       <Text style={[styles.input, styles.phoneCode]}>{phoneCode}</Text>

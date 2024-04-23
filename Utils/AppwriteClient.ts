@@ -2,7 +2,8 @@ import { APPWRITE_PROJECT_ID } from "@env";
 import { Platform } from "react-native";
 import { Client } from "react-native-appwrite/src";
 
-const platform = Platform.OS === "ios" ? "ios" : "android";
+const IOS_PLATFORM = "com.example.hoop";
+const platform = Platform.OS === "ios" ? IOS_PLATFORM : "android";
 
 const client = new Client();
 client
