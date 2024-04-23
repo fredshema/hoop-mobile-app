@@ -3,11 +3,13 @@ import { Link, Text } from "@/components/Themed";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import React, {useEffect, useState} from "react";
+import { router } from "expo-router";
 import {
   Image,
   ImageBackground,
   Pressable,
   StyleSheet,
+  TouchableOpacity,
   View,
 } from "react-native";
 import client  from "../../Utils/AppwriteClient";
@@ -31,6 +33,16 @@ catch(e){
   console.log(e);
 }
   }
+  const logOut=async()=>{
+    try{
+      var x=await account.deleteSession("current");
+      
+      router.navigate("/");
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -48,10 +60,11 @@ catch(e){
               <Text style={styles.name}>{name}</Text>
             </View>
             <View style={styles.bx}>
-              <Image
+          <TouchableOpacity onPress={() => logOut()}><Image
                 source={require("@/assets/auth/out.png")}
                 style={styles.notify}
-              />
+                />
+              </TouchableOpacity>
             </View>
           </View>
         </ImageBackground>
