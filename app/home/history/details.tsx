@@ -36,11 +36,11 @@ export default function Detail() {
       <View style={styles.icons}>
         <View style={styles.background}>
           <Icon name="location" />
-          <Text style={styles.danger}>500 m away</Text>
+          <Text style={styles.danger}>A-6</Text>
         </View>
         <View style={styles.background}>
           <Icon name="time-circle" />
-          <Text style={styles.danger}>7 mins</Text>
+          <Text style={styles.danger}>4 hour</Text>
         </View>
       </View>
       <Text style={styles.texts}>Information</Text>
