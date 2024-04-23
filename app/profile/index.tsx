@@ -2,7 +2,7 @@ import { Icon } from "@/components/Icon";
 import { Link, Text } from "@/components/Themed";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
   Image,
   ImageBackground,
@@ -10,11 +10,27 @@ import {
   StyleSheet,
   View,
 } from "react-native";
+import client  from "../../Utils/AppwriteClient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Account } from "react-native-appwrite/src";
 
 export default function Profile() {
   const bgImage = require("@/assets/auth/pattern.png");
   const insets = useSafeAreaInsets();
+  const[name, setName]=useState("");
+  const account = new Account(client);
+  useEffect(()=>{
+    isLoggedIn();
+  },[])
+  const isLoggedIn=async()=>{
+    try{
+      var x=await account.get();
+      setName(x.name);
+    }
+catch(e){
+  console.log(e);
+}
+  }
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -29,7 +45,7 @@ export default function Profile() {
             />
             <View style={styles.greetings}>
               <Text style={styles.subtitle}>Welcome</Text>
-              <Text style={styles.name}>Diane</Text>
+              <Text style={styles.name}>{name}</Text>
             </View>
             <View style={styles.bx}>
               <Image
