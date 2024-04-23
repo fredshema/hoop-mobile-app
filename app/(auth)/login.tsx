@@ -7,8 +7,9 @@ import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
-import { account } from "../../Utils/AppwriteClient";
+import client  from "../../Utils/AppwriteClient";
 import {useGlobalSearchParams} from "expo-router";
+import { Account } from "react-native-appwrite/src";
 
 export default function Login() {
   const bgImage = require("../../assets/auth/pattern.png");
@@ -34,12 +35,15 @@ export default function Login() {
     }
   };
 
+  const account = new Account(client);
+
   const logInWithEmail = async () => {
     try {
       await account.createEmailSession(email, password);
+      alert("welcome "+ email);
       router.navigate("/home/");
     } catch (err) {
-      alert("Email or password is incorrect");
+      alert("invalid email or password");
     }
   };
 
