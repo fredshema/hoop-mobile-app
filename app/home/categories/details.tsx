@@ -29,13 +29,6 @@ export default function CategoryDetails() {
       address: "123 Dhaka Street",
       time: "7 min",
       price: "$7",
-      image: require("../../../assets/auth/mall1.png"),
-    },
-    {
-      title: "Graha Mall",
-      address: "123 Dhaka Street",
-      time: "7 min",
-      price: "$7",
       image: require("../../../assets/auth/gmall.png"),
     },
     {
@@ -45,6 +38,7 @@ export default function CategoryDetails() {
       price: "$7",
       image: require("../../../assets/auth/gmall.png"),
     },
+    
   ];
 
   return (
