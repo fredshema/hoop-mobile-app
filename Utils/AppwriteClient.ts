@@ -18,12 +18,11 @@ function getPlatform() {
 
 let platform = getPlatform();
 
-console.log(APPWRITE_PROJECT_ID);
-
 const client = new Client();
 client
   .setEndpoint("https://cloud.appwrite.io/v1")
   .setProject(APPWRITE_PROJECT_ID)
+  .setPlatform(platform)
   
 
 export default client;

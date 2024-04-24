@@ -6,8 +6,7 @@ import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import client  from "../../Utils/AppwriteClient";
-import React, {useState,useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import {
   Image,
   ImageBackground,
@@ -17,24 +16,25 @@ import {
   View,
 } from "react-native";
 import { Account } from "react-native-appwrite/src";
+import client from "../../Utils/AppwriteClient";
 
 export default function Home() {
   const bgImage = require("@/assets/auth/pattern.png");
-  const[name, setName]=useState("");
-  
+  const [name, setName] = useState("");
+
   const account = new Account(client);
-  useEffect(()=>{
+  useEffect(() => {
     isLoggedIn();
-  },[])
-  const isLoggedIn=async()=>{
-    try{
-      var x=await account.get();
-      setName(x.name);
+  }, []);
+
+  const isLoggedIn = async () => {
+    try {
+      var user = await account.get();
+      setName(user.name.split(" ")[0]);
+    } catch (e) {
+      console.log(e);
     }
-catch(e){
-  console.log(e);
-}
-  }
+  };
   const parkingSpots = [
     {
       title: "Graha Mall",
