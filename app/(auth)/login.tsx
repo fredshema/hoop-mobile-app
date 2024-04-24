@@ -9,6 +9,10 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
 import { Account, ID } from "react-native-appwrite/src";
+import {
+  GestureHandlerRootView,
+  ScrollView,
+} from "react-native-gesture-handler";
 import client from "../../Utils/AppwriteClient";
 
 export default function Login() {
@@ -56,59 +60,75 @@ export default function Login() {
   };
 
   const logInWithPhone = async () => {
-    if (phone === "" || password === "") {
+    if (phone === "") {
       DefaultAlert({
         title: "Validation failed",
-        message: "Please fill all the fields",
+        message: "Please enter your phone number",
       });
       return;
     }
 
     try {
       const parsedPhone = "+250" + parseInt(phone);
-      await account.createPhoneSession(ID.unique(), parsedPhone);
-      router.replace("/home/");
+      const res = await account.createPhoneSession(ID.unique(), parsedPhone);
+      router.replace("/(auth)/verify_phone_otp");
+      router.setParams({
+        phone: parsedPhone,
+        userId: res.userId,
+        expire: res.expire,
+      });
     } catch (err) {
       console.log(err);
       DefaultAlert({
         title: "Login failed",
         message: "Phone number or password is incorrect",
       });
+      await account.deleteSessions();
     }
   };
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="inverted" />
-      <View style={styles.header}>
-        <ImageBackground source={bgImage} style={styles.bg}>
-          <Text style={styles.title}>Glad to see you!!</Text>
-        </ImageBackground>
-      </View>
-      <View style={styles.form}>
-        <View style={{ flex: 1 }}>
-          {loginMethod === "phone" ? (
-            <LoginWithPhone setPhone={setPhone} setPassword={setPassword} />
-          ) : (
-            <LoginWithEmail setEmail={setEmail} setPassword={setPassword} />
-          )}
-          <Text style={{ textAlign: "right", color: Colors.light.muted }}>
-            Forgot password?{" "}
-            <Link href="/(auth)/forgot-password/form">Retrieve</Link>
-          </Text>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{ flexGrow: 1, maxHeight: "100%" }}
+        bounces={false}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={styles.container}>
+          <StatusBar style="inverted" />
+          <View style={styles.header}>
+            <ImageBackground source={bgImage} style={styles.bg}>
+              <Text style={styles.title}>Glad to see you!!</Text>
+            </ImageBackground>
+          </View>
+          <View style={styles.form}>
+            <View style={{ flex: 1 }}>
+              {loginMethod === "phone" ? (
+                <LoginWithPhone setPhone={setPhone} setPassword={setPassword} />
+              ) : (
+                <LoginWithEmail setEmail={setEmail} setPassword={setPassword} />
+              )}
+              <Text style={{ textAlign: "right", color: Colors.light.muted }}>
+                Forgot password?{" "}
+                <Link href="/(auth)/forgot-password/form">Retrieve</Link>
+              </Text>
+            </View>
+            <View style={styles.footer}>
+              <PrimaryButton
+                label="Login"
+                onPress={handleSubmit}
+                loading={loading}
+              />
+              <Text style={{ color: Colors.light.muted }}>
+                Don't have an account?{" "}
+                <Link href="/(auth)/register">Sign Up</Link>
+              </Text>
+            </View>
+          </View>
         </View>
-        <View style={styles.footer}>
-          <PrimaryButton
-            label="Login"
-            onPress={handleSubmit}
-            loading={loading}
-          />
-          <Text style={{ color: Colors.light.muted }}>
-            Don't have an account? <Link href="/(auth)/register">Sign Up</Link>
-          </Text>
-        </View>
-      </View>
-    </View>
+      </ScrollView>
+    </GestureHandlerRootView>
   );
 }
 
@@ -143,11 +163,6 @@ function LoginWithPhone({ setPhone, setPassword }: LoginWithPhoneProps) {
       <PhoneInput
         placeholder="Phone number"
         onChangeText={(text) => setPhone(text)}
-      />
-      <PasswordInput
-        placeholder="Password"
-        returnKeyType="done"
-        onChangeText={(text) => setPassword(text)}
       />
     </View>
   );
