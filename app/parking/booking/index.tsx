@@ -28,7 +28,7 @@ export default function Booking() {
       </View>
       <View style={{ flex: 1, flexDirection: "row", flexWrap: "nowrap" }}>
         <View style={styles.column}>
-          <Text style={styles.title}>Add Insuranse?</Text>
+          <Text style={styles.title}>Add Insurance?</Text>
           <View style={styles.iconsContainer}>
             <View style={styles.icons}>
               <Icon size="lg" name="fuel" />

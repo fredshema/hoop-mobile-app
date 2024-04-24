@@ -80,7 +80,7 @@ export default function Register() {
           <StatusBar style="light" />
           <View style={styles.header}>
             <ImageBackground source={bgImage} style={styles.bg}>
-              <Text style={styles.title}>Let's Start!!</Text>
+              <Text style={styles.title}>Let's start!!</Text>
             </ImageBackground>
           </View>
           <View style={styles.form}>

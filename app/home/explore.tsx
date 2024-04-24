@@ -7,6 +7,7 @@ import Sizes from "@/constants/Sizes";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import Compass from "../../components/cards/Compass2";
 
 export default function Explore() {
   const parkingSpots = [
@@ -50,10 +51,16 @@ export default function Explore() {
           <Link href="/parking/map" style={styles.message}>Most Wanted</Link>
         </View>
         <View>
+        
           {parkingSpots.map((spot, index) => (
             <SimpleParkingSpotCard key={index} {...spot} />
+            
           ))}
+          <View style={styles.compass}>
+           <Compass/>
+           </View>
         </View>
+       
       </View>
     </View>
   );
@@ -102,6 +109,12 @@ const styles = StyleSheet.create({
     borderRadius: Sizes.sm,
     marginTop: Sizes.sm,
     alignSelf: "center",
+  },
+  compass:{
+flexDirection:"row",
+justifyContent:"flex-end",
+top:-80,
+right:2,
   },
   titleElements: {
     flexDirection: "row",

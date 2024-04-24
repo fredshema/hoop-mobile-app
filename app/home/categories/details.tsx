@@ -7,6 +7,7 @@ import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import Compass from "@/components/cards/Compass2";
 
 export default function CategoryDetails() {
   const parkingSpots = [
@@ -72,7 +73,11 @@ export default function CategoryDetails() {
         {parkingSpots.map((spot, index) => (
           <SimpleParkingSpotCard key={index} {...spot} />
         ))}
+        <View style={styles.compass}>
+           <Compass/>
+           </View>
       </View>
+      
     </View>
   );
 }
@@ -107,6 +112,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 30,
   },
+  compass:{
+    flexDirection:"row",
+    justifyContent:"flex-end",
+    top:-150,
+    right:2,
+      },
   log: {
     color: Colors.white,
     textAlign: "center",
