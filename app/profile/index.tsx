@@ -2,8 +2,8 @@ import { Icon } from "@/components/Icon";
 import { Link, Text } from "@/components/Themed";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
-import React, {useEffect, useState} from "react";
 import { router } from "expo-router";
+import React, { useEffect, useState } from "react";
 import {
   Image,
   ImageBackground,
@@ -12,37 +12,40 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import client  from "../../Utils/AppwriteClient";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Account } from "react-native-appwrite/src";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import client from "../../Utils/AppwriteClient";
 
 export default function Profile() {
   const bgImage = require("@/assets/auth/pattern.png");
   const insets = useSafeAreaInsets();
-  const[name, setName]=useState("");
+  const [name, setName] = useState("");
   const account = new Account(client);
-  useEffect(()=>{
+
+  useEffect(() => {
     isLoggedIn();
-  },[])
-  const isLoggedIn=async()=>{
-    try{
-      var x=await account.get();
-      setName(x.name);
-    }
-catch(e){
-  console.log(e);
-}
-  }
-  const logOut=async()=>{
-    try{
-      var x=await account.deleteSession("current");
-      
-      router.navigate("/");
-    }
-    catch(e){
+  }, []);
+
+  const isLoggedIn = async () => {
+    try {
+      var user = await account.get();
+      setName(user.name);
+    } catch (e) {
       console.log(e);
     }
-  }
+  };
+
+  const logout = async () => {
+    try {
+      await account.deleteSessions();
+    } catch (e) {
+      console.log(e);
+    } finally {
+      router.dismissAll();
+      router.push("/(auth)/login");
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -60,9 +63,10 @@ catch(e){
               <Text style={styles.name}>{name}</Text>
             </View>
             <View style={styles.bx}>
-          <TouchableOpacity onPress={() => logOut()}><Image
-                source={require("@/assets/auth/out.png")}
-                style={styles.notify}
+              <TouchableOpacity onPress={() => logout()}>
+                <Image
+                  source={require("@/assets/auth/out.png")}
+                  style={styles.notify}
                 />
               </TouchableOpacity>
             </View>
@@ -80,7 +84,9 @@ catch(e){
           </View>
           <View style={styles.titleElement}>
             <Icon name="discount" />
-            <Link href="/profile/upgrade" style={styles.subtitleElement}>Go Pro</Link>
+            <Link href="/profile/upgrade" style={styles.subtitleElement}>
+              Go Pro
+            </Link>
             <Icon name="dark-arrow-right" />
           </View>
           <View style={styles.titleElement}>

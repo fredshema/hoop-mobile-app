@@ -1,58 +1,79 @@
 import { Link, Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
 import { PasswordInput, PhoneInput, TextInput } from "@/components/ThemedInput";
+import { DefaultAlert } from "@/components/alerts/DefaultAlert";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
-import { router } from "expo-router";
+import { router, useGlobalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
-import client  from "../../Utils/AppwriteClient";
-import {useGlobalSearchParams} from "expo-router";
-import { Account } from "react-native-appwrite/src";
+import { Account, ID } from "react-native-appwrite/src";
+import client from "../../Utils/AppwriteClient";
 
 export default function Login() {
   const bgImage = require("../../assets/auth/pattern.png");
   const { type } = useGlobalSearchParams<{ type: string }>();
   const [loginMethod, setLoginMethod] = React.useState(type);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = () => {
-    if (loginMethod === "email") {
-      if (email === "" || password === "") {
-        alert("Please fill in all the fields");
-      } else {
-        logInWithEmail();
-      }
-    } else {
-      if (phone === "" || password === "") {
-        alert("Please fill in all the fields");
-      } else {
-        logInWithPhone();
-      }
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+      loginMethod === "phone" ? await logInWithPhone() : await logInWithEmail();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
     }
   };
 
   const account = new Account(client);
 
   const logInWithEmail = async () => {
+    if (email === "" || password === "") {
+      DefaultAlert({
+        title: "Validation failed",
+        message: "Please fill all the fields",
+      });
+      return;
+    }
+
     try {
       await account.createEmailSession(email, password);
-      alert("welcome "+ email);
-      router.navigate("/home/");
+      router.replace("/home/");
     } catch (err) {
-      alert("invalid email or password");
+      console.log(err);
+      DefaultAlert({
+        title: "Login failed",
+        message: "Email or password is incorrect",
+      });
     }
   };
 
   const logInWithPhone = async () => {
+    if (phone === "" || password === "") {
+      DefaultAlert({
+        title: "Validation failed",
+        message: "Please fill all the fields",
+      });
+      return;
+    }
+
     try {
-      await account.createPhoneSession(phone, password);
-      router.navigate("/home/");
+      const parsedPhone = "+250" + parseInt(phone);
+      await account.createPhoneSession(ID.unique(), parsedPhone);
+      router.replace("/home/");
     } catch (err) {
-      alert("Phone number or password is incorrect");
+      console.log(err);
+      DefaultAlert({
+        title: "Login failed",
+        message: "Phone number or password is incorrect",
+      });
     }
   };
 
@@ -66,10 +87,10 @@ export default function Login() {
       </View>
       <View style={styles.form}>
         <View style={{ flex: 1 }}>
-          {loginMethod === "email" ? (
-            <LoginWithEmail setEmail={setEmail} setPassword={setPassword} />
-          ) : (
+          {loginMethod === "phone" ? (
             <LoginWithPhone setPhone={setPhone} setPassword={setPassword} />
+          ) : (
+            <LoginWithEmail setEmail={setEmail} setPassword={setPassword} />
           )}
           <Text style={{ textAlign: "right", color: Colors.light.muted }}>
             Forgot password?{" "}
@@ -77,7 +98,11 @@ export default function Login() {
           </Text>
         </View>
         <View style={styles.footer}>
-          <PrimaryButton label="Login" onPress={handleSubmit} />
+          <PrimaryButton
+            label="Login"
+            onPress={handleSubmit}
+            loading={loading}
+          />
           <Text style={{ color: Colors.light.muted }}>
             Don't have an account? <Link href="/(auth)/register">Sign Up</Link>
           </Text>

@@ -14,6 +14,7 @@ export function TextInput(props: TextInputProps) {
   return (
     <DefaultTextInput
       {...props}
+      autoCapitalize={props.inputMode === "email" ? "none" : "sentences"}
       placeholderTextColor={props.placeholderTextColor ?? Colors.light.muted}
       style={[styles.input, props.style]}
     />
@@ -31,7 +32,7 @@ export function PasswordInput(props: TextInputProps) {
       />
       <DefaultTextInput
         {...props}
-        secureTextEntry
+        secureTextEntry={!showPassword}
         placeholderTextColor={props.placeholderTextColor ?? Colors.light.muted}
         style={[styles.input, props.style, { marginBottom: 0 }]}
       />

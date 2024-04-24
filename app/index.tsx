@@ -16,8 +16,6 @@ import Ob3 from "./ob/Ob3";
 
 
 export default function RootHome() {
-
-
   const insets = useSafeAreaInsets();
 
   const handleLogin = (type: string) => {

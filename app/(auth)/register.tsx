@@ -34,7 +34,7 @@ export default function Register() {
   ) {
     if (!name || !email || !password || !passwordAuth || !phone) {
       DefaultAlert({
-        title: "Registration failed",
+        title: "Validation failed",
         message: "Please fill all the fields",
       });
       return;
@@ -42,7 +42,7 @@ export default function Register() {
 
     if (password !== passwordAuth) {
       DefaultAlert({
-        title: "Registration failed",
+        title: "Validation failed",
         message: "Passwords do not match",
       });
       return;
@@ -62,6 +62,7 @@ export default function Register() {
         message: (error as Error).message,
       });
       console.error(error);
+      await account.deleteSessions();
     } finally {
       setLoading(false);
     }

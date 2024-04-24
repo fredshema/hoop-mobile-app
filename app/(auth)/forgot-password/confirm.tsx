@@ -31,7 +31,7 @@ export default function ConfirmForgotPassword() {
             }}
           />
           <Link
-            href="/(auth)/forgot-password/request_code"
+            href="/(auth)/login"
             style={{
               fontSize: Sizes.md,
               color: Colors.light.muted,
