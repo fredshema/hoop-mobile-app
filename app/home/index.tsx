@@ -6,7 +6,8 @@ import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import client  from "../../Utils/AppwriteClient";
+import React, {useState,useEffect} from "react";
 import {
   Image,
   ImageBackground,
@@ -15,10 +16,25 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { Account } from "react-native-appwrite/src";
 
 export default function Home() {
   const bgImage = require("@/assets/auth/pattern.png");
-
+  const[name, setName]=useState("");
+  
+  const account = new Account(client);
+  useEffect(()=>{
+    isLoggedIn();
+  },[])
+  const isLoggedIn=async()=>{
+    try{
+      var x=await account.get();
+      setName(x.name);
+    }
+catch(e){
+  console.log(e);
+}
+  }
   const parkingSpots = [
     {
       title: "Graha Mall",
@@ -44,7 +60,7 @@ export default function Home() {
           <View style={styles.titleElements}>
             <View style={styles.greetings}>
               <Link href="/profile/" style={styles.name}>
-                Hola Diane 👋🏻
+                Hola {name} 👋🏻
               </Link>
               <Text style={styles.subtitles}>Find an easy parking spot</Text>
             </View>

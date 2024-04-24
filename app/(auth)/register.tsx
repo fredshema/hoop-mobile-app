@@ -55,7 +55,7 @@ export default function Register() {
       await account.create(ID.unique(), email, password, name);
       await account.createEmailSession(email, password);
       await account.updatePhone("+250" + parsedPhone, password);
-      router.replace("/home/");
+      router.replace("/(auth)/login");
     } catch (error) {
       DefaultAlert({
         title: "Registration failed",
