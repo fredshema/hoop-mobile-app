@@ -2,49 +2,49 @@ import LayoutHeader from "@/components/LayoutHeader";
 import { Text } from "@/components/Themed";
 import { LightButton, PrimaryButton } from "@/components/ThemedButton";
 import { TextInput } from "@/components/ThemedInput";
+import { DefaultAlert } from "@/components/alerts/DefaultAlert";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
+import client from "@/Utils/AppwriteClient";
 import { router } from "expo-router";
-import { DefaultAlert } from "@/components/alerts/DefaultAlert";
 import { StatusBar } from "expo-status-bar";
-import React, {useState,useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import client from "../../Utils/AppwriteClient";
 import { Account } from "react-native-appwrite/src";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 export default function Edit() {
   const insets = useSafeAreaInsets();
-  const[type, setType]=useState("MotorCar");
-  const[id, setId]=useState("5681");
-  const[address, setAddress]=useState("Address");
-  const[loading, setLoading]=useState(false);
+  const [type, setType] = useState("");
+  const [id, setId] = useState("");
+  const [address, setAddress] = useState("");
+  const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
-  
-  const handleSubmit=async()=>{
-    try{
-      setLoading(false);  
-  const promise=account.updatePrefs({type:type,id:id, address:address});
-  promise.then(function(response){
-    DefaultAlert({
-      title: "Profile Edit",
-      message: "Profile Edited sucessfully !!",
-    });
-    router.replace("/profile/")
-  },
-  function(error){
-    console.log(error);
-  })
-      
-    }
-    catch(err){
-      console.log(err)
-    }
-    finally{
-      setLoading(true);
-    }
-  }
-  const account= new Account(client);
- 
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    await account.updateName(name);
+    account
+      .updatePrefs({
+        type: type,
+        id: id,
+        address: address,
+      })
+      .then((res) => {
+        DefaultAlert({
+          title: "Profile Edit",
+          message: "Profile Edited sucessfully !!",
+        });
+        router.replace("/profile/");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  const account = new Account(client);
   useEffect(() => {
     isLoggedIn();
   }, []);
@@ -53,11 +53,14 @@ export default function Edit() {
     try {
       var user = await account.get();
       setName(user.name);
+      setType(user.prefs.type);
+      setId(user.prefs.id);
+      setAddress(user.prefs.address);
     } catch (e) {
       console.log(e);
     }
   };
-  
+
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <StatusBar style="dark" />
@@ -74,26 +77,38 @@ export default function Edit() {
       <View style={styles.form}>
         <View>
           <Text style={styles.label}>Name</Text>
-          <TextInput  value={name}/>
+          <TextInput value={name} onChangeText={(text) => setName(text)} />
         </View>
         <View style={styles.row}>
           <View style={{ flex: 1 }}>
             <Text style={styles.label}>Type</Text>
-            <TextInput  onChangeText={(text)=>setType(text)}/>
+            <TextInput onChangeText={(text) => setType(text)} value={type} />
           </View>
           <View style={{ flex: 1 }}>
             <Text style={styles.label}>ID</Text>
-            <TextInput  onChangeText={(text)=>setId(text)}/>
+            <TextInput onChangeText={(text) => setId(text)} value={id} />
           </View>
         </View>
         <View>
           <Text style={styles.label}>Address</Text>
-          <TextInput  onChangeText={(text)=>setAddress(text)} />
+          <TextInput
+            onChangeText={(text) => setAddress(text)}
+            value={address}
+          />
         </View>
         <View style={{ flex: 1 }} />
         <View style={styles.btns}>
-          <LightButton label="Cancel" style={{ width: "50%" }} onPress={()=>router.navigate("/profile/")}/>
-          <PrimaryButton label="Save" style={{ width: "50%" }} onPress={handleSubmit} loading={loading}/>
+          <LightButton
+            label="Cancel"
+            style={{ width: "50%" }}
+            onPress={() => router.navigate("/profile/")}
+          />
+          <PrimaryButton
+            label="Save"
+            style={{ width: "50%" }}
+            onPress={handleSubmit}
+            loading={loading}
+          />
         </View>
       </View>
     </View>
