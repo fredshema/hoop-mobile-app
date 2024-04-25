@@ -3,6 +3,7 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import * as React from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function RootLayout() {
@@ -30,16 +31,18 @@ export default function RootLayout() {
 function RootLayoutScreen() {
   const backgroundColor = useThemeColor({}, "background");
   return (
-    <SafeAreaProvider>
-      <Stack
-        initialRouteName="(auth)/login"
-        screenOptions={{
-          contentStyle: { backgroundColor },
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="index" />
-      </Stack>
-    </SafeAreaProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <Stack
+          initialRouteName="(auth)/login"
+          screenOptions={{
+            contentStyle: { backgroundColor },
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="index" />
+        </Stack>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }

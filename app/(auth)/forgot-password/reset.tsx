@@ -1,10 +1,10 @@
-import client from "@/Utils/AppwriteClient";
 import { Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
 import { PasswordInput } from "@/components/ThemedInput";
 import { DefaultAlert } from "@/components/alerts/DefaultAlert";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
+import client from "@/utils/AppwriteClient";
 import { useGlobalSearchParams } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";

@@ -8,15 +8,15 @@ import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import {
-  Image,
-  ImageBackground,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-  View,
+    Image,
+    ImageBackground,
+    Pressable,
+    StyleSheet,
+    TouchableOpacity,
+    View,
 } from "react-native";
 import { Account } from "react-native-appwrite/src";
-import client from "../../Utils/AppwriteClient";
+import client from "../../utils/AppwriteClient";
 
 export default function Home() {
   const bgImage = require("@/assets/auth/pattern.png");
