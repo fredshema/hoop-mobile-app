@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     flexDirection:"row",
     justifyContent:"flex-end",
     top:-150,
-    right:2,
+    right:3,
       },
   log: {
     color: Colors.white,
