@@ -2,16 +2,65 @@ import LayoutHeader from "@/components/LayoutHeader";
 import { Text } from "@/components/Themed";
 import { LightButton, PrimaryButton } from "@/components/ThemedButton";
 import { TextInput } from "@/components/ThemedInput";
+import { DefaultAlert } from "@/components/alerts/DefaultAlert";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
+import client from "@/Utils/AppwriteClient";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
+import { Account } from "react-native-appwrite/src";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Edit() {
   const insets = useSafeAreaInsets();
+  const [type, setType] = useState("");
+  const [id, setId] = useState("");
+  const [address, setAddress] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [name, setName] = useState("");
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    await account.updateName(name);
+    account
+      .updatePrefs({
+        type: type,
+        id: id,
+        address: address,
+      })
+      .then((res) => {
+        DefaultAlert({
+          title: "Profile Edit",
+          message: "Profile Edited sucessfully !!",
+        });
+        router.replace("/profile/");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  const account = new Account(client);
+  useEffect(() => {
+    isLoggedIn();
+  }, []);
+
+  const isLoggedIn = async () => {
+    try {
+      var user = await account.get();
+      setName(user.name);
+      setType(user.prefs.type);
+      setId(user.prefs.id);
+      setAddress(user.prefs.address);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <StatusBar style="dark" />
@@ -28,26 +77,38 @@ export default function Edit() {
       <View style={styles.form}>
         <View>
           <Text style={styles.label}>Name</Text>
-          <TextInput value="Echa" />
+          <TextInput value={name} onChangeText={(text) => setName(text)} />
         </View>
         <View style={styles.row}>
           <View style={{ flex: 1 }}>
             <Text style={styles.label}>Type</Text>
-            <TextInput value="Car Sport" />
+            <TextInput onChangeText={(text) => setType(text)} value={type} />
           </View>
           <View style={{ flex: 1 }}>
             <Text style={styles.label}>ID</Text>
-            <TextInput value="C68721" />
+            <TextInput onChangeText={(text) => setId(text)} value={id} />
           </View>
         </View>
         <View>
           <Text style={styles.label}>Address</Text>
-          <TextInput value="Address" />
+          <TextInput
+            onChangeText={(text) => setAddress(text)}
+            value={address}
+          />
         </View>
         <View style={{ flex: 1 }} />
         <View style={styles.btns}>
-          <LightButton label="Cancel" style={{ width: "50%" }} />
-          <PrimaryButton label="Save" style={{ width: "50%" }} />
+          <LightButton
+            label="Cancel"
+            style={{ width: "50%" }}
+            onPress={() => router.navigate("/profile/")}
+          />
+          <PrimaryButton
+            label="Save"
+            style={{ width: "50%" }}
+            onPress={handleSubmit}
+            loading={loading}
+          />
         </View>
       </View>
     </View>
