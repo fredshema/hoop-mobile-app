@@ -1,4 +1,3 @@
-import client from "@/Utils/AppwriteClient";
 import { Icon } from "@/components/Icon";
 import LayoutHeader from "@/components/LayoutHeader";
 import { Text } from "@/components/Themed";
@@ -6,6 +5,7 @@ import { TextInput } from "@/components/ThemedInput";
 import { DefaultAlert } from "@/components/alerts/DefaultAlert";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
+import client from "@/utils/AppwriteClient";
 import { router, useGlobalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";

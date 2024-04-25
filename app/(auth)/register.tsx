@@ -1,18 +1,18 @@
-import client from "@/Utils/AppwriteClient";
 import { Link, Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
 import { PasswordInput, PhoneInput, TextInput } from "@/components/ThemedInput";
 import { DefaultAlert } from "@/components/alerts/DefaultAlert";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
+import client from "@/utils/AppwriteClient";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
 import { Account, ID } from "react-native-appwrite/src";
 import {
-  GestureHandlerRootView,
-  ScrollView,
+    GestureHandlerRootView,
+    ScrollView,
 } from "react-native-gesture-handler";
 
 export default function Register() {
