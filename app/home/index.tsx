@@ -16,7 +16,7 @@ import {
     View,
 } from "react-native";
 import { Account } from "react-native-appwrite/src";
-import client from "../../utils/AppwriteClient";
+import client from "../../Utils/AppwriteClient";
 
 export default function Home() {
   const bgImage = require("@/assets/auth/pattern.png");
@@ -35,22 +35,7 @@ export default function Home() {
       console.log(e);
     }
   };
-  const parkingSpots = [
-    {
-      title: "Graha Mall",
-      address: "123 Dhaka Street",
-      time: "7 min",
-      price: "$7",
-      image: require("@/assets/auth/mall1.png"),
-    },
-    {
-      title: "Graha Mall",
-      address: "123 Dhaka Street",
-      time: "7 min",
-      price: "$7",
-      image: require("@/assets/auth/mall2.png"),
-    },
-  ];
+ 
 
   return (
     <View style={styles.container}>
@@ -126,15 +111,10 @@ export default function Home() {
           <Link href="/home/explore" style={styles.titles}>
             Nearst Parking Spaces
           </Link>
-          {parkingSpots.map((spot, index) => (
-            <SimpleParkingSpotCard
-              key={index}
-              {...spot}
-              onPress={() => {
-                router.push("/parking/details");
-              }}
-            />
-          ))}
+          
+            <SimpleParkingSpotCard onPress={() => {
+                router.push("/parking/details")}}/>
+            <SimpleParkingSpotCard/>
         </View>
       </View>
     </View>
