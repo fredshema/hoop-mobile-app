@@ -1,9 +1,9 @@
-import client from "@/Utils/AppwriteClient";
 import LayoutHeader from "@/components/LayoutHeader";
 import { Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
 import { TextInput } from "@/components/ThemedInput";
 import Sizes from "@/constants/Sizes";
+import client from "@/utils/AppwriteClient";
 import { router } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";

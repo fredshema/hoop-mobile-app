@@ -5,16 +5,16 @@ import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
-  Image,
-  ImageBackground,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-  View,
+    Image,
+    ImageBackground,
+    Pressable,
+    StyleSheet,
+    TouchableOpacity,
+    View,
 } from "react-native";
 import { Account } from "react-native-appwrite/src";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import client from "../../Utils/AppwriteClient";
+import client from "../../utils/AppwriteClient";
 
 export default function Profile() {
   const bgImage = require("@/assets/auth/pattern.png");

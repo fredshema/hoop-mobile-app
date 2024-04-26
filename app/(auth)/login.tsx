@@ -10,10 +10,10 @@ import React, { useState } from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
 import { Account, ID } from "react-native-appwrite/src";
 import {
-  GestureHandlerRootView,
-  ScrollView,
+    GestureHandlerRootView,
+    ScrollView,
 } from "react-native-gesture-handler";
-import client from "../../Utils/AppwriteClient";
+import client from "../../utils/AppwriteClient";
 
 export default function Login() {
   const bgImage = require("../../assets/auth/pattern.png");
