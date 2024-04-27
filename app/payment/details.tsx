@@ -5,19 +5,19 @@ import { PrimaryButton } from "@/components/ThemedButton";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
-import React from "react";
+import React, { useContext } from "react";
 import { Image, StyleSheet, View } from "react-native";
+import { Switch } from "react-native-gesture-handler";
+import { BookingContext } from "../parking/_layout";
 
 export default function Details() {
+  const [isEnabled, setIsEnabled] = React.useState(false);
+  const booking = useContext(BookingContext);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <LayoutHeader
-          title="Payment Details"
-          onBackPress={() => {
-            router.back();
-          }}
-        />
+        <LayoutHeader title="Payment Details" />
       </View>
       <View style={styles.rectangle}>
         <Text>Mobile Banking</Text>
@@ -60,8 +60,12 @@ export default function Details() {
         <Icon name="dark-arrow-right" />
       </View>
       <View style={styles.messages}>
-        <Text style={styles.sendEmail}>Send receipt to your email</Text>
-        <Image source={require("@/assets/auth/on.png")} style={styles.icon} />
+        <Text>Send receipt to your email</Text>
+        <Switch
+          trackColor={{ true: Colors.light.primary }}
+          value={isEnabled}
+          onValueChange={setIsEnabled}
+        />
       </View>
       <View style={styles.button}>
         <PrimaryButton
@@ -112,8 +116,8 @@ const styles = StyleSheet.create({
   messages: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 30,
-    marginTop: 20,
+    alignItems: "center",
+    marginVertical: Sizes.lg,
   },
   accountNumber: {
     flex: 1,

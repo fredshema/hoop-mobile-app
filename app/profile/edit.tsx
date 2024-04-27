@@ -5,7 +5,7 @@ import { TextInput } from "@/components/ThemedInput";
 import { DefaultAlert } from "@/components/alerts/DefaultAlert";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
-import client from "@/Utils/AppwriteClient";
+import client from "@/utils/AppwriteClient";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";

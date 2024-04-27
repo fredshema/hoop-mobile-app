@@ -2,46 +2,95 @@ import { Icon } from "@/components/Icon";
 import LayoutHeader from "@/components/LayoutHeader";
 import { Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
+import { DefaultAlert } from "@/components/alerts/DefaultAlert";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
+import client from "@/utils/AppwriteClient";
+import { APPWRITE_BOOKINGS_COLLECTION_ID, APPWRITE_DATABASE_ID } from "@env";
 import { router } from "expo-router";
-import React from "react";
+import React, { useContext } from "react";
 import { Image, StyleSheet, View } from "react-native";
+import {
+  Account,
+  Databases,
+  ID,
+  Permission,
+  Role,
+} from "react-native-appwrite/src";
+import { BookingContext } from "../_layout";
 
 export default function BookingDetails() {
+  const booking = useContext(BookingContext);
+  const [loading, setLoading] = React.useState(false);
+
+  const saveBookingDetails = async () => {
+    setLoading(true);
+    const account = new Account(client);
+    const user = await account.get();
+
+    const database = new Databases(client);
+    database
+      .createDocument(
+        APPWRITE_DATABASE_ID,
+        APPWRITE_BOOKINGS_COLLECTION_ID,
+        ID.unique(),
+        {
+          date: new Date().toISOString(),
+          price: booking.total,
+          hours: booking.hours,
+          parkingSpot: booking.parkingSpot?.id,
+        },
+        [
+          Permission.read(Role.user(user.$id)),
+          Permission.write(Role.user(user.$id)),
+          Permission.delete(Role.user(user.$id)),
+        ]
+      )
+      .then((response) => {
+        router.push("/payment/payment");
+      })
+      .catch((error) => {
+        console.log(error);
+        DefaultAlert({
+          title: "Payment failed",
+          message: "Failed to save booking details",
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <LayoutHeader
-          title="Book Details"
-          onBackPress={() => {
-            router.back();
-          }}
-        />
-      </View>
-      <View style={styles.images}>
-        <Image source={require("@/assets/auth/mall.png")} />
-      </View>
+      <LayoutHeader
+        title="Book Details"
+        onBackPress={() => {
+          router.back();
+        }}
+      />
+      <Image style={styles.image} source={require("@/assets/auth/mall.png")} />
       <View style={styles.body}>
         <View>
-          <Text style={styles.title}>Graha Mall</Text>
-          <Text style={styles.bodyMessage}>123 Dhaka Street</Text>
+          <Text style={styles.title}>{booking.parkingSpot?.title}</Text>
+          <Text style={styles.bodyMessage}>{booking.parkingSpot?.address}</Text>
         </View>
-        <Text style={styles.background}>$10/h</Text>
+        <View style={styles.grd}>
+          <Text style={styles.dangerText}>${booking.parkingSpot?.price}/h</Text>
+        </View>
       </View>
       <View style={styles.icons}>
-        <View style={styles.card1}>
+        <View style={styles.card}>
           <View style={styles.grd}>
             <Icon name="location" />
           </View>
           <Text style={styles.numbers}>A-6</Text>
           <Text style={styles.text}>Parking Place</Text>
         </View>
-        <View style={styles.card2}>
+        <View style={styles.card}>
           <View style={styles.grd}>
             <Icon name="time-circle" />
           </View>
-          <Text style={styles.numbers}>4 h</Text>
+          <Text style={styles.numbers}>{booking.hours} h</Text>
           <Text style={styles.text}>Time</Text>
         </View>
       </View>
@@ -49,17 +98,17 @@ export default function BookingDetails() {
         <View style={styles.ground}>
           <Image source={require("@/assets/auth/insurance.png")} />
         </View>
-        <Text style={styles.txt}>Include Insurance</Text>
-        <Text style={styles.hour}>$5/h</Text>
+        <Text style={{ flex: 1 }}>Include Insurance</Text>
+        <Text>$5/h</Text>
       </View>
+      <View style={{ flex: 1 }} />
       <View style={styles.button}>
-        <Text style={styles.price}>$35,00</Text>
+        <Text style={styles.price}>${booking.total.toPrecision(4)}</Text>
         <PrimaryButton
           label="Pay"
           style={styles.btn}
-          onPress={() => {
-            router.push("/payment/payment");
-          }}
+          loading={loading}
+          onPress={saveBookingDetails}
         />
       </View>
     </View>
@@ -69,140 +118,98 @@ export default function BookingDetails() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignContent: "center",
-    justifyContent: "center",
+    paddingHorizontal: Sizes.lg,
+    paddingBottom: Sizes.lg,
   },
   text: {
     fontSize: Sizes.sm3x,
-    color: "#2D2D2D",
-    opacity: 0.4,
-  },
-  txt: {
-    fontSize: Sizes.md2x,
-    marginRight: 30,
-    marginTop: 5,
-  },
-  hour: {
-    fontSize: Sizes.md,
-    marginTop: 5,
+    color: Colors.light.muted,
   },
   body: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "center",
+    marginTop: Sizes.md3x,
   },
   price: {
     fontSize: Sizes.xl,
-    marginTop: 10,
-    color: "#2D2D2D",
     fontWeight: "bold",
+    paddingHorizontal: Sizes.md3x,
   },
   numbers: {
     fontSize: Sizes.md2x,
-    color: "#2D2D2D",
-  },
-  header: {
-    paddingLeft: 30,
-    marginBottom: 10,
   },
   rectangle: {
-    backgroundColor: Colors.dark.text,
     flexDirection: "row",
     justifyContent: "space-around",
-    width: 311,
-    height: 61,
-    padding: 10,
-    margin: 35,
-    borderRadius: 15,
+    alignItems: "center",
+    paddingVertical: Sizes.sm3x,
+    paddingHorizontal: Sizes.md3x,
+    borderRadius: Sizes.md,
+    backgroundColor: Colors.white,
+    gap: Sizes.md,
+    marginTop: Sizes.lg,
   },
   bodyMessage: {
-    color: "#2D2D2D",
-    opacity: 0.4,
-    marginBottom: 30,
-  },
-  Btitle: {
-    color: "#2D2D2D",
-    fontSize: Sizes.md3x,
-    textAlign: "center",
-    marginBottom: Sizes.sm,
+    color: Colors.light.muted,
   },
   ground: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: Colors.light.lightDanger,
-    width: 41,
-    height: 41,
-    paddingLeft: 10,
-    paddingTop: 5,
-    borderRadius: 8,
+    padding: Sizes.sm,
+    borderRadius: Sizes.sm,
   },
   grd: {
     backgroundColor: Colors.light.lightDanger,
-    borderRadius: 8,
+    borderRadius: Sizes.sm,
     padding: Sizes.sm,
     marginBottom: Sizes.sm,
   },
   title: {
-    color: "#2D2D2D",
     fontSize: Sizes.lg,
-    marginTop: Sizes.lg,
-    marginBottom: Sizes.sm,
-  },
-  texts: {
-    marginLeft: 20,
-    color: "#2D2D2D",
-    fontSize: Sizes.md3x,
-  },
-  background: {
-    width: 72,
-    backgroundColor: Colors.light.lightDanger,
-    color: Colors.light.danger,
-    height: 38,
-    padding: Sizes.sm,
-    textAlign: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    marginLeft: 20,
-    borderRadius: Sizes.vsm,
   },
   icons: {
     flexDirection: "row",
     justifyContent: "center",
+    gap: Sizes.md,
+    marginTop: Sizes.md3x,
   },
-  images: {
-    flexDirection: "row",
+  image: {
     justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: 200,
+    objectFit: "contain",
+    marginTop: Sizes.md3x,
   },
   button: {
     flexDirection: "row",
-    justifyContent: "center",
-    marginTop: 20,
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: Sizes.lg,
     gap: Sizes.lg,
   },
   btnText: {
     color: Colors.dark.text,
     textAlign: "center",
-    marginTop: 15,
     fontSize: Sizes.md,
   },
   btn: {
     width: "50%",
+    marginBottom: 0,
   },
-  card1: {
-    width: 145,
-    height: 126,
-    backgroundColor: Colors.dark.text,
-    marginRight: 20,
+  card: {
+    backgroundColor: Colors.white,
     borderRadius: Sizes.md3x,
     justifyContent: "center",
     alignItems: "center",
+    padding: Sizes.md3x,
+    flex: 1,
   },
-  card2: {
-    width: 145,
-    height: 126,
-    backgroundColor: Colors.dark.text,
-    borderRadius: Sizes.md3x,
-    justifyContent: "center",
-    alignItems: "center",
+  dangerText: {
+    color: Colors.light.danger,
+    paddingHorizontal: Sizes.sm,
+    textAlign: "center",
   },
 });

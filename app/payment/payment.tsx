@@ -2,29 +2,38 @@ import LayoutHeader from "@/components/LayoutHeader";
 import { Text } from "@/components/Themed";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
+import ParkingSpot from "@/utils/models/ParkingSpot";
 import { router } from "expo-router";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { BookingContext } from "../parking/_layout";
 
 export default function Payment() {
   const insets = useSafeAreaInsets();
+  const booking = useContext(BookingContext);
+
+  useEffect(() => {
+    if (!booking.parkingSpot) {
+      booking.parkingSpot = new ParkingSpot(
+        "1",
+        "Graha Mall",
+        "123 Dhaka Street",
+        30,
+        5
+      );
+    }
+  }, []);
+
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <LayoutHeader
-          title="Payment"
-          onBackPress={() => {
-            router.back();
-          }}
-        />
-      </View>
+      <LayoutHeader title="Payment" />
       <View style={styles.card}>
         <View style={styles.images}>
           <Image source={require("@/assets/auth/mall3.png")} />
         </View>
-        <Text style={styles.title}>Graha Mall</Text>
-        <Text style={styles.bodyMessage}>123 Dhaka Street</Text>
+        <Text style={styles.title}>{booking.parkingSpot?.title}</Text>
+        <Text style={styles.bodyMessage}>{booking.parkingSpot?.address}</Text>
         <View style={styles.icons}>
           <View style={styles.background}>
             <Image source={require("@/assets/auth/location.png")} />
@@ -32,7 +41,7 @@ export default function Payment() {
           </View>
           <View style={styles.background}>
             <Image source={require("@/assets/auth/clock.png")} />
-            <Text style={styles.danger}>4 hours</Text>
+            <Text style={styles.danger}>{booking.hours} hours</Text>
           </View>
         </View>
       </View>
@@ -43,16 +52,19 @@ export default function Payment() {
       <View style={styles.card}>
         <View style={styles.prices}>
           <Text style={styles.texts}>Sub total</Text>
-          <Text>$30,00</Text>
+          <Text>
+            $
+            {(booking.hours * (booking.parkingSpot?.price || 0)).toPrecision(4)}
+          </Text>
         </View>
         <View style={styles.prices}>
           <Text style={styles.texts}>Insurance</Text>
-          <Text>$5,00</Text>
+          <Text>$5.00</Text>
         </View>
         <Text style={styles.line}></Text>
         <View style={styles.prices}>
           <Text style={styles.totalCost}>Total</Text>
-          <Text style={styles.totalCost}>$35,00</Text>
+          <Text style={styles.totalCost}>${booking.total.toPrecision(4)}</Text>
         </View>
       </View>
       <View style={styles.button}>
@@ -129,7 +141,7 @@ const styles = StyleSheet.create({
   },
   totalCost: {
     fontWeight: "bold",
-    fontSize: Sizes.md2x
+    fontSize: Sizes.md2x,
   },
   danger: {
     color: Colors.light.danger,

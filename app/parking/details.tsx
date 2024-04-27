@@ -4,20 +4,71 @@ import { Text } from "@/components/Themed";
 import { PrimaryButton } from "@/components/ThemedButton";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
-import { router } from "expo-router";
-import React from "react";
+import client from "@/utils/AppwriteClient";
+import ParkingSpot from "@/utils/models/ParkingSpot";
+import {
+  APPWRITE_DATABASE_ID,
+  APPWRITE_PARKING_SPOTS_COLLECTION_ID,
+} from "@env";
+import { router, useGlobalSearchParams } from "expo-router";
+import { useContext, useEffect, useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
+import { Databases } from "react-native-appwrite/src";
+import { BookingContext } from "./_layout";
 
 export default function ParkingDetails() {
+  const { parkingSpotId } = useGlobalSearchParams<{
+    parkingSpotId: string;
+  }>();
+  const booking = useContext(BookingContext);
+  const [parkingSpot, setParkingSpot] = useState<ParkingSpot | null>(null);
+
+  useEffect(() => {
+    fetchParkingSpot();
+  }, [parkingSpotId]);
+
+  const fetchParkingSpot = () => {
+    if (!parkingSpotId) {
+      booking.parkingSpot = new ParkingSpot(
+        "1",
+        "Graha Mall",
+        "123 Dhaka Street",
+        7,
+        5
+      );
+      return;
+    }
+    if (booking.parkingSpot?.id === parkingSpotId) {
+      setParkingSpot(booking.parkingSpot);
+      return;
+    }
+
+    const database = new Databases(client);
+    database
+      .getDocument(
+        APPWRITE_DATABASE_ID,
+        APPWRITE_PARKING_SPOTS_COLLECTION_ID,
+        parkingSpotId
+      )
+      .then((response) => {
+        booking.parkingSpot = new ParkingSpot(
+          response["$id"],
+          response["title"],
+          response["address"],
+          response["time"],
+          response["price"]
+        );
+        setParkingSpot(booking.parkingSpot);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   return (
     <View style={[styles.container]}>
       <View style={styles.header}>
-        <LayoutHeader
-          title="Details"
-          onBackPress={() => {
-            router.back();
-          }}
-        />
+        <LayoutHeader title="Details" />
       </View>
       <View style={styles.images}>
         <Image source={require("@/assets/auth/mall.png")} />
@@ -25,8 +76,18 @@ export default function ParkingDetails() {
           <Icon name="light-current-location" />
         </View>
       </View>
-      <Text style={styles.title}>Graha Mall</Text>
-      <Text style={styles.bodyMessage}>123 Dhaka Street</Text>
+      {parkingSpot === null ? (
+        <>
+          <View style={[styles.title, styles.loading, { width: 200 }]} />
+          <View style={[styles.bodyMessage, styles.loading, { width: 150 }]} />
+        </>
+      ) : (
+        <>
+          <Text style={styles.title}>{parkingSpot?.title}</Text>
+          <Text style={styles.bodyMessage}>{parkingSpot?.address}</Text>
+        </>
+      )}
+
       <View style={styles.icons}>
         <View style={styles.background}>
           <Icon name="location" />
@@ -34,7 +95,7 @@ export default function ParkingDetails() {
         </View>
         <View style={styles.background}>
           <Icon name="time-circle" />
-          <Text style={styles.danger}>7 mins</Text>
+          <Text style={styles.danger}>{parkingSpot?.time} mins</Text>
         </View>
       </View>
       <Text style={styles.texts}>Information</Text>
@@ -137,5 +198,11 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: "70%",
+  },
+  loading: {
+    padding: Sizes.sm2x,
+    backgroundColor: Colors.light.background,
+    marginLeft: "auto",
+    marginRight: "auto",
   },
 });

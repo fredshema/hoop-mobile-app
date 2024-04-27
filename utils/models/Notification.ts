@@ -6,7 +6,6 @@ export default class {
     read: boolean;
 
     constructor(id: string, title: string, description: string, date: string, read: boolean) {
-        console.log("Notification", id, title, description, date, read);
         this.id = id;
         this.title = title;
         this.description = description;
