@@ -1,107 +1,66 @@
 import { Text } from "@/components/Themed";
-import React, { useEffect, useState } from "react";
-import {DATABASE_ID, COLLECTION_ID} from "@env";
-import {
-  Image,
-  ImageSourcePropType,
-  Pressable,
-  StyleSheet,
-  View,
-} from "react-native";
+import Colors from "@/constants/Colors";
+import Sizes from "@/constants/Sizes";
+import ParkingSpot from "@/utils/models/ParkingSpot";
+import { Image, Pressable, StyleSheet, View } from "react-native";
 
-import { Databases, ID, Query } from "react-native-appwrite/src";
-
-import client from "@/Utils/AppwriteClient";
-type ParkingSpot = {
-  title: string;
-  price: string;
-  time: string;
-  address:string;
-};
-
-type SimpleParkingSpotCardProps = {
+type SimpleParkingSpotCardProps = ParkingSpot & {
   onPress?: () => void;
 };
 
-export default function SimpleParkingSpotCard(props: SimpleParkingSpotCardProps) {
-  const [spots, setSpots] =useState<ParkingSpot[]>([])
-  const [loading, setLoading] = useState(true);
-  const databases = new Databases(client);
-
-  useEffect(() => {
-    displayData();
-  }, []);
-
-  async function displayData() {
-    try {
-      const response = await databases.listDocuments(DATABASE_ID, COLLECTION_ID, [Query.select(["title", "price", "time", "address"])]);
-      setSpots(response.documents as unknown as ParkingSpot[]);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
+export default function SimpleParkingSpotCard(
+  props: SimpleParkingSpotCardProps
+) {
   return (
-    
     <Pressable onPress={props.onPress}>
-      {spots.map((spot, index) => (
-        <View key={index} style={styles.card1}>
- <Image source={require("@/assets/auth/mall1.png")}/>
-          <View style={styles.details}>
-            <Text style={styles.title1}>{spot.title}</Text>
-            <Text style={styles.title2}>{spot.address}</Text>
-            <Text style={styles.title3}>$
-            {spot.price}
+      <View key={props.id} style={styles.card}>
+        <Image source={require("@/assets/auth/mall1.png")} />
+        <View style={{ flex: 1 }}>
+          <Text style={styles.title}>{props.title}</Text>
+          <Text style={styles.subtitle}>{props.address}</Text>
+          <Text style={styles.primaryText}>
+            ${props.price}
             <Text style={styles.span}>/hour</Text>
           </Text>
-          
-          </View>
-          <Text style={styles.timeButton}>{spot.time} min</Text>
         </View>
-      ))}
+        <Text style={styles.timeButton}>{props.time} min</Text>
+      </View>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  card1: {
+  card: {
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: "#FFFFFF",
-    borderRadius: 15,
-    padding: 15,
-    marginBottom: 20,
+    alignItems: "flex-start",
+    backgroundColor: Colors.white,
+    borderRadius: Sizes.md,
+    padding: Sizes.md,
+    marginBottom: Sizes.md,
+    gap: Sizes.md,
   },
   timeButton: {
-    backgroundColor: "#FFF3F3",
-    color: "#F43939",
-    opacity: 0.8,
-    fontSize: 12,
-    borderRadius: 15,
+    backgroundColor: Colors.light.lightDanger,
+    color: Colors.light.danger,
+    fontSize: Sizes.sm3x,
     textAlign: "center",
-    padding: 4,
-    width: 59,
-    height: 26,
+    padding: Sizes.sm,
   },
-  details: {
-    marginTop: 10,
+  title: {
+    fontSize: Sizes.md2x,
+    marginBottom: Sizes.sm,
   },
-  title1: {
-    color: "#2D2D2D",
-    fontSize: 18,
+  subtitle: {
+    color: Colors.light.muted,
+    marginBottom: Sizes.sm,
   },
-  title2: {
-    color: "#2D2D2D",
-    fontSize: 14,
-    marginBottom: 10,
-    opacity: 0.5,
-  },
-  title3: {
-    color: "#F43939",
-    fontSize: 20,
+  primaryText: {
+    color: Colors.light.primary,
+    fontSize: Sizes.md4x,
   },
   span: {
-    fontSize: 12,
-    color: "#F43939",
+    fontSize: Sizes.sm3x,
+    color: Colors.light.primary,
   },
 });

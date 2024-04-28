@@ -6,7 +6,9 @@ import { PrimaryButton } from "@/components/ThemedButton";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
+import { useContext, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { BookingContext } from "../_layout";
 
 export default function Booking() {
   const hours = [
@@ -21,6 +23,17 @@ export default function Booking() {
     { title: "9", label: "Hours" },
     { title: "10", label: "Hours" },
   ];
+
+  const booking = useContext(BookingContext);
+  const [selectedHour, setSelectedHour] = useState(0);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    booking.hours = parseInt(hours[selectedHour].title);
+    booking.total = (booking.parkingSpot?.price || 0) * booking.hours + 5;
+    setTotal(booking.total);
+  }, [selectedHour]);
+
   return (
     <>
       <View style={styles.container}>
@@ -42,11 +55,11 @@ export default function Booking() {
           </View>
         </View>
         <View style={styles.column}>
-          <CircularWheel data={hours} />
+          <CircularWheel data={hours} onChange={setSelectedHour} />
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <Text style={styles.price}>$35,00</Text>
+        <Text style={styles.price}>${total.toPrecision(4)}</Text>
         <PrimaryButton
           label="Pay"
           style={{ width: "60%", marginBottom: 0 }}

@@ -59,7 +59,6 @@ export default function VerifyPhoneOTP({}) {
         const account = new Account(client);
         setLoading(true);
         try {
-          console.log(otp, userId);
           await account.updatePhoneSession(userId, otp);
           router.dismissAll();
           router.replace("/home/");

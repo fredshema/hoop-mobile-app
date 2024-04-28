@@ -30,7 +30,8 @@ export default function Success() {
         <PrimaryButton
           label="Back to Home"
           onPress={() => {
-            router.replace("/home/");
+            router.dismissAll();
+            router.push("/home/");
             router.push("/parking/route");
           }}
         />

@@ -10,10 +10,11 @@ import { Icon } from "./Icon";
 import { Text } from "./Themed";
 
 type CircularWheelProps = {
-  data: { title: string, label: string }[];
+  data: { title: string; label: string }[];
+  onChange?: (index: number) => void;
 };
 
-export default function CircularWheel({ data }: CircularWheelProps) {
+export default function CircularWheel({ data, onChange }: CircularWheelProps) {
   const window = useWindowDimensions();
   const [selectedTime, selectTime] = React.useState(0);
   const wheelSize = window.height / 1.75;
@@ -27,6 +28,12 @@ export default function CircularWheel({ data }: CircularWheelProps) {
       left: 0,
     };
   }, []);
+
+  React.useEffect(() => {
+    if (selectedTime >= 0 && selectedTime < data.length) {
+      onChange?.(selectedTime);
+    }
+  }, [selectedTime]);
 
   return (
     <View

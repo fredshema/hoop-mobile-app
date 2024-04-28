@@ -4,6 +4,7 @@ import { PrimaryButton } from "@/components/ThemedButton";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
 import { router } from "expo-router";
+import { useContext } from "react";
 import {
   Image,
   ImageBackground,
@@ -12,9 +13,11 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { BookingContext } from "./_layout";
 
 export default function ParkTracking() {
   const insets = useSafeAreaInsets();
+  const booking = useContext(BookingContext);
   return (
     <ImageBackground
       source={require("@/assets/parking/maps.png")}
@@ -35,7 +38,10 @@ export default function ParkTracking() {
         <Icon name="arrow-left" style={{ justifyContent: "center" }} />
       </Pressable>
       <View style={{ flex: 1 }}></View>
-      <Image style={styles.image} source={require("@/assets/parking/direction.png")} />
+      <Image
+        style={styles.image}
+        source={require("@/assets/parking/direction.png")}
+      />
       <View style={styles.mapCard}>
         <View style={{ paddingHorizontal: Sizes.xl, paddingTop: Sizes.xl }}>
           <View style={styles.card}>
@@ -49,13 +55,13 @@ export default function ParkTracking() {
                 }}
               >
                 <Icon name="location" />
-                <Text>123 Dhaka Street</Text>
+                <Text>{booking.parkingSpot?.address}</Text>
               </View>
             </View>
             <View style={[styles.card, styles.dangerCard]}>
               <Icon name="time-circle" style={{ left: 0 }} />
               <Text style={[styles.danger, { marginLeft: Sizes.sm }]}>
-                7 minutes
+                {booking.parkingSpot?.time} minutes
               </Text>
             </View>
           </View>
@@ -116,7 +122,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  image:{
+  image: {
     width: "100%",
     resizeMode: "contain",
   },

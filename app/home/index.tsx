@@ -4,38 +4,78 @@ import { SearchInput } from "@/components/ThemedInput";
 import SimpleParkingSpotCard from "@/components/cards/SimpleParkingSpotCard";
 import Colors from "@/constants/Colors";
 import Sizes from "@/constants/Sizes";
-import { router } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useState } from "react";
+import client from "@/utils/AppwriteClient";
+import ParkingSpot from "@/utils/models/ParkingSpot";
 import {
-    Image,
-    ImageBackground,
-    Pressable,
-    StyleSheet,
-    TouchableOpacity,
-    View,
+  APPWRITE_DATABASE_ID,
+  APPWRITE_PARKING_SPOTS_COLLECTION_ID,
+} from "@env";
+import { useRouter } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import React, { useContext, useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  Image,
+  ImageBackground,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { Account } from "react-native-appwrite/src";
-import client from "../../Utils/AppwriteClient";
+import { Account, Databases } from "react-native-appwrite/src";
+import { RefreshControl, ScrollView } from "react-native-gesture-handler";
+import { BookingContext } from "../parking/_layout";
 
 export default function Home() {
   const bgImage = require("@/assets/auth/pattern.png");
   const [name, setName] = useState("");
-
-  const account = new Account(client);
-  useEffect(() => {
-    isLoggedIn();
-  }, []);
+  const [loading, setLoading] = useState(true);
+  const [parkingSpots, setParkingSpots] = useState<ParkingSpot[]>([]);
+  const booking = useContext(BookingContext);
+  const router = useRouter();
 
   const isLoggedIn = async () => {
     try {
+      const account = new Account(client);
       var user = await account.get();
       setName(user.name.split(" ")[0]);
+      fetchParkingSpots();
     } catch (e) {
       console.log(e);
     }
   };
- 
+
+  const fetchParkingSpots = () => {
+    setLoading(true);
+    const database = new Databases(client);
+    database
+      .listDocuments(APPWRITE_DATABASE_ID, APPWRITE_PARKING_SPOTS_COLLECTION_ID)
+      .then((response) => {
+        const parkingSpots = response.documents.map((doc) => {
+          return new ParkingSpot(
+            doc["$id"],
+            doc["title"],
+            doc["address"],
+            doc["time"],
+            doc["price"]
+          );
+        });
+        setParkingSpots(parkingSpots);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    booking.parkingSpot = null;
+    booking.hours = 0;
+    booking.total = 0;
+    isLoggedIn();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -68,54 +108,79 @@ export default function Home() {
         </ImageBackground>
       </View>
       <View style={styles.form}>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.titles}>Categories</Text>
-          <View style={styles.imagesElement}>
-            <Pressable
-              style={styles.box}
-              onPress={() => {
-                router.push("/home/categories/details");
-              }}
-            >
-              <Icon name="car" />
-              <Text style={styles.vehicleNames}>Car</Text>
-            </Pressable>
-            <Pressable
-              style={styles.box}
-              onPress={() => {
-                router.push("/home/categories/details");
-              }}
-            >
-              <Icon name="bike" />
-              <Text style={styles.vehicleNames}>Bike</Text>
-            </Pressable>
-            <Pressable
-              style={styles.box}
-              onPress={() => {
-                router.push("/home/categories/details");
-              }}
-            >
-              <Icon name="bus" />
-              <Text style={styles.vehicleNames}>Bus</Text>
-            </Pressable>
-            <Pressable
-              style={styles.box}
-              onPress={() => {
-                router.push("/home/categories/details");
-              }}
-            >
-              <Icon name="van" />
-              <Text style={styles.vehicleNames}>Van</Text>
-            </Pressable>
+        <ScrollView
+          contentContainerStyle={{ flexGrow: 1 }}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+        >
+          <RefreshControl refreshing={loading} onRefresh={fetchParkingSpots} />
+          <View style={styles.formScrollView}>
+            <Text style={styles.titles}>Categories</Text>
+            <View style={styles.imagesElement}>
+              <Pressable
+                style={styles.box}
+                onPress={() => {
+                  router.push("/home/categories/details");
+                }}
+              >
+                <Icon name="car" />
+                <Text style={styles.vehicleNames}>Car</Text>
+              </Pressable>
+              <Pressable
+                style={styles.box}
+                onPress={() => {
+                  router.push("/home/categories/details");
+                }}
+              >
+                <Icon name="bike" />
+                <Text style={styles.vehicleNames}>Bike</Text>
+              </Pressable>
+              <Pressable
+                style={styles.box}
+                onPress={() => {
+                  router.push("/home/categories/details");
+                }}
+              >
+                <Icon name="bus" />
+                <Text style={styles.vehicleNames}>Bus</Text>
+              </Pressable>
+              <Pressable
+                style={styles.box}
+                onPress={() => {
+                  router.push("/home/categories/details");
+                }}
+              >
+                <Icon name="van" />
+                <Text style={styles.vehicleNames}>Van</Text>
+              </Pressable>
+            </View>
+            <Link href="/home/explore" style={styles.titles}>
+              Nearst Parking Spaces
+            </Link>
+
+            <View style={{ marginTop: Sizes.lg }}>
+              {loading ? (
+                <View style={styles.loading}>
+                  <ActivityIndicator style={{ marginBottom: Sizes.md }} />
+                  <Text>Loading...</Text>
+                </View>
+              ) : parkingSpots.length === 0 ? (
+                <Text style={styles.emptyText}>No parking spots available</Text>
+              ) : (
+                parkingSpots.map((spot) => (
+                  <SimpleParkingSpotCard
+                    key={spot.id}
+                    {...spot}
+                    onPress={() => {
+                      router.push("/parking/details");
+                      router.setParams({ parkingSpotId: spot.id });
+                    }}
+                  />
+                ))
+              )}
+            </View>
           </View>
-          <Link href="/home/explore" style={styles.titles}>
-            Nearst Parking Spaces
-          </Link>
-          
-            <SimpleParkingSpotCard onPress={() => {
-                router.push("/parking/details")}}/>
-            <SimpleParkingSpotCard/>
-        </View>
+        </ScrollView>
       </View>
     </View>
   );
@@ -135,6 +200,11 @@ const styles = StyleSheet.create({
   header: {
     flex: 4,
     width: "100%",
+  },
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   bg: {
     flex: 1,
@@ -156,6 +226,12 @@ const styles = StyleSheet.create({
   primaryText: {
     color: Colors.light.primary,
   },
+  emptyText: {
+    color: Colors.light.muted,
+    fontSize: Sizes.md2x,
+    textAlign: "center",
+    marginTop: Sizes.lg,
+  },
   button: {
     width: "100%",
     backgroundColor: Colors.dark.background,
@@ -171,12 +247,17 @@ const styles = StyleSheet.create({
   form: {
     flex: 7,
     width: "100%",
-    position: "relative",
     backgroundColor: Colors.light.background,
-    borderTopEndRadius: 40,
+    overflow: "hidden",
     borderTopStartRadius: 40,
+    borderTopEndRadius: 40,
+  },
+  formScrollView: {
+    position: "relative",
     paddingVertical: Sizes.sm + 40,
     paddingHorizontal: Sizes.lg,
+    borderTopStartRadius: 40,
+    borderTopEndRadius: 40,
   },
   bx: {
     backgroundColor: "#2A344E",
